@@ -54,9 +54,16 @@ export const games: Game[] = [
       'A lone grave-robber on a cursed frontier, auto-firing six-shooters and salvaged hoodoo at a posse that will not stop coming. Every kill raises your Wanted level, and Wanted is the difficulty — push it for richer loot and deadlier hunters, or lay low and starve your own build. The best run rides the edge of the noose until sundown.',
     genre: 'Top-down survivors-like',
     status: 'concept',
-    visibility: 'unlisted',
+    visibility: 'public',
     platforms: ['Windows', 'macOS', 'Linux'],
     stores: [],
+    features: [
+      'Every kill raises your Wanted level — and Wanted is the difficulty',
+      'Weapons only evolve once you are notorious enough to deserve it',
+      'Fifteen minutes to sundown, and something waiting for you at the end',
+      'Open frontier with real cover, so where you stand is a decision',
+    ],
+    price: '~$4.99 at launch',
   },
   {
     slug: 'nightside',

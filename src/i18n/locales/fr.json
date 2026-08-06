@@ -178,7 +178,14 @@
     "boothill": {
       "tagline": "Vous avez déterré la mauvaise tombe, et tout le territoire veut votre peau.",
       "pitch": "Un pilleur de tombes solitaire sur une frontière maudite, tirant en automatique au revolver et au vaudou de récupération sur une posse qui ne s’arrête jamais. Chaque victime fait monter votre niveau de Recherché, et Recherché, c’est la difficulté : poussez-le pour un butin plus riche et des chasseurs plus mortels, ou faites profil bas et affamez votre propre build. La meilleure partie longe la corde jusqu’au coucher du soleil.",
-      "genre": "Survivors-like en vue de dessus"
+      "genre": "Survivors-like en vue de dessus",
+      "price": "~4,99 € au lancement",
+      "features": [
+        "Chaque victime fait monter votre niveau de Recherché — et Recherché, c’est la difficulté",
+        "Les armes n’évoluent que lorsque vous êtes assez tristement célèbre pour le mériter",
+        "Quinze minutes avant le coucher du soleil, et quelque chose vous attend au bout",
+        "Frontière ouverte avec un vrai couvert : où vous vous tenez est une décision"
+      ]
     },
     "nightside": {
       "tagline": "Une foreuse lunaire a ouvert quelque chose d’ancien sur la face cachée de la Lune.",

@@ -178,7 +178,14 @@
     "boothill": {
       "tagline": "Desenterraste la tumba equivocada y ahora todo el territorio te quiere muerto.",
       "pitch": "Un saqueador de tumbas solitario en una frontera maldita, disparando en automático revólveres y vudú rescatado a una partida que no deja de venir. Cada muerte sube tu nivel de Buscado, y Buscado es la dificultad: fuérzalo para conseguir mejor botín y cazadores más letales, o mantén el perfil bajo y ahoga tu propia build. La mejor partida cabalga al borde de la soga hasta el ocaso.",
-      "genre": "Survivors-like en vista cenital"
+      "genre": "Survivors-like en vista cenital",
+      "price": "~4,99 € en el lanzamiento",
+      "features": [
+        "Cada muerte sube tu nivel de Buscado, y Buscado es la dificultad",
+        "Las armas solo evolucionan cuando eres lo bastante notorio como para merecerlo",
+        "Quince minutos hasta el ocaso, y algo esperándote al final",
+        "Frontera abierta con cobertura real: dónde te colocas es una decisión"
+      ]
     },
     "nightside": {
       "tagline": "Una perforadora lunar abrió algo antiguo en la cara oculta de la Luna.",

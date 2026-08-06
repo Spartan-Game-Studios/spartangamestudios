@@ -178,7 +178,14 @@
     "boothill": {
       "tagline": "Du hast das falsche Grab ausgehoben — jetzt will dich das ganze Territorium tot sehen.",
       "pitch": "Ein einsamer Grabräuber an einer verfluchten Frontier feuert automatisch Revolver und zusammengesuchten Hoodoo auf ein Aufgebot, das nicht aufhört zu kommen. Jeder Kill hebt deine Fahndungsstufe, und die Fahndungsstufe ist der Schwierigkeitsgrad: Treib sie hoch für reichere Beute und tödlichere Jäger, oder halt dich bedeckt und lass deinen eigenen Build verhungern. Der beste Run reitet bis Sonnenuntergang am Rand des Stricks.",
-      "genre": "Survivors-like aus der Vogelperspektive"
+      "genre": "Survivors-like aus der Vogelperspektive",
+      "price": "~4,99 € zum Release",
+      "features": [
+        "Jeder Kill hebt deine Fahndungsstufe — und die Fahndungsstufe ist der Schwierigkeitsgrad",
+        "Waffen entwickeln sich erst weiter, wenn du berüchtigt genug bist, es zu verdienen",
+        "Fünfzehn Minuten bis Sonnenuntergang, und am Ende wartet etwas auf dich",
+        "Offene Frontier mit echter Deckung — wo du stehst, ist eine Entscheidung"
+      ]
     },
     "nightside": {
       "tagline": "Eine Mondbohrung hat auf der erdabgewandten Seite etwas Altes aufgebrochen.",
