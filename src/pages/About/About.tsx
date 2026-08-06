@@ -1,15 +1,21 @@
+import { useTranslation } from 'react-i18next';
 import { Container } from '@/components/Container/Container';
 import { Button } from '@/components/Button/Button';
 import { MeanderRule } from '@/components/MeanderRule/MeanderRule';
-import { ownershipPledge, studio } from '@/data';
+import { studio } from '@/data';
+import { usePledgeCopy, useStudioCopy } from '@/i18n/content';
 import { useDocumentMeta } from '@/lib/useDocumentMeta';
 import page from '@/pages/shared/page.module.css';
 import styles from './About.module.css';
 
 export function About() {
+  const { t } = useTranslation();
+  const studioCopy = useStudioCopy();
+  const pledge = usePledgeCopy();
+
   useDocumentMeta({
-    title: 'About',
-    description: studio.description,
+    title: t('about.title'),
+    description: studioCopy.description,
     path: '/about',
   });
 
@@ -17,35 +23,24 @@ export function About() {
     <div className={page.page}>
       <Container>
         <header className={page.header}>
-          <p className="u-eyebrow">The studio</p>
-          <h1 className={`${page.title} u-gold-text`}>About</h1>
+          <p className="u-eyebrow">{t('about.eyebrow')}</p>
+          <h1 className={`${page.title} u-gold-text`}>{t('about.title')}</h1>
           <MeanderRule />
         </header>
 
         <div className={styles.prose}>
-          <p>
-            {studio.name} is a small independent studio building tight, replayable action games —
-            the kind you start a fifteenth run of because the fourteenth ended badly and you know
-            exactly why.
-          </p>
-          <p>
-            We build in Godot, we ship on PC first, and we keep the scope honest: a complete game
-            that respects the hours you put into it beats a bigger one that needs you to keep paying
-            attention.
-          </p>
-          <p>
-            The part we care most about is how the games are sold. That is the whole reason this
-            page exists rather than a store bio.
-          </p>
+          <p>{t('about.body1', { studio: studio.name })}</p>
+          <p>{t('about.body2')}</p>
+          <p>{t('about.body3')}</p>
         </div>
 
         <section className={styles.pledge} aria-labelledby="pledge-heading">
           <h2 id="pledge-heading" className={page.sectionTitle}>
-            {ownershipPledge.heading}
+            {pledge.heading}
           </h2>
           <div className={styles.pledgeList}>
-            {ownershipPledge.points.map((point) => (
-              <div key={point.title} className={styles.pledgeItem}>
+            {pledge.points.map((point) => (
+              <div key={point.id} className={styles.pledgeItem}>
                 <h3 className={styles.pledgeTitle}>{point.title}</h3>
                 <p className={styles.pledgeBody}>{point.body}</p>
               </div>
@@ -53,9 +48,9 @@ export function About() {
           </div>
 
           <div className={styles.contact}>
-            <Button href={`mailto:${studio.businessEmail}`}>Get in touch</Button>
+            <Button href={`mailto:${studio.businessEmail}`}>{t('common.getInTouch')}</Button>
             <Button to="/press" variant="secondary">
-              Press kit
+              {t('common.pressKit')}
             </Button>
           </div>
         </section>

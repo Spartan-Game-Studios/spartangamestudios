@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
 import type { Game } from '@/data';
+import { useGameCopy } from '@/i18n/content';
 import { StatusBadge } from '@/components/StatusBadge/StatusBadge';
 import styles from './GameCard.module.css';
 
 export function GameCard({ game }: { game: Game }) {
+  const copy = useGameCopy(game);
+
   return (
     <article className={styles.card}>
       {game.keyArt ? (
@@ -17,16 +20,16 @@ export function GameCard({ game }: { game: Game }) {
       <div className={styles.body}>
         <div className={styles.meta}>
           <StatusBadge status={game.status} />
-          <span className={styles.genre}>{game.genre}</span>
+          <span className={styles.genre}>{copy.genre}</span>
         </div>
 
         <h3 className={styles.title}>
           <Link to={`/games/${game.slug}`} className={styles.link}>
-            {game.title}
+            {copy.title}
           </Link>
         </h3>
 
-        <p className={styles.tagline}>{game.tagline}</p>
+        <p className={styles.tagline}>{copy.tagline}</p>
 
         <p className={styles.platforms}>{game.platforms.join(' · ')}</p>
       </div>

@@ -1,4 +1,5 @@
-import { STORE_LABELS, STOREFRONTS, type StoreLink } from '@/data';
+import { useTranslation } from 'react-i18next';
+import { storeKey, STOREFRONTS, type StoreLink } from '@/data';
 import { Button } from '@/components/Button/Button';
 import styles from './StoreLinks.module.css';
 
@@ -18,17 +19,16 @@ const ORDER = new Map(STOREFRONTS.map((store, index) => [store, index]));
  * so, rather than showing a dead button.
  */
 export function StoreLinks({ links, title, fallbackTo, size = 'medium' }: StoreLinksProps) {
+  const { t } = useTranslation();
+
   if (links.length === 0) {
     return (
       <p className={styles.empty}>
-        <span className={styles.emptyLead}>Not on sale yet</span>
-        <span>
-          {title} has no storefront live. This row fills in the day it does — it is the first thing
-          updated on every launch and port.
-        </span>
+        <span className={styles.emptyLead}>{t('stores.notOnSaleYet')}</span>
+        <span>{t('stores.noStoreYet', { title })}</span>
         {fallbackTo ? (
           <a href={fallbackTo} className="u-gold-text">
-            Follow development
+            {t('stores.followDevelopment')}
           </a>
         ) : null}
       </p>
@@ -40,11 +40,11 @@ export function StoreLinks({ links, title, fallbackTo, size = 'medium' }: StoreL
   );
 
   return (
-    <ul className={styles.row} aria-label={`Where to buy ${title}`}>
+    <ul className={styles.row} aria-label={t('stores.whereToBuy', { title })}>
       {ordered.map((link, index) => (
         <li key={link.store}>
           <Button href={link.url} size={size} variant={index === 0 ? 'primary' : 'secondary'}>
-            {link.label ?? STORE_LABELS[link.store]}
+            {link.label ?? t(storeKey(link.store))}
           </Button>
         </li>
       ))}

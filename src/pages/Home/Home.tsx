@@ -1,16 +1,22 @@
+import { useTranslation } from 'react-i18next';
 import { Container } from '@/components/Container/Container';
 import { Button } from '@/components/Button/Button';
 import { GameCard } from '@/components/GameCard/GameCard';
 import { MeanderRule } from '@/components/MeanderRule/MeanderRule';
 import { PostListItem } from '@/pages/Devlog/PostListItem';
-import { listedGames, listedPosts, ownershipPledge, studio } from '@/data';
+import { listedGames, listedPosts, studio } from '@/data';
+import { usePledgeCopy, useStudioCopy } from '@/i18n/content';
 import { useDocumentMeta } from '@/lib/useDocumentMeta';
 import styles from './Home.module.css';
 
 export function Home() {
+  const { t } = useTranslation();
+  const studioCopy = useStudioCopy();
+  const pledge = usePledgeCopy();
+
   useDocumentMeta({
     title: studio.name,
-    description: studio.description,
+    description: studioCopy.description,
     path: '/',
   });
 
@@ -27,19 +33,15 @@ export function Home() {
         <Container>
           <div className={styles.heroContent}>
             <p className={styles.heroSub}>{studio.name}</p>
-            <h1 className={`${styles.heroTitle} u-gold-text`}>{studio.tagline}</h1>
+            <h1 className={`${styles.heroTitle} u-gold-text`}>{studioCopy.tagline}</h1>
             <MeanderRule short />
-            <p className={styles.heroLede}>
-              We build tight, replayable action games — and sell them the old way. One purchase,
-              yours forever, updates free. No microtransactions, no live service, nothing inside the
-              game asking you for money.
-            </p>
+            <p className={styles.heroLede}>{t('home.heroLede')}</p>
             <div className={styles.heroActions}>
               <Button to="/games" size="large">
-                See the games
+                {t('home.seeTheGames')}
               </Button>
               <Button to="/about" variant="secondary" size="large">
-                About the studio
+                {t('home.aboutTheStudio')}
               </Button>
             </div>
           </div>
@@ -49,14 +51,11 @@ export function Home() {
       <section className={styles.section} aria-labelledby="games-heading">
         <Container>
           <div className={styles.sectionHead}>
-            <p className="u-eyebrow">The catalogue</p>
+            <p className="u-eyebrow">{t('home.catalogueEyebrow')}</p>
             <h2 id="games-heading" className={styles.sectionTitle}>
-              What we&rsquo;re building
+              {t('home.catalogueTitle')}
             </h2>
-            <p className={styles.sectionLede}>
-              Nothing is on sale yet. Every game below lists its full row of storefronts the day it
-              has one — this page is the canonical place to find them.
-            </p>
+            <p className={styles.sectionLede}>{t('home.catalogueLede')}</p>
           </div>
 
           <div className={styles.gameGrid}>
@@ -70,15 +69,15 @@ export function Home() {
       <section className={`${styles.section} ${styles.pledge}`} aria-labelledby="pledge-heading">
         <Container>
           <div className={styles.sectionHead}>
-            <p className="u-eyebrow">Our promise</p>
+            <p className="u-eyebrow">{t('home.pledgeEyebrow')}</p>
             <h2 id="pledge-heading" className={styles.sectionTitle}>
-              {ownershipPledge.heading}
+              {pledge.heading}
             </h2>
           </div>
 
           <div className={styles.pledgeGrid}>
-            {ownershipPledge.points.map((point) => (
-              <div key={point.title} className={styles.pledgeItem}>
+            {pledge.points.map((point) => (
+              <div key={point.id} className={styles.pledgeItem}>
                 <h3 className={styles.pledgeTitle}>{point.title}</h3>
                 <p className={styles.pledgeBody}>{point.body}</p>
               </div>
@@ -91,9 +90,9 @@ export function Home() {
         <section className={styles.section} aria-labelledby="devlog-heading">
           <Container>
             <div className={styles.sectionHead}>
-              <p className="u-eyebrow">From the workshop</p>
+              <p className="u-eyebrow">{t('home.devlogEyebrow')}</p>
               <h2 id="devlog-heading" className={styles.sectionTitle}>
-                Devlog
+                {t('home.devlogTitle')}
               </h2>
             </div>
 

@@ -7,10 +7,11 @@ import {
   getPost,
   listedGames,
   listedPosts,
-  STATUS_LABELS,
-  STORE_LABELS,
+  statusKey,
+  storeKey,
   STOREFRONTS,
 } from './index';
+import en from '@/i18n/locales/en.json';
 
 describe('games catalogue', () => {
   it('has unique slugs', () => {
@@ -30,7 +31,7 @@ describe('games catalogue', () => {
       expect(game.tagline.length).toBeGreaterThan(0);
       expect(game.pitch.length).toBeGreaterThan(0);
       expect(game.platforms.length).toBeGreaterThan(0);
-      expect(STATUS_LABELS[game.status]).toBeDefined();
+      expect(en.status[game.status]).toBeTruthy();
     }
   });
 
@@ -76,10 +77,17 @@ describe('games catalogue', () => {
   });
 });
 
-describe('storefront labels', () => {
-  it('labels every storefront', () => {
+describe('translation keys', () => {
+  it('has an English label for every storefront', () => {
     for (const store of STOREFRONTS) {
-      expect(STORE_LABELS[store]).toBeTruthy();
+      expect(storeKey(store)).toBe(`stores.${store}`);
+      expect(en.stores[store]).toBeTruthy();
+    }
+  });
+
+  it('has an English label for every status', () => {
+    for (const status of Object.keys(en.status) as Array<keyof typeof en.status>) {
+      expect(statusKey(status)).toBe(`status.${status}`);
     }
   });
 });
@@ -117,5 +125,17 @@ describe('formatDate', () => {
   it('formats without slipping a day across time zones', () => {
     expect(formatDate('2026-01-01')).toBe('January 1, 2026');
     expect(formatDate('2026-12-31')).toBe('December 31, 2026');
+  });
+
+  it('formats in the active locale', () => {
+    expect(formatDate('2026-08-06', 'de')).toBe('6. August 2026');
+    expect(formatDate('2026-08-06', 'fr')).toBe('6 août 2026');
+    expect(formatDate('2026-08-06', 'es')).toBe('6 de agosto de 2026');
+  });
+
+  it('keeps the same calendar day in every locale', () => {
+    for (const locale of ['en', 'es', 'fr', 'de']) {
+      expect(formatDate('2026-01-01', locale)).toMatch(/\b1\b/);
+    }
   });
 });

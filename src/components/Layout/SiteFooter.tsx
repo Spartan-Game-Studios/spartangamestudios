@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Container } from '@/components/Container/Container';
+import { LanguagePicker } from '@/components/LanguagePicker/LanguagePicker';
 import { listedGames, studio } from '@/data';
+import { useStudioCopy } from '@/i18n/content';
 import styles from './SiteFooter.module.css';
 
 export function SiteFooter() {
+  const { t } = useTranslation();
+  const copy = useStudioCopy();
   const year = new Date().getFullYear();
 
   return (
@@ -12,11 +17,12 @@ export function SiteFooter() {
         <div className={styles.grid}>
           <div>
             <p className={`${styles.brandLine} u-gold-text`}>{studio.name}</p>
-            <p className={styles.blurb}>{studio.description}</p>
+            <p className={styles.blurb}>{copy.description}</p>
+            <LanguagePicker className={styles.language} />
           </div>
 
           <div>
-            <h2 className={styles.heading}>Games</h2>
+            <h2 className={styles.heading}>{t('footer.games')}</h2>
             <ul className={styles.list}>
               {listedGames().map((game) => (
                 <li key={game.slug}>
@@ -27,16 +33,16 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <h2 className={styles.heading}>Studio</h2>
+            <h2 className={styles.heading}>{t('footer.studio')}</h2>
             <ul className={styles.list}>
               <li>
-                <Link to="/about">About</Link>
+                <Link to="/about">{t('footer.about')}</Link>
               </li>
               <li>
-                <Link to="/devlog">Devlog</Link>
+                <Link to="/devlog">{t('footer.devlog')}</Link>
               </li>
               <li>
-                <Link to="/press">Press kit</Link>
+                <Link to="/press">{t('footer.pressKit')}</Link>
               </li>
               <li>
                 <a href={`mailto:${studio.businessEmail}`}>{studio.businessEmail}</a>
@@ -46,10 +52,8 @@ export function SiteFooter() {
         </div>
 
         <div className={styles.bottom}>
-          <span>
-            © {year} {studio.name}
-          </span>
-          <span>Buy once. Own it.</span>
+          <span>{t('footer.copyright', { year, studio: studio.name })}</span>
+          <span>{t('footer.motto')}</span>
         </div>
       </Container>
     </footer>

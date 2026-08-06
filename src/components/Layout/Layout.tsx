@@ -1,8 +1,11 @@
 import { Outlet, ScrollRestoration } from 'react-router-dom';
+import { useHtmlLang } from '@/i18n/useHtmlLang';
 import { SiteHeader } from './SiteHeader';
 import { SiteFooter } from './SiteFooter';
 
 export function Layout() {
+  useHtmlLang();
+
   return (
     <>
       <SiteHeader />

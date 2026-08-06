@@ -1,4 +1,5 @@
-import { STATUS_LABELS, type GameStatus } from '@/data';
+import { useTranslation } from 'react-i18next';
+import { statusKey, type GameStatus } from '@/data';
 import styles from './StatusBadge.module.css';
 
 const VARIANTS: Record<GameStatus, string> = {
@@ -9,5 +10,6 @@ const VARIANTS: Record<GameStatus, string> = {
 };
 
 export function StatusBadge({ status }: { status: GameStatus }) {
-  return <span className={`${styles.badge} ${VARIANTS[status]}`}>{STATUS_LABELS[status]}</span>;
+  const { t } = useTranslation();
+  return <span className={`${styles.badge} ${VARIANTS[status]}`}>{t(statusKey(status))}</span>;
 }

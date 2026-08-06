@@ -1,0 +1,128 @@
+{
+  "nav": {
+    "games": "Games",
+    "devlog": "Devlog",
+    "press": "Press",
+    "about": "About",
+    "primaryLabel": "Primary",
+    "home": "Spartan Game Studios — home",
+    "skipToContent": "Skip to content"
+  },
+  "common": {
+    "language": "Language",
+    "backToGames": "All games",
+    "backToDevlog": "All posts",
+    "getInTouch": "Get in touch",
+    "pressKit": "Press kit"
+  },
+  "status": {
+    "released": "Out now",
+    "early-access": "Early access",
+    "in-development": "In development",
+    "concept": "In concept"
+  },
+  "stores": {
+    "steam": "Steam",
+    "itch": "itch.io",
+    "epic": "Epic Games Store",
+    "gog": "GOG",
+    "ios": "App Store",
+    "android": "Google Play",
+    "web": "Play in browser",
+    "switch": "Nintendo Switch",
+    "playstation": "PlayStation",
+    "xbox": "Xbox",
+    "whereToBuy": "Where to buy {{title}}",
+    "notOnSaleYet": "Not on sale yet",
+    "noStoreYet": "{{title}} has no storefront live. This row fills in the day it does — it is the first thing updated on every launch and port.",
+    "followDevelopment": "Follow development"
+  },
+  "footer": {
+    "games": "Games",
+    "studio": "Studio",
+    "about": "About",
+    "devlog": "Devlog",
+    "pressKit": "Press kit",
+    "copyright": "© {{year}} {{studio}}",
+    "motto": "Buy once. Own it."
+  },
+  "home": {
+    "heroLede": "We build tight, replayable action games — and sell them the old way. One purchase, yours forever, updates free. No microtransactions, no live service, nothing inside the game asking you for money.",
+    "seeTheGames": "See the games",
+    "aboutTheStudio": "About the studio",
+    "catalogueEyebrow": "The catalogue",
+    "catalogueTitle": "What we’re building",
+    "catalogueLede": "Nothing is on sale yet. Every game below lists its full row of storefronts the day it has one — this page is the canonical place to find them.",
+    "pledgeEyebrow": "Our promise",
+    "devlogEyebrow": "From the workshop",
+    "devlogTitle": "Devlog"
+  },
+  "games": {
+    "eyebrow": "Catalogue",
+    "title": "Games",
+    "lede": "Every game we make, and every shelf it sits on. When a title launches or lands on a new platform, the link appears here first."
+  },
+  "gameDetail": {
+    "unannounced": "Unannounced — this page is reachable by direct link only and is not listed anywhere on the site.",
+    "whatItIs": "What it is",
+    "atAGlance": "At a glance",
+    "status": "Status",
+    "genre": "Genre",
+    "platforms": "Platforms",
+    "release": "Release",
+    "price": "Price",
+    "priceUnset": "Buy once, own forever — price set closer to launch",
+    "developer": "Developer"
+  },
+  "devlog": {
+    "eyebrow": "From the workshop",
+    "title": "Devlog",
+    "lede": "Development writing lives here first. The archive is ours — socials are where it gets distributed, not where it is kept.",
+    "empty": "Nothing published yet. First entry lands soon."
+  },
+  "press": {
+    "eyebrow": "Press & creators",
+    "title": "Press kit",
+    "lede": "Everything needed to write about, stream, or record our games. If something you need is missing, ask — we would rather send it than have you go without.",
+    "factSheet": "Fact sheet",
+    "studio": "Studio",
+    "founded": "Founded",
+    "basedIn": "Based in",
+    "website": "Website",
+    "pressContact": "Press contact",
+    "business": "Business",
+    "titles": "Titles",
+    "logos": "Logos",
+    "primaryLogo": "Primary logo",
+    "primaryLogoNote": "PNG, 1024×1024, transparent",
+    "pixelLogo": "Pixel logo",
+    "pixelLogoNote": "PNG, transparent — for small/in-game use",
+    "download": "Download",
+    "permissions": "Permissions",
+    "permissionVideo": "You have our blanket permission to record, stream, and monetise video of any {{studio}} game, including full playthroughs. No further clearance needed, and nothing here will ever get you a copyright strike from us.",
+    "permissionLogos": "Logos and key art may be used in coverage of our games. Please do not alter the logo’s colours or proportions, or use it to imply that we endorse a product.",
+    "permissionKeys": "Review keys and preview builds: <mail>{{email}}</mail>. Tell us the outlet or channel and which game — that is all we need.",
+    "requestKey": "Request a key",
+    "downloadLogo": "Download the logo"
+  },
+  "about": {
+    "eyebrow": "The studio",
+    "title": "About",
+    "body1": "{{studio}} is a small independent studio building tight, replayable action games — the kind you start a fifteenth run of because the fourteenth ended badly and you know exactly why.",
+    "body2": "We build in Godot, we ship on PC first, and we keep the scope honest: a complete game that respects the hours you put into it beats a bigger one that needs you to keep paying attention.",
+    "body3": "The part we care most about is how the games are sold. That is the whole reason this page exists rather than a store bio."
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Come back with your shield",
+    "message": "That page does not exist — or it never did. The catalogue is the surest ground.",
+    "cta": "See the games",
+    "documentTitle": "Not found",
+    "documentDescription": "That page does not exist."
+  },
+  "meta": {
+    "gamesDescription": "Every game from {{studio}}, with the full list of storefronts for each.",
+    "devlogDescription": "Development writing from {{studio}} — what we're building and why.",
+    "pressDescription": "Press kit for {{studio}} — fact sheet, logos, and contact for press and creators."
+  }
+}

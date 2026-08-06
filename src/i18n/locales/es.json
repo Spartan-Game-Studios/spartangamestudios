@@ -1,0 +1,201 @@
+{
+  "nav": {
+    "games": "Juegos",
+    "devlog": "Diario",
+    "press": "Prensa",
+    "about": "Estudio",
+    "primaryLabel": "Principal",
+    "home": "Spartan Game Studios — inicio",
+    "skipToContent": "Saltar al contenido"
+  },
+  "common": {
+    "language": "Idioma",
+    "backToGames": "Todos los juegos",
+    "backToDevlog": "Todas las entradas",
+    "getInTouch": "Contacta con nosotros",
+    "pressKit": "Kit de prensa"
+  },
+  "status": {
+    "released": "Ya disponible",
+    "early-access": "Acceso anticipado",
+    "in-development": "En desarrollo",
+    "concept": "En concepto"
+  },
+  "stores": {
+    "steam": "Steam",
+    "itch": "itch.io",
+    "epic": "Epic Games Store",
+    "gog": "GOG",
+    "ios": "App Store",
+    "android": "Google Play",
+    "web": "Jugar en el navegador",
+    "switch": "Nintendo Switch",
+    "playstation": "PlayStation",
+    "xbox": "Xbox",
+    "whereToBuy": "Dónde comprar {{title}}",
+    "notOnSaleYet": "Aún no está a la venta",
+    "noStoreYet": "{{title}} todavía no está en ninguna tienda. Esta fila se rellenará el día que lo esté: es lo primero que actualizamos en cada lanzamiento y cada port.",
+    "followDevelopment": "Sigue el desarrollo"
+  },
+  "footer": {
+    "games": "Juegos",
+    "studio": "Estudio",
+    "about": "Sobre el estudio",
+    "devlog": "Diario",
+    "pressKit": "Kit de prensa",
+    "copyright": "© {{year}} {{studio}}",
+    "motto": "Cómpralo una vez. Es tuyo."
+  },
+  "home": {
+    "heroLede": "Hacemos juegos de acción compactos y rejugables, y los vendemos como se hacía antes. Una compra, tuyo para siempre, actualizaciones gratis. Sin microtransacciones, sin servicio en directo, sin nada dentro del juego pidiéndote dinero.",
+    "seeTheGames": "Ver los juegos",
+    "aboutTheStudio": "Sobre el estudio",
+    "catalogueEyebrow": "El catálogo",
+    "catalogueTitle": "Lo que estamos construyendo",
+    "catalogueLede": "Todavía no hay nada a la venta. Cada juego mostrará aquí su fila completa de tiendas el día que la tenga: esta página es el sitio canónico para encontrarlas.",
+    "pledgeEyebrow": "Nuestra promesa",
+    "devlogEyebrow": "Desde el taller",
+    "devlogTitle": "Diario de desarrollo"
+  },
+  "games": {
+    "eyebrow": "Catálogo",
+    "title": "Juegos",
+    "lede": "Todos los juegos que hacemos y todos los estantes en los que están. Cuando un título se lanza o llega a una plataforma nueva, el enlace aparece aquí primero."
+  },
+  "gameDetail": {
+    "unannounced": "Sin anunciar: esta página solo es accesible por enlace directo y no aparece en ninguna parte del sitio.",
+    "whatItIs": "Qué es",
+    "atAGlance": "De un vistazo",
+    "status": "Estado",
+    "genre": "Género",
+    "platforms": "Plataformas",
+    "release": "Lanzamiento",
+    "price": "Precio",
+    "priceUnset": "Cómpralo una vez y es tuyo para siempre; fijaremos el precio más cerca del lanzamiento",
+    "developer": "Desarrollador"
+  },
+  "devlog": {
+    "eyebrow": "Desde el taller",
+    "title": "Diario de desarrollo",
+    "lede": "Lo que escribimos sobre el desarrollo vive aquí primero. El archivo es nuestro; las redes son donde se distribuye, no donde se guarda.",
+    "empty": "Todavía no hay nada publicado. La primera entrada llega pronto."
+  },
+  "press": {
+    "eyebrow": "Prensa y creadores",
+    "title": "Kit de prensa",
+    "lede": "Todo lo necesario para escribir sobre nuestros juegos, retransmitirlos o grabarlos. Si te falta algo, pídelo: preferimos enviártelo a que te quedes sin ello.",
+    "factSheet": "Ficha técnica",
+    "studio": "Estudio",
+    "founded": "Fundado",
+    "basedIn": "Ubicación",
+    "website": "Sitio web",
+    "pressContact": "Contacto de prensa",
+    "business": "Negocio",
+    "titles": "Títulos",
+    "logos": "Logotipos",
+    "primaryLogo": "Logotipo principal",
+    "primaryLogoNote": "PNG, 1024×1024, transparente",
+    "pixelLogo": "Logotipo pixelado",
+    "pixelLogoNote": "PNG, transparente — para uso pequeño o dentro del juego",
+    "download": "Descargar",
+    "permissions": "Permisos",
+    "permissionVideo": "Tienes nuestro permiso general para grabar, retransmitir y monetizar vídeo de cualquier juego de {{studio}}, incluidas partidas completas. No hace falta ninguna autorización adicional, y nada de aquí te va a costar nunca un aviso de copyright por nuestra parte.",
+    "permissionLogos": "Los logotipos y el arte principal pueden usarse en la cobertura de nuestros juegos. Por favor, no alteres los colores ni las proporciones del logotipo, ni lo uses para dar a entender que respaldamos un producto.",
+    "permissionKeys": "Claves de reseña y builds de anticipo: <mail>{{email}}</mail>. Dinos el medio o el canal y de qué juego se trata; con eso nos basta.",
+    "requestKey": "Pedir una clave",
+    "downloadLogo": "Descargar el logotipo"
+  },
+  "about": {
+    "eyebrow": "El estudio",
+    "title": "Sobre el estudio",
+    "body1": "{{studio}} es un pequeño estudio independiente que hace juegos de acción compactos y rejugables: de esos en los que empiezas una decimoquinta partida porque la decimocuarta salió mal y sabes exactamente por qué.",
+    "body2": "Desarrollamos en Godot, publicamos primero en PC y mantenemos el alcance honesto: un juego completo que respeta las horas que le dedicas vale más que uno más grande que necesita que no dejes de prestarle atención.",
+    "body3": "Lo que más nos importa es cómo se venden los juegos. Esa es la razón por la que existe esta página en lugar de una biografía de tienda."
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Vuelve con tu escudo",
+    "message": "Esa página no existe, o nunca existió. El catálogo es el terreno más firme.",
+    "cta": "Ver los juegos",
+    "documentTitle": "No encontrada",
+    "documentDescription": "Esa página no existe."
+  },
+  "meta": {
+    "gamesDescription": "Todos los juegos de {{studio}}, con la lista completa de tiendas de cada uno.",
+    "devlogDescription": "Diario de desarrollo de {{studio}}: qué estamos construyendo y por qué.",
+    "pressDescription": "Kit de prensa de {{studio}}: ficha técnica, logotipos y contacto para prensa y creadores."
+  },
+  "studio": {
+    "tagline": "Juegos que son tuyos.",
+    "description": "Spartan Game Studios hace juegos de acción compactos y rejugables, y los vende como se hacía antes. Cómpralo una vez, es tuyo para siempre, actualizaciones gratis."
+  },
+  "pledge": {
+    "heading": "Cómpralo una vez. Es tuyo.",
+    "points": {
+      "one-purchase": {
+        "title": "Una compra, para siempre",
+        "body": "Compras el juego y es tuyo. Sin suscripción, sin cuenta obligatoria para jugar, sin ningún servidor que pueda apagarte la biblioteca."
+      },
+      "free-updates": {
+        "title": "Las actualizaciones siguen siendo gratis",
+        "body": "Correcciones, balanceo, mejoras de calidad de vida y el contenido que termina lo que te vendimos: todo gratis, mientras demos soporte al juego."
+      },
+      "no-microtransactions": {
+        "title": "Nunca microtransacciones",
+        "body": "Sin anuncios, sin cajas de botín, sin pases de batalla, sin pagar para ganar, sin temporizadores diseñados para venderte la forma de saltártelos."
+      },
+      "paid-dlc": {
+        "title": "DLC de pago solo cuando se lo gane",
+        "body": "Si alguna vez volvemos a cobrar será por una expansión sustancial sobre un juego ya completo, nunca por algo que debería haber sido un parche."
+      }
+    }
+  },
+  "catalogue": {
+    "lantern": {
+      "tagline": "Whitechapel, 1888. Las farolas de gas se apagan una a una.",
+      "pitch": "Llevas la única luz de la que puedes fiarte por un Whitechapel ahogado en niebla que se vacía por su propia cuenta. Doce minutos, un farol y una calle llena de cosas que solo se mueven donde no puedes verlas. Sobrevive hasta el amanecer o conviértete en otro nombre en los periódicos de la mañana.",
+      "genre": "Survivors-like en vista cenital",
+      "price": "~4,99 € en el lanzamiento",
+      "features": [
+        "Una partida de doce minutos hecha para repetirse, no para aguantarse",
+        "La luz es el recurso: lo que puedes ver es lo que puedes sobrevivir",
+        "Armas que evolucionan a algo peor cuanto más las llevas",
+        "El Whitechapel victoriano, retratado como un lugar que está perdiendo"
+      ]
+    },
+    "inkbreak": {
+      "tagline": "El pulpo de laboratorio se escapó. Ahora vuelve a entrar por la fuerza.",
+      "pitch": "Eres un pulpo modificado en un laboratorio que consiguió salir, y vuelves a por los demás. Instalaciones secretas en las profundidades donde cualquier superficie es el suelo: trepa por las paredes, cuélgate del techo y pelea desde ángulos que los guardias no pueden cubrir, con cuatro brazos sosteniendo armas y otros cuatro llevándote. Libera a los sujetos, esposa a los científicos, quema la investigación. Cada una de esas cosas dispara la alarma.",
+      "genre": "Rogue-lite 3D de escalada por superficies",
+      "price": "~14,99–19,99 € en el lanzamiento",
+      "features": [
+        "Desplazamiento 3D total: paredes y techos también son suelo",
+        "Cuatro armas en cuatro brazos, apuntadas con independencia de por dónde caminas",
+        "Un atraco que se vuelve más ruidoso cuanto más codicioso eres",
+        "Las criaturas liberadas te injertan sus rasgos entre partidas"
+      ]
+    },
+    "boothill": {
+      "tagline": "Desenterraste la tumba equivocada y ahora todo el territorio te quiere muerto.",
+      "pitch": "Un saqueador de tumbas solitario en una frontera maldita, disparando en automático revólveres y vudú rescatado a una partida que no deja de venir. Cada muerte sube tu nivel de Buscado, y Buscado es la dificultad: fuérzalo para conseguir mejor botín y cazadores más letales, o mantén el perfil bajo y ahoga tu propia build. La mejor partida cabalga al borde de la soga hasta el ocaso.",
+      "genre": "Survivors-like en vista cenital"
+    },
+    "nightside": {
+      "tagline": "Una perforadora lunar abrió algo antiguo en la cara oculta de la Luna.",
+      "pitch": "El último operario de una colonia minera automatizada contiene una brecha que nunca debió abrirse. Tu traje dispara en automático todo lo que le hayas atornillado —tecnología de raíl y reliquias rescatadas— mientras tú no haces más que moverte, porque quedarse quieto es morir. Cada arma es Tecnología u Oculto, y las mejores builds viven donde ambas se contaminan.",
+      "genre": "Survivors-like en vista cenital"
+    }
+  },
+  "posts": {
+    "why-we-sell-games-the-old-way": {
+      "title": "Por qué vendemos los juegos como se hacía antes",
+      "summary": "Una compra, sin ninguna tienda en medio de la diversión. El razonamiento detrás de la postura del estudio sobre monetización, puesto por escrito para que se nos pueda exigir.",
+      "body": [
+        "Todos los juegos que publique este estudio se venderán una sola vez. Pagas, es tuyo, y nada dentro del juego volverá a pedirte dinero jamás. Ese es todo el modelo, y ponerlo por escrito en público es justamente el objetivo: es fácil sostener un principio hasta el trimestre en que cuesta algo.",
+        "Los juegos por partidas que hacemos encajan bien con esto. Un survivors-like está completo el día que sale: el bucle, el elenco, la reserva de mejoras, el motivo para empezar una decimoquinta partida. Nada de ese diseño necesita una tienda de moneda atornillada al costado, y todos los juegos que se la atornillaron empeoraron por ello.",
+        "Las actualizaciones gratis no son generosidad, son el trato. Correcciones, ajustes de balance, mejoras de calidad de vida y el contenido que termina lo que te vendimos son todos gratis mientras demos soporte al juego. Si alguna vez volvemos a cobrar será por una expansión que se suma a un juego ya completo —un elenco de verdad, armas de verdad, un escenario de verdad—, nunca por algo que debería haber sido un parche.",
+        "La línea es lo bastante simple como para que nos la exijáis: arreglar o completar lo que te vendimos es gratis; ampliarlo puede costar. Cuando la cosa esté cerca, es gratis."
+      ]
+    }
+  }
+}

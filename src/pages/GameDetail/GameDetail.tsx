@@ -1,8 +1,10 @@
 import { Link, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Container } from '@/components/Container/Container';
 import { StatusBadge } from '@/components/StatusBadge/StatusBadge';
 import { StoreLinks } from '@/components/StoreLinks/StoreLinks';
-import { getGame, STATUS_LABELS, studio } from '@/data';
+import { getGame, statusKey, studio } from '@/data';
+import { useGameCopy } from '@/i18n/content';
 import { useDocumentMeta } from '@/lib/useDocumentMeta';
 import { NotFound } from '@/pages/NotFound/NotFound';
 import styles from './GameDetail.module.css';
@@ -23,11 +25,13 @@ export function GameDetail() {
  * cannot live behind the not-found early return.
  */
 function GameDetailView({ slug }: { slug: string }) {
+  const { t } = useTranslation();
   const game = getGame(slug)!;
+  const copy = useGameCopy(game);
 
   useDocumentMeta({
-    title: game.title,
-    description: game.tagline,
+    title: copy.title,
+    description: copy.tagline,
     path: `/games/${game.slug}`,
     ...(game.keyArt ? { image: game.keyArt.src } : {}),
   });
@@ -37,26 +41,23 @@ function GameDetailView({ slug }: { slug: string }) {
       <header className={styles.hero}>
         <Container>
           <Link to="/games" className={styles.back}>
-            &larr; All games
+            &larr; {t('common.backToGames')}
           </Link>
 
           {game.visibility === 'unlisted' ? (
-            <p className={styles.unlistedNotice}>
-              Unannounced — this page is reachable by direct link only and is not listed anywhere on
-              the site.
-            </p>
+            <p className={styles.unlistedNotice}>{t('gameDetail.unannounced')}</p>
           ) : null}
 
           <div className={styles.meta}>
             <StatusBadge status={game.status} />
-            <span className={styles.genre}>{game.genre}</span>
+            <span className={styles.genre}>{copy.genre}</span>
           </div>
 
-          <h1 className={`${styles.title} u-gold-text`}>{game.title}</h1>
-          <p className={styles.tagline}>{game.tagline}</p>
+          <h1 className={`${styles.title} u-gold-text`}>{copy.title}</h1>
+          <p className={styles.tagline}>{copy.tagline}</p>
 
           <div className={styles.stores}>
-            <StoreLinks links={game.stores} title={game.title} fallbackTo="/devlog" size="large" />
+            <StoreLinks links={game.stores} title={copy.title} fallbackTo="/devlog" size="large" />
           </div>
         </Container>
       </header>
@@ -65,14 +66,14 @@ function GameDetailView({ slug }: { slug: string }) {
         <Container>
           <div className={styles.layout}>
             <div>
-              <p className={styles.pitch}>{game.pitch}</p>
+              <p className={styles.pitch}>{copy.pitch}</p>
 
-              {game.features && game.features.length > 0 ? (
+              {copy.features.length > 0 ? (
                 <section className={styles.features} aria-labelledby="features-heading">
                   <h2 id="features-heading" className={styles.featuresTitle}>
-                    What it is
+                    {t('gameDetail.whatItIs')}
                   </h2>
-                  {game.features.map((feature) => (
+                  {copy.features.map((feature) => (
                     <p key={feature} className={styles.feature}>
                       {feature}
                     </p>
@@ -83,35 +84,34 @@ function GameDetailView({ slug }: { slug: string }) {
 
             <aside className={styles.facts} aria-labelledby="facts-heading">
               <h2 id="facts-heading" className={styles.factsTitle}>
-                At a glance
+                {t('gameDetail.atAGlance')}
               </h2>
               <dl className={styles.factList}>
                 <div>
-                  <dt className={styles.factLabel}>Status</dt>
-                  <dd className={styles.factValue}>{STATUS_LABELS[game.status]}</dd>
+                  <dt className={styles.factLabel}>{t('gameDetail.status')}</dt>
+                  <dd className={styles.factValue}>{t(statusKey(game.status))}</dd>
                 </div>
                 <div>
-                  <dt className={styles.factLabel}>Genre</dt>
-                  <dd className={styles.factValue}>{game.genre}</dd>
+                  <dt className={styles.factLabel}>{t('gameDetail.genre')}</dt>
+                  <dd className={styles.factValue}>{copy.genre}</dd>
                 </div>
                 <div>
-                  <dt className={styles.factLabel}>Platforms</dt>
+                  {/* Platform names are proper nouns — never translated. */}
+                  <dt className={styles.factLabel}>{t('gameDetail.platforms')}</dt>
                   <dd className={styles.factValue}>{game.platforms.join(', ')}</dd>
                 </div>
                 {game.releaseWindow ? (
                   <div>
-                    <dt className={styles.factLabel}>Release</dt>
+                    <dt className={styles.factLabel}>{t('gameDetail.release')}</dt>
                     <dd className={styles.factValue}>{game.releaseWindow}</dd>
                   </div>
                 ) : null}
                 <div>
-                  <dt className={styles.factLabel}>Price</dt>
-                  <dd className={styles.factValue}>
-                    {game.price ?? 'Buy once, own forever — price set closer to launch'}
-                  </dd>
+                  <dt className={styles.factLabel}>{t('gameDetail.price')}</dt>
+                  <dd className={styles.factValue}>{copy.price ?? t('gameDetail.priceUnset')}</dd>
                 </div>
                 <div>
-                  <dt className={styles.factLabel}>Developer</dt>
+                  <dt className={styles.factLabel}>{t('gameDetail.developer')}</dt>
                   <dd className={styles.factValue}>{studio.name}</dd>
                 </div>
               </dl>

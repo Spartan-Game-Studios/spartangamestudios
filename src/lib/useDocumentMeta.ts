@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { studio } from '@/data';
+import { LOCALES, resolveLocale } from '@/i18n/locales';
 
 interface Meta {
   title: string;
@@ -31,11 +33,32 @@ function upsertCanonical(href: string) {
 }
 
 /**
+ * `hreflang` alternates pointing at `?lang=` variants of this page, so a
+ * crawler can at least discover that other languages exist.
+ */
+function upsertAlternates(url: string) {
+  for (const locale of LOCALES) {
+    const selector = `link[rel="alternate"][hreflang="${locale.htmlLang}"]`;
+    let el = document.head.querySelector<HTMLLinkElement>(selector);
+    if (!el) {
+      el = document.createElement('link');
+      el.rel = 'alternate';
+      el.hreflang = locale.htmlLang;
+      document.head.appendChild(el);
+    }
+    el.href = `${url}?lang=${locale.code}`;
+  }
+}
+
+/**
  * Per-route title/description/OG tags. A hand-rolled hook rather than a
  * helmet dependency — the MVP has one need (set tags on navigate) and this is
  * the whole of it. Swap for real SSR/prerendering when SEO stakes rise.
  */
 export function useDocumentMeta({ title, description, image, path }: Meta) {
+  const { i18n } = useTranslation();
+  const locale = resolveLocale(i18n.resolvedLanguage ?? i18n.language);
+
   useEffect(() => {
     const fullTitle = title === studio.name ? title : `${title} — ${studio.name}`;
     const url = `${studio.url}${path ?? window.location.pathname}`;
@@ -52,6 +75,13 @@ export function useDocumentMeta({ title, description, image, path }: Meta) {
     upsertMeta('meta[name="twitter:title"]', 'name', 'twitter:title', fullTitle);
     upsertMeta('meta[name="twitter:description"]', 'name', 'twitter:description', description);
     upsertMeta('meta[name="twitter:image"]', 'name', 'twitter:image', ogImage);
+    upsertMeta('meta[property="og:locale"]', 'property', 'og:locale', locale);
+
+    // Language is a client-side preference, not part of the path, so every
+    // locale shares one canonical URL. `?lang=` makes a chosen language
+    // shareable; giving each locale its own path (/es/…) is the next step if
+    // the non-English pages ever need to rank on their own.
     upsertCanonical(url);
-  }, [title, description, image, path]);
+    upsertAlternates(url);
+  }, [title, description, image, path, locale]);
 }

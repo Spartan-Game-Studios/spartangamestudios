@@ -1,0 +1,201 @@
+{
+  "nav": {
+    "games": "Jeux",
+    "devlog": "Journal",
+    "press": "Presse",
+    "about": "Studio",
+    "primaryLabel": "Principal",
+    "home": "Spartan Game Studios — accueil",
+    "skipToContent": "Aller au contenu"
+  },
+  "common": {
+    "language": "Langue",
+    "backToGames": "Tous les jeux",
+    "backToDevlog": "Tous les articles",
+    "getInTouch": "Nous contacter",
+    "pressKit": "Kit presse"
+  },
+  "status": {
+    "released": "Disponible",
+    "early-access": "Accès anticipé",
+    "in-development": "En développement",
+    "concept": "À l’état de concept"
+  },
+  "stores": {
+    "steam": "Steam",
+    "itch": "itch.io",
+    "epic": "Epic Games Store",
+    "gog": "GOG",
+    "ios": "App Store",
+    "android": "Google Play",
+    "web": "Jouer dans le navigateur",
+    "switch": "Nintendo Switch",
+    "playstation": "PlayStation",
+    "xbox": "Xbox",
+    "whereToBuy": "Où acheter {{title}}",
+    "notOnSaleYet": "Pas encore en vente",
+    "noStoreYet": "{{title}} n’est encore disponible sur aucune boutique. Cette ligne se remplira le jour où ce sera le cas : c’est la première chose mise à jour à chaque sortie et chaque portage.",
+    "followDevelopment": "Suivre le développement"
+  },
+  "footer": {
+    "games": "Jeux",
+    "studio": "Studio",
+    "about": "À propos",
+    "devlog": "Journal",
+    "pressKit": "Kit presse",
+    "copyright": "© {{year}} {{studio}}",
+    "motto": "Achetez-le une fois. Il est à vous."
+  },
+  "home": {
+    "heroLede": "Nous faisons des jeux d’action nerveux et rejouables — et nous les vendons à l’ancienne. Un seul achat, à vous pour toujours, mises à jour gratuites. Pas de microtransactions, pas de service en ligne permanent, rien dans le jeu qui vous redemande de l’argent.",
+    "seeTheGames": "Voir les jeux",
+    "aboutTheStudio": "À propos du studio",
+    "catalogueEyebrow": "Le catalogue",
+    "catalogueTitle": "Ce que nous construisons",
+    "catalogueLede": "Rien n’est encore en vente. Chaque jeu ci-dessous affichera sa liste complète de boutiques le jour où il en aura une — cette page est l’endroit canonique pour les trouver.",
+    "pledgeEyebrow": "Notre promesse",
+    "devlogEyebrow": "De l’atelier",
+    "devlogTitle": "Journal de développement"
+  },
+  "games": {
+    "eyebrow": "Catalogue",
+    "title": "Jeux",
+    "lede": "Tous les jeux que nous faisons, et toutes les boutiques où ils se trouvent. Quand un titre sort ou arrive sur une nouvelle plateforme, le lien apparaît ici en premier."
+  },
+  "gameDetail": {
+    "unannounced": "Non annoncé — cette page n’est accessible que par lien direct et n’est répertoriée nulle part sur le site.",
+    "whatItIs": "Ce que c’est",
+    "atAGlance": "En bref",
+    "status": "Statut",
+    "genre": "Genre",
+    "platforms": "Plateformes",
+    "release": "Sortie",
+    "price": "Prix",
+    "priceUnset": "Achat unique, à vous pour toujours — le prix sera fixé à l’approche de la sortie",
+    "developer": "Développeur"
+  },
+  "devlog": {
+    "eyebrow": "De l’atelier",
+    "title": "Journal de développement",
+    "lede": "Nos textes sur le développement vivent ici d’abord. L’archive nous appartient — les réseaux sont un canal de diffusion, pas l’endroit où elle est conservée.",
+    "empty": "Rien de publié pour l’instant. Le premier article arrive bientôt."
+  },
+  "press": {
+    "eyebrow": "Presse et créateurs",
+    "title": "Kit presse",
+    "lede": "Tout ce qu’il faut pour écrire sur nos jeux, les streamer ou les enregistrer. S’il vous manque quelque chose, demandez : nous préférons vous l’envoyer plutôt que vous laisser sans.",
+    "factSheet": "Fiche technique",
+    "studio": "Studio",
+    "founded": "Fondé en",
+    "basedIn": "Basé à",
+    "website": "Site web",
+    "pressContact": "Contact presse",
+    "business": "Affaires",
+    "titles": "Titres",
+    "logos": "Logos",
+    "primaryLogo": "Logo principal",
+    "primaryLogoNote": "PNG, 1024×1024, transparent",
+    "pixelLogo": "Logo pixel",
+    "pixelLogoNote": "PNG, transparent — pour les petits formats et l’usage en jeu",
+    "download": "Télécharger",
+    "permissions": "Autorisations",
+    "permissionVideo": "Vous avez notre autorisation générale d’enregistrer, diffuser et monétiser des vidéos de n’importe quel jeu {{studio}}, y compris des parties complètes. Aucune autorisation supplémentaire n’est nécessaire, et rien ici ne vous vaudra jamais de réclamation de droits d’auteur de notre part.",
+    "permissionLogos": "Les logos et les visuels clés peuvent être utilisés dans vos articles et vidéos sur nos jeux. Merci de ne pas modifier les couleurs ni les proportions du logo, et de ne pas l’utiliser pour laisser entendre que nous soutenons un produit.",
+    "permissionKeys": "Clés de test et versions de préversion : <mail>{{email}}</mail>. Dites-nous le média ou la chaîne et quel jeu — c’est tout ce qu’il nous faut.",
+    "requestKey": "Demander une clé",
+    "downloadLogo": "Télécharger le logo"
+  },
+  "about": {
+    "eyebrow": "Le studio",
+    "title": "À propos",
+    "body1": "{{studio}} est un petit studio indépendant qui fait des jeux d’action nerveux et rejouables — le genre dont on lance une quinzième partie parce que la quatorzième s’est mal terminée et qu’on sait exactement pourquoi.",
+    "body2": "Nous développons sous Godot, nous sortons d’abord sur PC, et nous gardons une ambition honnête : un jeu complet qui respecte les heures que vous lui donnez vaut mieux qu’un jeu plus gros qui exige votre attention permanente.",
+    "body3": "Ce qui nous tient le plus à cœur, c’est la façon dont les jeux sont vendus. C’est toute la raison d’être de cette page plutôt que d’une simple bio de boutique."
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Reviens avec ton bouclier",
+    "message": "Cette page n’existe pas — ou n’a jamais existé. Le catalogue est le terrain le plus sûr.",
+    "cta": "Voir les jeux",
+    "documentTitle": "Introuvable",
+    "documentDescription": "Cette page n’existe pas."
+  },
+  "meta": {
+    "gamesDescription": "Tous les jeux de {{studio}}, avec la liste complète des boutiques pour chacun.",
+    "devlogDescription": "Le journal de développement de {{studio}} — ce que nous construisons et pourquoi.",
+    "pressDescription": "Kit presse de {{studio}} — fiche technique, logos et contacts pour la presse et les créateurs."
+  },
+  "studio": {
+    "tagline": "Des jeux qui vous appartiennent.",
+    "description": "Spartan Game Studios fait des jeux d’action nerveux et rejouables — et les vend à l’ancienne. Un seul achat, à vous pour toujours, mises à jour gratuites."
+  },
+  "pledge": {
+    "heading": "Achetez-le une fois. Il est à vous.",
+    "points": {
+      "one-purchase": {
+        "title": "Un achat, pour toujours",
+        "body": "Vous achetez le jeu et il est à vous. Pas d’abonnement, pas de compte obligatoire pour jouer, aucun serveur qui puisse éteindre votre bibliothèque."
+      },
+      "free-updates": {
+        "title": "Les mises à jour restent gratuites",
+        "body": "Correctifs, équilibrage, confort de jeu et le contenu qui achève ce que nous vous avons vendu : tout est gratuit, aussi longtemps que nous suivons le jeu."
+      },
+      "no-microtransactions": {
+        "title": "Jamais de microtransactions",
+        "body": "Pas de publicité, pas de coffres à butin, pas de passe de combat, pas de pay-to-win, aucun minuteur conçu pour vous vendre le moyen de le contourner."
+      },
+      "paid-dlc": {
+        "title": "Du DLC payant seulement s’il le mérite",
+        "body": "Si nous refacturons un jour, ce sera pour une extension substantielle ajoutée à un jeu déjà complet — jamais pour quelque chose qui aurait dû être un correctif."
+      }
+    }
+  },
+  "catalogue": {
+    "lantern": {
+      "tagline": "Whitechapel, 1888. Les réverbères à gaz s’éteignent un à un.",
+      "pitch": "Vous portez la seule lumière en laquelle vous puissiez avoir confiance dans un Whitechapel noyé de brouillard qui se vide de lui-même. Douze minutes, une lanterne, et une rue pleine de choses qui ne bougent que là où vous ne pouvez pas voir. Survivez jusqu’à l’aube, ou devenez un nom de plus dans les journaux du matin.",
+      "genre": "Survivors-like en vue de dessus",
+      "price": "~4,99 € au lancement",
+      "features": [
+        "Une partie de douze minutes conçue pour être rejouée, pas endurée",
+        "La lumière est la ressource — ce que vous voyez est ce à quoi vous survivez",
+        "Des armes qui évoluent vers quelque chose de pire à mesure que vous les gardez",
+        "Le Whitechapel victorien, dépeint comme un lieu en train de perdre"
+      ]
+    },
+    "inkbreak": {
+      "tagline": "La pieuvre de laboratoire s’est échappée. Maintenant elle y retourne par effraction.",
+      "pitch": "Vous êtes une pieuvre augmentée en laboratoire qui s’est enfuie, et vous revenez chercher les autres. Des sites secrets des grands fonds où n’importe quelle surface fait office de sol : rampez sur les murs, suspendez-vous aux plafonds et combattez sous des angles que les gardes ne peuvent pas couvrir, quatre bras tenant des armes pendant que quatre autres vous portent. Libérez les sujets, menottez les scientifiques, brûlez les recherches. Chacun de ces actes déclenche l’alarme.",
+      "genre": "Rogue-lite 3D d’escalade de surfaces",
+      "price": "~14,99–19,99 € au lancement",
+      "features": [
+        "Déplacement 3D complet — murs et plafonds sont aussi le sol",
+        "Quatre armes dans quatre bras, visées indépendamment de votre déplacement",
+        "Un casse qui devient d’autant plus bruyant que vous êtes gourmand",
+        "Les créatures libérées vous greffent leurs traits entre deux parties"
+      ]
+    },
+    "boothill": {
+      "tagline": "Vous avez déterré la mauvaise tombe, et tout le territoire veut votre peau.",
+      "pitch": "Un pilleur de tombes solitaire sur une frontière maudite, tirant en automatique au revolver et au vaudou de récupération sur une posse qui ne s’arrête jamais. Chaque victime fait monter votre niveau de Recherché, et Recherché, c’est la difficulté : poussez-le pour un butin plus riche et des chasseurs plus mortels, ou faites profil bas et affamez votre propre build. La meilleure partie longe la corde jusqu’au coucher du soleil.",
+      "genre": "Survivors-like en vue de dessus"
+    },
+    "nightside": {
+      "tagline": "Une foreuse lunaire a ouvert quelque chose d’ancien sur la face cachée de la Lune.",
+      "pitch": "Le dernier opérateur d’une colonie minière automatisée tient une brèche qui n’aurait jamais dû être ouverte. Votre combinaison tire en automatique tout ce que vous y avez boulonné — technologie à rail et reliques de récupération — pendant que vous ne faites que bouger, parce que rester immobile, c’est mourir. Chaque arme est Tech ou Occulte, et les meilleures builds vivent là où les deux se contaminent.",
+      "genre": "Survivors-like en vue de dessus"
+    }
+  },
+  "posts": {
+    "why-we-sell-games-the-old-way": {
+      "title": "Pourquoi nous vendons nos jeux à l’ancienne",
+      "summary": "Un seul achat, aucune boutique au milieu du plaisir. Le raisonnement derrière la position du studio sur la monétisation, mis par écrit pour qu’on puisse nous y tenir.",
+      "body": [
+        "Chaque jeu que ce studio publiera sera vendu une seule fois. Vous payez, il est à vous, et rien dans le jeu ne vous redemandera jamais d’argent. C’est tout le modèle, et l’écrire publiquement est précisément l’intérêt : il est facile de tenir un principe jusqu’au trimestre où il coûte quelque chose.",
+        "Les jeux à parties courtes que nous faisons s’y prêtent bien. Un survivors-like est complet le jour de sa sortie : la boucle, le roster, le pool d’améliorations, la raison de lancer une quinzième partie. Rien dans cette conception n’a besoin d’une boutique de monnaie boulonnée sur le côté, et tous les jeux qui en ont ajouté une s’en sont trouvés diminués.",
+        "Les mises à jour gratuites ne sont pas de la générosité, c’est le contrat. Correctifs, passes d’équilibrage, confort de jeu et le contenu qui achève ce que nous vous avons vendu sont tous gratuits aussi longtemps que nous suivons le jeu. Si nous refacturons un jour, ce sera pour une extension qui s’ajoute à un jeu déjà complet — un vrai roster, de vraies armes, une vraie carte — jamais pour quelque chose qui aurait dû être un correctif.",
+        "La limite est assez simple pour que vous puissiez nous y tenir : réparer ou achever ce que nous vous avons vendu est gratuit, l’étendre peut être payant. Quand c’est limite, c’est gratuit."
+      ]
+    }
+  }
+}

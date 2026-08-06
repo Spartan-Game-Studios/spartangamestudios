@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Container } from '@/components/Container/Container';
 import { MeanderRule } from '@/components/MeanderRule/MeanderRule';
 import { listedPosts, studio } from '@/data';
@@ -7,9 +8,11 @@ import { PostListItem } from './PostListItem';
 import styles from './Devlog.module.css';
 
 export function Devlog() {
+  const { t } = useTranslation();
+
   useDocumentMeta({
-    title: 'Devlog',
-    description: `Development writing from ${studio.name} — what we're building and why.`,
+    title: t('devlog.title'),
+    description: t('meta.devlogDescription', { studio: studio.name }),
     path: '/devlog',
   });
 
@@ -19,12 +22,9 @@ export function Devlog() {
     <div className={page.page}>
       <Container>
         <header className={page.header}>
-          <p className="u-eyebrow">From the workshop</p>
-          <h1 className={`${page.title} u-gold-text`}>Devlog</h1>
-          <p className={page.lede}>
-            Development writing lives here first. The archive is ours — socials are where it gets
-            distributed, not where it is kept.
-          </p>
+          <p className="u-eyebrow">{t('devlog.eyebrow')}</p>
+          <h1 className={`${page.title} u-gold-text`}>{t('devlog.title')}</h1>
+          <p className={page.lede}>{t('devlog.lede')}</p>
           <MeanderRule />
         </header>
 
@@ -35,7 +35,7 @@ export function Devlog() {
             ))}
           </div>
         ) : (
-          <p className={page.lede}>Nothing published yet. First entry lands soon.</p>
+          <p className={page.lede}>{t('devlog.empty')}</p>
         )}
       </Container>
     </div>

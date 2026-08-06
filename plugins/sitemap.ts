@@ -1,6 +1,7 @@
 import type { Plugin } from 'vite';
 import { games } from '../src/data/games';
 import { devlog } from '../src/data/devlog';
+import { DEFAULT_LOCALE, LOCALES } from '../src/i18n/locales';
 
 const ORIGIN = 'https://spartangamestudios.com';
 
@@ -34,15 +35,36 @@ export function sitemap(): Plugin {
 
       const body = urls
         .map((url) => {
+          const loc = `${ORIGIN}${url.loc}`;
           const lastmod = url.lastmod ? `\n    <lastmod>${url.lastmod}</lastmod>` : '';
-          return `  <url>\n    <loc>${ORIGIN}${url.loc}</loc>${lastmod}\n    <priority>${url.priority}</priority>\n  </url>`;
+
+          /*
+           * Language is a client-side preference rather than part of the path,
+           * so each page has one canonical URL with `?lang=` alternates. If the
+           * non-English pages ever need to rank on their own, give each locale
+           * its own path prefix and these become real distinct `<loc>`s.
+           */
+          const alternates = [
+            ...LOCALES.map(
+              (locale) =>
+                `    <xhtml:link rel="alternate" hreflang="${locale.htmlLang}" href="${loc}${
+                  locale.code === DEFAULT_LOCALE ? '' : `?lang=${locale.code}`
+                }"/>`,
+            ),
+            `    <xhtml:link rel="alternate" hreflang="x-default" href="${loc}"/>`,
+          ].join('\n');
+
+          return `  <url>\n    <loc>${loc}</loc>${lastmod}\n${alternates}\n    <priority>${url.priority}</priority>\n  </url>`;
         })
         .join('\n');
 
       this.emitFile({
         type: 'asset',
         fileName: 'sitemap.xml',
-        source: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`,
+        source:
+          `<?xml version="1.0" encoding="UTF-8"?>\n` +
+          `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
+          `${body}\n</urlset>\n`,
       });
     },
   };

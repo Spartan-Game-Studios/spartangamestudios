@@ -23,18 +23,23 @@ export const ownershipPledge = {
   heading: 'Buy once. Own it.',
   points: [
     {
+      // `id` is the translation key — stable even if the English title changes.
+      id: 'one-purchase',
       title: 'One purchase, forever',
       body: 'You buy the game and it is yours. No subscription, no account required to play, no server that can switch off your library.',
     },
     {
+      id: 'free-updates',
       title: 'Updates stay free',
       body: 'Fixes, balance, quality-of-life, and the content that finishes what we sold you — all free, for as long as we support the game.',
     },
     {
+      id: 'no-microtransactions',
       title: 'No microtransactions, ever',
       body: 'No ads, no loot boxes, no battle passes, no pay-to-win, no timers built to sell you the way around them.',
     },
     {
+      id: 'paid-dlc',
       title: 'Paid DLC only when it earns it',
       body: 'If we ever charge again it will be for a substantial expansion on top of a complete game — never for something that should have been a patch.',
     },

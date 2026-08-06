@@ -3,6 +3,8 @@ import { render, screen } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { routes } from './routes';
 import { games } from '@/data';
+import i18n from '@/i18n';
+import { LOCALE_CODES } from '@/i18n/locales';
 
 function renderAt(path: string) {
   const router = createMemoryRouter(routes, { initialEntries: [path] });
@@ -67,6 +69,48 @@ describe('routing', () => {
   it('sets the document title per route', async () => {
     renderAt('/press');
     await screen.findByRole('heading', { level: 1, name: 'Press kit' });
-    expect(document.title).toBe('Press — Spartan Game Studios');
+    expect(document.title).toBe('Press kit — Spartan Game Studios');
+  });
+});
+
+describe('localised routing', () => {
+  it('renders every route in every locale without falling back to a raw key', async () => {
+    const paths = ['/', '/games', '/games/lantern', '/devlog', '/press', '/about', '/nope'];
+
+    for (const code of LOCALE_CODES) {
+      await i18n.changeLanguage(code);
+      for (const path of paths) {
+        const { unmount, container } = renderAt(path);
+        await screen.findByRole('heading', { level: 1 });
+        // A missing key renders as its own dotted path — catch that anywhere.
+        expect(container.textContent, `${code} ${path}`).not.toMatch(
+          /\b(nav|common|status|stores|footer|home|games|gameDetail|devlog|press|about|notFound|meta)\.[a-zA-Z]/,
+        );
+        unmount();
+      }
+    }
+  });
+
+  it('translates chrome and content together on a game page', async () => {
+    await i18n.changeLanguage('de');
+    renderAt('/games/lantern');
+
+    expect(await screen.findByRole('heading', { level: 1, name: 'Lantern' })).toBeInTheDocument();
+    expect(screen.getByText('Auf einen Blick')).toBeInTheDocument();
+    expect(screen.getByText(/Die Gaslaternen gehen eine nach der anderen aus/)).toBeInTheDocument();
+  });
+
+  it('sets the document title in the active locale', async () => {
+    await i18n.changeLanguage('fr');
+    renderAt('/games');
+    await screen.findByRole('heading', { level: 1, name: 'Jeux' });
+    expect(document.title).toBe('Jeux — Spartan Game Studios');
+  });
+
+  it('syncs the html lang attribute', async () => {
+    await i18n.changeLanguage('es');
+    renderAt('/');
+    await screen.findByRole('heading', { level: 1 });
+    expect(document.documentElement.lang).toBe('es');
   });
 });

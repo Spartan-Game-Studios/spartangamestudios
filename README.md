@@ -13,7 +13,7 @@ single source of truth the marketing channels then broadcast.
 
 ## Stack
 
-pnpm · TypeScript · Vite · React 19 · react-router · CSS Modules.
+pnpm · TypeScript · Vite · React 19 · react-router · CSS Modules · i18next.
 ESLint (flat, type-checked) · Prettier · Husky · Vitest + Testing Library.
 
 No Tailwind, no CSS-in-JS. Styling is CSS Modules on top of the design tokens in
@@ -42,7 +42,11 @@ one array, never a component.
 - `src/data/devlog.ts` — devlog posts
 - `src/data/studio.ts` — studio facts and the ownership pledge
 - `src/data/types.ts` — the content model
-- `src/data/index.ts` — selectors (`listedGames`, `getGame`, …) and labels
+- `src/data/index.ts` — selectors (`listedGames`, `getGame`, …) and key helpers
+
+English written here is the source of truth and renders in every language
+immediately; other locales override it by key. See
+[`docs/i18n.md`](docs/i18n.md).
 
 ### Adding a game
 
@@ -73,6 +77,13 @@ Order in the file does not matter — the row renders in the canonical order in
 `STOREFRONTS`, first link styled as the primary button. Before launch, a
 `label: 'Wishlist on Steam'` overrides the default verb. An empty array renders
 an honest "not on sale yet" notice rather than a dead button.
+
+## Translations
+
+The site ships in English, Spanish, French, and German. Full guide in
+[`docs/i18n.md`](docs/i18n.md) — including the one rule that governs where a
+given string lives, and the fact that the non-English copy is machine-assisted
+and wants a native-speaker pass before launch.
 
 ## Brand
 

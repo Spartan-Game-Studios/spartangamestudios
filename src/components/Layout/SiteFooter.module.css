@@ -26,6 +26,10 @@
   text-transform: uppercase;
 }
 
+.language {
+  margin-top: var(--space-5);
+}
+
 .heading {
   font-family: var(--font-ui);
   font-size: var(--fs-2xs);

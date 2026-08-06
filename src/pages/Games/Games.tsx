@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Container } from '@/components/Container/Container';
 import { GameCard } from '@/components/GameCard/GameCard';
 import { MeanderRule } from '@/components/MeanderRule/MeanderRule';
@@ -6,9 +7,11 @@ import { useDocumentMeta } from '@/lib/useDocumentMeta';
 import page from '@/pages/shared/page.module.css';
 
 export function Games() {
+  const { t } = useTranslation();
+
   useDocumentMeta({
-    title: 'Games',
-    description: `Every game from ${studio.name}, with the full list of storefronts for each.`,
+    title: t('games.title'),
+    description: t('meta.gamesDescription', { studio: studio.name }),
     path: '/games',
   });
 
@@ -18,12 +21,9 @@ export function Games() {
     <div className={page.page}>
       <Container>
         <header className={page.header}>
-          <p className="u-eyebrow">Catalogue</p>
-          <h1 className={`${page.title} u-gold-text`}>Games</h1>
-          <p className={page.lede}>
-            Every game we make, and every shelf it sits on. When a title launches or lands on a new
-            platform, the link appears here first.
-          </p>
+          <p className="u-eyebrow">{t('games.eyebrow')}</p>
+          <h1 className={`${page.title} u-gold-text`}>{t('games.title')}</h1>
+          <p className={page.lede}>{t('games.lede')}</p>
           <MeanderRule />
         </header>
 
