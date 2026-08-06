@@ -107,19 +107,37 @@ made it into `dist` before uploading.
 1. **Repository → Settings → Pages → Source: GitHub Actions.**
    (Pages on a **private** repo requires GitHub Pro or higher. On a free
    account the repo must be public.)
-2. **DNS at the registrar for `spartangamestudios.com`:**
+2. **DNS at the registrar (Namecheap) for `spartangamestudios.com`.**
 
-   | Type  | Name  | Value                        |
-   | ----- | ----- | ---------------------------- |
-   | A     | `@`   | `185.199.108.153`            |
-   | A     | `@`   | `185.199.109.153`            |
-   | A     | `@`   | `185.199.110.153`            |
-   | A     | `@`   | `185.199.111.153`            |
-   | AAAA  | `@`   | `2606:50c0:8000::153`        |
-   | AAAA  | `@`   | `2606:50c0:8001::153`        |
-   | AAAA  | `@`   | `2606:50c0:8002::153`        |
-   | AAAA  | `@`   | `2606:50c0:8003::153`        |
-   | CNAME | `www` | `atticusofsparta.github.io.` |
+   Only the four **A** records are required — they are what makes the apex
+   domain resolve:
+
+   | Type | Name | Value             |
+   | ---- | ---- | ----------------- |
+   | A    | `@`  | `185.199.108.153` |
+   | A    | `@`  | `185.199.109.153` |
+   | A    | `@`  | `185.199.110.153` |
+   | A    | `@`  | `185.199.111.153` |
+
+   Optional, add if you want them:
+
+   | Type  | Name  | Value                        | Why                        |
+   | ----- | ----- | ---------------------------- | -------------------------- |
+   | AAAA  | `@`   | `2606:50c0:8000::153`        | IPv6 clients               |
+   | AAAA  | `@`   | `2606:50c0:8001::153`        | IPv6 clients               |
+   | AAAA  | `@`   | `2606:50c0:8002::153`        | IPv6 clients               |
+   | AAAA  | `@`   | `2606:50c0:8003::153`        | IPv6 clients               |
+   | CNAME | `www` | `atticusofsparta.github.io.` | so `www.` resolves as well |
+
+   > **Why not just one CNAME at the apex?** DNS forbids a CNAME coexisting
+   > with the SOA/NS records that must exist at a zone apex, so `@` has to be
+   > an A/AAAA record. GitHub does accept an ALIAS/ANAME record instead, but
+   > Namecheap's DNS does not offer one. Cloudflare's CNAME flattening would,
+   > if DNS ever moves there.
+   >
+   > Note that `public/CNAME` is a **different mechanism** with an unfortunately
+   > identical name: that file tells Pages _which domain to serve_, while these
+   > records tell the internet _where the domain points_. Both are needed.
 
 3. Settings → Pages → **Custom domain** → `spartangamestudios.com`, then tick
    **Enforce HTTPS** once the certificate is issued (can take up to an hour).
