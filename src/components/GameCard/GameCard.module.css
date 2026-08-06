@@ -1,0 +1,106 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  background-color: var(--color-surface);
+  border: var(--border-hairline);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition:
+    border-color var(--transition-base),
+    background-color var(--transition-base),
+    transform var(--transition-base);
+}
+
+.card:hover,
+.card:focus-within {
+  border-color: var(--color-border-accent);
+  background-color: var(--color-surface-raised);
+  transform: translateY(-2px);
+}
+
+/* Key-art slot. Until real art exists it is a lit bronze field, not a
+   grey "image missing" box. */
+.art {
+  aspect-ratio: 16 / 9;
+  background-color: var(--sgs-obsidian-850);
+  background-image: radial-gradient(
+    90% 120% at 50% 0%,
+    rgb(107 85 40 / 55%) 0%,
+    rgb(24 24 26 / 90%) 60%,
+    rgb(7 7 8 / 100%) 100%
+  );
+  object-fit: cover;
+  width: 100%;
+}
+
+.artPlaceholder {
+  display: grid;
+  place-items: center;
+}
+
+.artInitial {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  color: rgb(201 162 79 / 22%);
+  user-select: none;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  flex: 1;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.genre {
+  font-family: var(--font-ui);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+  line-height: var(--lh-tight);
+}
+
+/* Whole-card click target without nesting interactive elements. */
+.link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.tagline {
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+}
+
+.platforms {
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: var(--border-hairline);
+  font-family: var(--font-ui);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}

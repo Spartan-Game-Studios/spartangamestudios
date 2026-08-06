@@ -1,0 +1,49 @@
+.prose {
+  max-width: var(--prose-width);
+  font-size: var(--fs-base);
+  line-height: var(--lh-relaxed);
+  color: var(--color-text-muted);
+}
+
+.prose > * + * {
+  margin-top: var(--space-4);
+}
+
+.pledge {
+  margin-top: var(--space-8);
+}
+
+.pledgeList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+}
+
+.pledgeItem {
+  padding-top: var(--space-4);
+  border-top: 2px solid var(--sgs-gold-800);
+}
+
+.pledgeTitle {
+  font-family: var(--font-ui);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+}
+
+.pledgeBody {
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+}
+
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+}

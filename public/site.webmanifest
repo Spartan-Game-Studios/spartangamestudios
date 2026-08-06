@@ -1,0 +1,13 @@
+{
+  "name": "Spartan Game Studios",
+  "short_name": "Spartan",
+  "description": "Tight, replayable action games. Buy once, own forever, updates free.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    { "src": "/brand/logo-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/brand/logo-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

@@ -1,0 +1,160 @@
+.hero {
+  position: relative;
+  border-bottom: var(--border-hairline);
+  padding-block: var(--space-8);
+  background-image: radial-gradient(100% 90% at 50% 0%, rgb(107 85 40 / 20%) 0%, transparent 65%);
+}
+
+.back {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  margin-bottom: var(--space-5);
+}
+
+.back:hover {
+  color: var(--color-accent);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.genre {
+  font-family: var(--font-ui);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+  line-height: var(--lh-tight);
+}
+
+.tagline {
+  max-width: 44rem;
+  margin-top: var(--space-4);
+  font-size: var(--fs-md);
+  font-style: italic;
+  line-height: var(--lh-snug);
+  color: var(--color-accent);
+  text-wrap: balance;
+}
+
+.stores {
+  margin-top: var(--space-6);
+}
+
+.body {
+  padding-block: var(--space-8);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.pitch {
+  font-size: var(--fs-md);
+  line-height: var(--lh-relaxed);
+  color: var(--color-text-muted);
+}
+
+.featuresTitle,
+.factsTitle {
+  font-family: var(--font-ui);
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-4);
+}
+
+.features {
+  margin-top: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.feature {
+  position: relative;
+  padding-left: var(--space-5);
+  color: var(--color-text-muted);
+  line-height: var(--lh-normal);
+}
+
+/* A small bronze lozenge — the shield-boss shape from the mark. */
+.feature::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 7px;
+  height: 7px;
+  background-color: var(--color-accent);
+  transform: rotate(45deg);
+}
+
+.facts {
+  border: var(--border-hairline);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  padding: var(--space-5);
+}
+
+.factList {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.factLabel {
+  font-family: var(--font-ui);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.factValue {
+  margin: var(--space-1) 0 0;
+  color: var(--color-text);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+}
+
+.unlistedNotice {
+  margin-bottom: var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  border: 1px dashed var(--color-border-accent);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-ui);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+}
+
+@media (width < 56rem) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}

@@ -1,0 +1,83 @@
+@import './fonts.css';
+@import './tokens.css';
+@import './reset.css';
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+
+  /* A faint bronze bloom at the top of the page, as if the mark were lit from
+     above — keeps a pure-black field from reading as an unstyled page. */
+  background-image: radial-gradient(
+    120% 80% at 50% -10%,
+    rgb(107 85 40 / 22%) 0%,
+    rgb(48 36 24 / 8%) 35%,
+    transparent 70%
+  );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+/* ---- Shared typographic primitives ----------------------------------- */
+
+.u-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--lh-tight);
+  text-transform: uppercase;
+}
+
+.u-eyebrow {
+  font-family: var(--font-ui);
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* Metallic lettering. Falls back to flat gold where background-clip:text is
+   unsupported, so the text is never invisible. */
+.u-gold-text {
+  color: var(--color-accent);
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .u-gold-text {
+    background-image: var(--gradient-gold);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+.u-prose {
+  max-width: var(--prose-width);
+  line-height: var(--lh-relaxed);
+  color: var(--color-text-muted);
+}
+
+.u-prose > * + * {
+  margin-top: var(--space-4);
+}
+
+.u-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

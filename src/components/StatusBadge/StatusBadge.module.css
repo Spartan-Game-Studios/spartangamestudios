@@ -1,0 +1,41 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+
+  font-family: var(--font-ui);
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  line-height: 1;
+
+  padding: 0.45em 0.75em;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-faint);
+  background-color: rgb(255 255 255 / 3%);
+}
+
+.badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background-color: currentColor;
+  transform: rotate(45deg);
+}
+
+.released,
+.earlyAccess {
+  color: var(--color-accent-bright);
+  border-color: var(--color-border-accent);
+}
+
+.inDevelopment {
+  color: var(--color-accent);
+  border-color: var(--sgs-gold-800);
+}
+
+.concept {
+  color: var(--color-text-faint);
+}

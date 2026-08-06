@@ -1,0 +1,66 @@
+.article {
+  padding-block: var(--space-8) var(--space-9);
+}
+
+.back {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  margin-bottom: var(--space-5);
+}
+
+.back:hover {
+  color: var(--color-accent);
+}
+
+.header {
+  margin-bottom: var(--space-6);
+}
+
+.date {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+  line-height: var(--lh-tight);
+  text-wrap: balance;
+}
+
+.summary {
+  margin-top: var(--space-4);
+  font-size: var(--fs-md);
+  font-style: italic;
+  line-height: var(--lh-relaxed);
+  color: var(--color-text-muted);
+}
+
+.body {
+  font-size: var(--fs-base);
+  line-height: var(--lh-relaxed);
+  color: var(--color-text-muted);
+}
+
+.body > p + p {
+  margin-top: var(--space-4);
+}
+
+/* First paragraph carries the weight — a small drop of emphasis, no drop cap
+   (Cinzel initials at body size read as a mistake, not a flourish). */
+.body > p:first-child {
+  color: var(--color-text);
+}
