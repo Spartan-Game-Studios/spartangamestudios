@@ -97,13 +97,51 @@ third-party CDN request.
 Static build, output in `dist/`. Build command `pnpm build`, publish directory
 `dist`, Node 22+.
 
-Routing is client-side, so **the host must serve `index.html` for unknown paths**
-or `/games/lantern` 404s on a hard refresh:
+`.github/workflows/deploy.yml` deploys to **GitHub Pages** on every push to
+`main`. It runs `pnpm check` before building, so the site is never published
+from a red tree, and asserts that `404.html`, `CNAME`, and `sitemap.xml` all
+made it into `dist` before uploading.
 
-- **Netlify / Cloudflare Pages** — handled by `public/_redirects`, already committed.
+### One-time setup
+
+1. **Repository → Settings → Pages → Source: GitHub Actions.**
+   (Pages on a **private** repo requires GitHub Pro or higher. On a free
+   account the repo must be public.)
+2. **DNS at the registrar for `spartangamestudios.com`:**
+
+   | Type  | Name  | Value                        |
+   | ----- | ----- | ---------------------------- |
+   | A     | `@`   | `185.199.108.153`            |
+   | A     | `@`   | `185.199.109.153`            |
+   | A     | `@`   | `185.199.110.153`            |
+   | A     | `@`   | `185.199.111.153`            |
+   | AAAA  | `@`   | `2606:50c0:8000::153`        |
+   | AAAA  | `@`   | `2606:50c0:8001::153`        |
+   | AAAA  | `@`   | `2606:50c0:8002::153`        |
+   | AAAA  | `@`   | `2606:50c0:8003::153`        |
+   | CNAME | `www` | `atticusofsparta.github.io.` |
+
+3. Settings → Pages → **Custom domain** → `spartangamestudios.com`, then tick
+   **Enforce HTTPS** once the certificate is issued (can take up to an hour).
+
+`public/CNAME` is committed so the custom domain survives every deploy —
+without it in the artifact, Pages clears the domain setting on publish.
+
+### Client-side routing
+
+Routing is client-side, so **the host must serve the app shell for unknown
+paths** or `/games/lantern` 404s on a hard refresh:
+
+- **GitHub Pages** — `plugins/spaFallback.ts` emits `dist/404.html` as a copy
+  of `index.html`. Pages serves it for any unmatched path, which reaches the
+  client router. A genuinely missing path then renders our own not-found page
+  under a real HTTP 404, which is the correct status.
+- **Netlify / Cloudflare Pages** — handled by `public/_redirects`, also committed.
 - **Vercel** — add a rewrite of `/(.*)` to `/index.html`.
-- **GitHub Pages / S3** — set the 404 document to `index.html`.
 - **nginx** — `try_files $uri $uri/ /index.html;`
+
+`public/.nojekyll` stops Pages from running the artifact through Jekyll, which
+would otherwise drop files whose names begin with an underscore.
 
 `sitemap.xml` is generated at build time from the same data the pages render
 (`plugins/sitemap.ts`), so it can never list an unlisted game.
