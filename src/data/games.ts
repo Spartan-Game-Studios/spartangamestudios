@@ -77,4 +77,23 @@ export const games: Game[] = [
     platforms: ['Windows', 'macOS', 'Linux'],
     stores: [],
   },
+  {
+    slug: 'mad-mary',
+    title: 'Mad Mary',
+    tagline: 'The wolves came for the flock. Mary brought guns.',
+    pitch:
+      'You command a pack of Australian shepherds — each with a gun, laser, or missile pod bolted to its back — as one unit, driving them across the field to body-block a wolf horde away from the sheep. The flock is your lives and your economy at once: sheep graze the wool you spend between waves on more dogs, nastier weapons, and automated defenses. Herd the pack, melt the horde, and never let them reach a sheep.',
+    genre: '3D pack-shooter tower defense',
+    status: 'concept',
+    visibility: 'unlisted',
+    platforms: ['Windows', 'macOS', 'Linux'],
+    stores: [],
+    features: [
+      'Drive a whole pack of gun-strapped shepherds as a single unit',
+      'The flock is your lives and your economy — every sheep lost costs you both',
+      'Wave after wave of wolves, answered with turrets, fences, and overwhelming firepower',
+      'Herding dogs, reimagined as a mobile artillery battery',
+    ],
+    price: '~$12.99 at launch',
+  },
 ];
