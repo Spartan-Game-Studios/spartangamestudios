@@ -149,7 +149,8 @@
       "rateLimited": "Too many attempts. Wait a minute and try again.",
       "unavailable": "Accounts are temporarily unavailable. Please try again later.",
       "unknown": "Something went wrong. Please try again.",
-      "profileUnavailable": "Your profile could not be loaded. Some details may be missing."
+      "profileUnavailable": "Your profile could not be loaded. Some details may be missing.",
+      "steamFailed": "Steam could not confirm that sign-in. Please try again."
     },
     "connected": "Connected accounts",
     "connectedYes": "Connected",
@@ -162,8 +163,9 @@
     "provider": {
       "google": "Google",
       "email": "Email",
-      "steam": "Steam",
-      "steamPending": "Available once our first game ships"
-    }
+      "steam": "Steam"
+    },
+    "connect": "Connect",
+    "disconnect": "Disconnect"
   }
 }

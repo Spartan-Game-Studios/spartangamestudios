@@ -229,7 +229,8 @@
       "rateLimited": "Demasiados intentos. Espera un minuto e inténtalo de nuevo.",
       "unavailable": "Las cuentas no están disponibles temporalmente. Inténtalo más tarde.",
       "unknown": "Algo ha salido mal. Inténtalo de nuevo.",
-      "profileUnavailable": "No se ha podido cargar tu perfil. Puede que falten algunos datos."
+      "profileUnavailable": "No se ha podido cargar tu perfil. Puede que falten algunos datos.",
+      "steamFailed": "Steam no ha podido confirmar el inicio de sesión. Inténtalo de nuevo."
     },
     "connected": "Cuentas conectadas",
     "connectedYes": "Conectada",
@@ -242,8 +243,9 @@
     "provider": {
       "google": "Google",
       "email": "Correo electrónico",
-      "steam": "Steam",
-      "steamPending": "Disponible cuando salga nuestro primer juego"
-    }
+      "steam": "Steam"
+    },
+    "connect": "Conectar",
+    "disconnect": "Desconectar"
   }
 }
