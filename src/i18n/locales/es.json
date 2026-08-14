@@ -204,5 +204,31 @@
         "La línea es lo bastante simple como para que nos la exijáis: arreglar o completar lo que te vendimos es gratis; ampliarlo puede costar. Cuando la cosa esté cerca, es gratis."
       ]
     }
+  },
+  "auth": {
+    "signIn": "Iniciar sesión",
+    "createAccount": "Crear cuenta",
+    "signOut": "Cerrar sesión",
+    "account": "Cuenta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "username": "Nombre visible",
+    "or": "o",
+    "working": "Procesando…",
+    "lede": "Una cuenta para el sitio y, con el tiempo, para los juegos.",
+    "accountLede": "Los datos de tu cuenta.",
+    "metaDescription": "Inicia sesión en tu cuenta de Spartan Game Studios.",
+    "passwordHint": "Al menos {{count}} caracteres.",
+    "noAccount": "¿Aún no tienes cuenta?",
+    "haveAccount": "¿Ya tienes cuenta?",
+    "noEmailOnAccount": "Esta cuenta no tiene correo",
+    "error": {
+      "badCredentials": "Ese correo y esa contraseña no coinciden con ninguna cuenta.",
+      "alreadyRegistered": "Ya existe una cuenta con ese correo. Prueba a iniciar sesión.",
+      "passwordTooShort": "Las contraseñas deben tener al menos 8 caracteres.",
+      "rateLimited": "Demasiados intentos. Espera un minuto e inténtalo de nuevo.",
+      "unavailable": "Las cuentas no están disponibles temporalmente. Inténtalo más tarde.",
+      "unknown": "Algo ha salido mal. Inténtalo de nuevo."
+    }
   }
 }

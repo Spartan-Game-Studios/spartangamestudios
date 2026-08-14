@@ -27,6 +27,14 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
+    // Authentication reads its endpoint from build-time config, and with none
+    // set the sign-in form correctly renders itself disabled. The tests need the
+    // configured path, and must not depend on what happens to be exported in the
+    // shell — CI exports nothing. Fixed dummy values, never real ones.
+    env: {
+      VITE_NAKAMA_URL: 'https://example.test/nakama',
+      VITE_NAKAMA_SERVER_KEY: 'test-server-key',
+    },
     css: { modules: { classNameStrategy: 'non-scoped' } },
     include: ['src/**/*.{test,spec}.{ts,tsx}'],
     coverage: {

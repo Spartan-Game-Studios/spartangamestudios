@@ -204,5 +204,31 @@
         "Die Grenze ist einfach genug, um uns daran zu messen: Reparieren oder Vervollständigen dessen, was wir dir verkauft haben, ist kostenlos; Erweitern darf etwas kosten. Wenn es knapp ist, ist es kostenlos."
       ]
     }
+  },
+  "auth": {
+    "signIn": "Anmelden",
+    "createAccount": "Konto erstellen",
+    "signOut": "Abmelden",
+    "account": "Konto",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "username": "Anzeigename",
+    "or": "oder",
+    "working": "Wird bearbeitet…",
+    "lede": "Ein Konto für die Website und später auch für die Spiele.",
+    "accountLede": "Deine Kontodaten.",
+    "metaDescription": "Melde dich bei deinem Spartan-Game-Studios-Konto an.",
+    "passwordHint": "Mindestens {{count}} Zeichen.",
+    "noAccount": "Noch kein Konto?",
+    "haveAccount": "Schon ein Konto?",
+    "noEmailOnAccount": "Keine E-Mail für dieses Konto",
+    "error": {
+      "badCredentials": "E-Mail und Passwort passen zu keinem Konto.",
+      "alreadyRegistered": "Für diese E-Mail existiert bereits ein Konto. Versuche dich anzumelden.",
+      "passwordTooShort": "Passwörter müssen mindestens 8 Zeichen lang sein.",
+      "rateLimited": "Zu viele Versuche. Warte eine Minute und versuche es erneut.",
+      "unavailable": "Konten sind vorübergehend nicht verfügbar. Bitte versuche es später erneut.",
+      "unknown": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+    }
   }
 }

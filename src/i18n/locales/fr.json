@@ -204,5 +204,31 @@
         "La limite est assez simple pour que vous puissiez nous y tenir : réparer ou achever ce que nous vous avons vendu est gratuit, l’étendre peut être payant. Quand c’est limite, c’est gratuit."
       ]
     }
+  },
+  "auth": {
+    "signIn": "Se connecter",
+    "createAccount": "Créer un compte",
+    "signOut": "Se déconnecter",
+    "account": "Compte",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "username": "Nom affiché",
+    "or": "ou",
+    "working": "En cours…",
+    "lede": "Un compte pour le site et, à terme, pour les jeux.",
+    "accountLede": "Les informations de votre compte.",
+    "metaDescription": "Connectez-vous à votre compte Spartan Game Studios.",
+    "passwordHint": "Au moins {{count}} caractères.",
+    "noAccount": "Pas encore de compte ?",
+    "haveAccount": "Vous avez déjà un compte ?",
+    "noEmailOnAccount": "Aucun e-mail sur ce compte",
+    "error": {
+      "badCredentials": "Cet e-mail et ce mot de passe ne correspondent à aucun compte.",
+      "alreadyRegistered": "Un compte existe déjà pour cet e-mail. Essayez de vous connecter.",
+      "passwordTooShort": "Le mot de passe doit contenir au moins 8 caractères.",
+      "rateLimited": "Trop de tentatives. Attendez une minute et réessayez.",
+      "unavailable": "Les comptes sont temporairement indisponibles. Réessayez plus tard.",
+      "unknown": "Une erreur est survenue. Veuillez réessayer."
+    }
   }
 }

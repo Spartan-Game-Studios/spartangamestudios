@@ -124,5 +124,31 @@
     "gamesDescription": "Every game from {{studio}}, with the full list of storefronts for each.",
     "devlogDescription": "Development writing from {{studio}} — what we're building and why.",
     "pressDescription": "Press kit for {{studio}} — fact sheet, logos, and contact for press and creators."
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "createAccount": "Create account",
+    "signOut": "Sign out",
+    "account": "Account",
+    "email": "Email",
+    "password": "Password",
+    "username": "Display name",
+    "or": "or",
+    "working": "Working…",
+    "lede": "One account for the site and, in time, for the games themselves.",
+    "accountLede": "Your account details.",
+    "metaDescription": "Sign in to your Spartan Game Studios account.",
+    "passwordHint": "At least {{count}} characters.",
+    "noAccount": "No account yet?",
+    "haveAccount": "Already have an account?",
+    "noEmailOnAccount": "No email on this account",
+    "error": {
+      "badCredentials": "That email and password do not match an account.",
+      "alreadyRegistered": "An account already exists for that email. Try signing in.",
+      "passwordTooShort": "Passwords must be at least 8 characters.",
+      "rateLimited": "Too many attempts. Wait a minute and try again.",
+      "unavailable": "Accounts are temporarily unavailable. Please try again later.",
+      "unknown": "Something went wrong. Please try again."
+    }
   }
 }

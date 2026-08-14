@@ -8,6 +8,8 @@ import { DevlogPost } from '@/pages/Devlog/DevlogPost';
 import { Press } from '@/pages/Press/Press';
 import { About } from '@/pages/About/About';
 import { NotFound } from '@/pages/NotFound/NotFound';
+import { SignIn } from '@/pages/Account/SignIn';
+import { Account } from '@/pages/Account/Account';
 
 export const routes = [
   {
@@ -21,6 +23,8 @@ export const routes = [
       { path: 'devlog/:slug', element: <DevlogPost /> },
       { path: 'press', element: <Press /> },
       { path: 'about', element: <About /> },
+      { path: 'signin', element: <SignIn /> },
+      { path: 'account', element: <Account /> },
       { path: '*', element: <NotFound /> },
     ],
   },
