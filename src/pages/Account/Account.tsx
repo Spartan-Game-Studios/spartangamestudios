@@ -1,4 +1,5 @@
-import { Navigate, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Navigate, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Container } from '@/components/Container/Container';
 import { Button } from '@/components/Button/Button';
@@ -7,6 +8,7 @@ import { useAuth } from '@/auth/useAuth';
 import { useAccount } from '@/auth/useAccount';
 import { useFollowing } from '@/auth/useFollowing';
 import { listedGames } from '@/data';
+import { linkSteam, readSteamCallback, steamOpenIdUrl, unlinkSteam } from '@/lib/nakama';
 import { useDocumentMeta } from '@/lib/useDocumentMeta';
 import page from '@/pages/shared/page.module.css';
 import styles from './Account.module.css';
@@ -14,12 +16,10 @@ import styles from './Account.module.css';
 /**
  * Providers shown in the connected-accounts list.
  *
- * Only what genuinely works appears here. Steam is listed because it is a real
- * part of the plan, but with its true status rather than a button: Nakama's
- * Steam auth consumes a session ticket from the Steamworks SDK, which a website
- * cannot produce, and the web alternative (Steam OpenID) needs a server RPC that
- * the deployed Nakama cannot route. itch.io, GOG and Epic are absent entirely —
- * a row that cannot do anything is worse than no row.
+ * Only what genuinely works appears here. Steam connects through OpenID, which
+ * the server verifies with Steam directly — Nakama's own Steam auth wants a
+ * Steamworks session ticket a browser cannot produce. itch.io, GOG and Epic are
+ * absent: a row that cannot do anything is worse than no row.
  */
 const PROVIDERS = ['google', 'email', 'steam'] as const;
 type Provider = (typeof PROVIDERS)[number];
@@ -27,13 +27,37 @@ type Provider = (typeof PROVIDERS)[number];
 export function Account() {
   const { t } = useTranslation();
   const { session, loading: sessionLoading, signOut } = useAuth();
-  const { account, loading, error } = useAccount();
+  const { account, loading, error, reload } = useAccount();
   // listedGames() honours visibility — an unlisted title must not become
   // discoverable just because this page enumerates the catalogue.
   const games = listedGames();
   const { followed, toggle, busy } = useFollowing(account?.userId ?? null);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [steamBusy, setSteamBusy] = useState(false);
+  const [steamError, setSteamError] = useState<string | null>(null);
 
   useDocumentMeta({ title: t('auth.account'), description: t('auth.metaDescription') });
+
+  // Steam sends the visitor back here with an assertion in the query string.
+  // It is handed straight to the server, which is the only party that can tell
+  // whether Steam actually issued it — nothing here trusts these values.
+  const token = session?.token;
+  useEffect(() => {
+    const params = readSteamCallback(location.search);
+    if (!params || !token) return;
+    setSteamBusy(true);
+    setSteamError(null);
+    void linkSteam(token, params)
+      .then(() => reload())
+      .catch(() => setSteamError('auth.error.steamFailed'))
+      .finally(() => {
+        setSteamBusy(false);
+        // Drop the assertion from the address bar: it is single-use, and a
+        // reload would otherwise replay it and fail confusingly.
+        void navigate('/account', { replace: true });
+      });
+  }, [location.search, token, navigate, reload]);
 
   // Waiting matters: a stored session is refreshed before first paint, and
   // redirecting during that window bounces a signed-in visitor to sign-in.
@@ -75,6 +99,11 @@ export function Account() {
 
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>{t('auth.connected')}</h2>
+          {steamError && (
+            <p className={styles.error} role="alert">
+              {t(steamError)}
+            </p>
+          )}
           <ul className={styles.providers}>
             {PROVIDERS.map((p: Provider) => {
               const connected = account?.linked[p] ?? false;
@@ -87,9 +116,31 @@ export function Account() {
                         ? (account?.displayName ?? t('auth.connectedYes'))
                         : p === 'email'
                           ? (account?.email ?? t('auth.connectedYes'))
-                          : t('auth.connectedYes')
-                      : t(p === 'steam' ? 'auth.provider.steamPending' : 'auth.notConnected')}
+                          : (account?.steamId ?? t('auth.connectedYes'))
+                      : t('auth.notConnected')}
                   </span>
+                  {p === 'steam' &&
+                    (connected ? (
+                      <button
+                        type="button"
+                        className={styles.unfollow}
+                        disabled={steamBusy}
+                        onClick={() => {
+                          if (!session) return;
+                          setSteamBusy(true);
+                          void unlinkSteam(session.token)
+                            .then(() => reload())
+                            .catch(() => setSteamError('auth.error.steamFailed'))
+                            .finally(() => setSteamBusy(false));
+                        }}
+                      >
+                        {t('auth.disconnect')}
+                      </button>
+                    ) : (
+                      <a className={styles.follow} href={steamOpenIdUrl('/account')}>
+                        {steamBusy ? t('auth.working') : t('auth.connect')}
+                      </a>
+                    ))}
                 </li>
               );
             })}

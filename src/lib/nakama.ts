@@ -187,6 +187,8 @@ export interface Account {
   displayName: string | null;
   avatarUrl: string | null;
   email: string | null;
+  /** SteamID64, from account metadata. Set by the OpenID flow, not by Nakama. */
+  steamId: string | null;
   linked: {
     google: boolean;
     steam: boolean;
@@ -233,8 +235,20 @@ interface AccountResponse {
     steam_id?: string;
     apple_id?: string;
     facebook_id?: string;
+    /** A JSON *string*, not an object — Nakama serialises it on the way out. */
+    metadata?: string;
   };
   email?: string;
+}
+
+function steamIdFromMetadata(raw: string | undefined): string | null {
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw) as { steam_id?: unknown };
+    return typeof parsed.steam_id === 'string' ? parsed.steam_id : null;
+  } catch {
+    return null;
+  }
 }
 
 /**
@@ -248,15 +262,19 @@ interface AccountResponse {
 export async function getAccount(token: string): Promise<Account> {
   const body = await authed<AccountResponse>('/v2/account', token);
   const u = body.user;
+  const steamId = steamIdFromMetadata(u.metadata);
   return {
     userId: u.id,
+    steamId,
     username: u.username ?? '',
     displayName: u.display_name || null,
     avatarUrl: u.avatar_url || null,
     email: body.email || null,
     linked: {
       google: Boolean(u.google_id),
-      steam: Boolean(u.steam_id),
+      // Either route counts as linked: the native column (set by an in-game
+      // session ticket) or our OpenID metadata.
+      steam: Boolean(u.steam_id) || Boolean(steamId),
       apple: Boolean(u.apple_id),
       facebook: Boolean(u.facebook_id),
       email: Boolean(body.email),
@@ -304,4 +322,70 @@ export async function unfollow(token: string, slug: string): Promise<void> {
     method: 'PUT',
     body: JSON.stringify({ object_ids: [{ collection: FOLLOW_COLLECTION, key: slug }] }),
   });
+}
+
+/* ------------------------------------------------------------------ *
+ *  Steam, via OpenID
+ * ------------------------------------------------------------------ */
+
+const STEAM_OPENID = 'https://steamcommunity.com/openid/login';
+
+/**
+ * Where to send someone to prove they own a Steam account.
+ *
+ * Steam speaks OpenID 2.0, which is old but is the only web-facing option —
+ * Nakama's own Steam auth wants a Steamworks session ticket that a browser
+ * cannot produce. `identifier_select` means "let the user pick", which is the
+ * normal shape when we do not know their Steam id in advance.
+ *
+ * Steam requires return_to to sit beneath realm, so both are derived from the
+ * running origin rather than hardcoded — otherwise this only works in production.
+ */
+export function steamOpenIdUrl(returnTo: string): string {
+  const origin = window.location.origin;
+  const params = new URLSearchParams({
+    'openid.ns': 'http://specs.openid.net/auth/2.0',
+    'openid.mode': 'checkid_setup',
+    'openid.return_to': `${origin}${returnTo}`,
+    'openid.realm': origin,
+    'openid.identity': 'http://specs.openid.net/auth/2.0/identifier_select',
+    'openid.claimed_id': 'http://specs.openid.net/auth/2.0/identifier_select',
+  });
+  return `${STEAM_OPENID}?${params.toString()}`;
+}
+
+/** True when the current URL carries an OpenID assertion coming back from Steam. */
+export function readSteamCallback(search: string): Record<string, string> | null {
+  const q = new URLSearchParams(search);
+  if (q.get('openid.mode') !== 'id_res') return null;
+  const params: Record<string, string> = {};
+  q.forEach((value, key) => {
+    if (key.startsWith('openid.')) params[key] = value;
+  });
+  return Object.keys(params).length > 0 ? params : null;
+}
+
+/**
+ * Calls a Nakama RPC.
+ *
+ * The payload is a JSON *string* nested inside the request body, which is
+ * Nakama's convention rather than a mistake, and the reply nests the result the
+ * same way.
+ */
+async function rpc<T>(name: string, token: string, payload: unknown): Promise<T> {
+  const body = await authed<{ payload?: string }>(`/v2/rpc/${name}`, token, {
+    method: 'POST',
+    body: JSON.stringify(JSON.stringify(payload)),
+  });
+  return JSON.parse(body.payload ?? '{}') as T;
+}
+
+/** Hands Steam's assertion to the server, which verifies it WITH Steam. */
+export async function linkSteam(token: string, params: Record<string, string>): Promise<string> {
+  const out = await rpc<{ steam_id?: string }>('steam_openid_verify', token, { params });
+  return out.steam_id ?? '';
+}
+
+export async function unlinkSteam(token: string): Promise<void> {
+  await rpc('steam_openid_unlink', token, {});
 }
