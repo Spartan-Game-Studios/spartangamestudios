@@ -39,6 +39,10 @@ jobs:
         run: pnpm run check
 
       - name: Build
+        env:
+          VITE_NAKAMA_URL: ${{ vars.VITE_NAKAMA_URL }}
+          VITE_NAKAMA_SERVER_KEY: ${{ vars.VITE_NAKAMA_SERVER_KEY }}
+          VITE_GOOGLE_CLIENT_ID: ${{ vars.VITE_GOOGLE_CLIENT_ID }}
         run: pnpm run build
 
       - name: Verify the SPA fallback and custom domain survived the build
