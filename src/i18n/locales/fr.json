@@ -228,7 +228,22 @@
       "passwordTooShort": "Le mot de passe doit contenir au moins 8 caractères.",
       "rateLimited": "Trop de tentatives. Attendez une minute et réessayez.",
       "unavailable": "Les comptes sont temporairement indisponibles. Réessayez plus tard.",
-      "unknown": "Une erreur est survenue. Veuillez réessayer."
+      "unknown": "Une erreur est survenue. Veuillez réessayer.",
+      "profileUnavailable": "Votre profil n’a pas pu être chargé. Certaines informations peuvent manquer."
+    },
+    "connected": "Comptes associés",
+    "connectedYes": "Associé",
+    "notConnected": "Non associé",
+    "following": "Suivis",
+    "followingEmpty": "Vous ne suivez encore aucun jeu.",
+    "followMore": "Suivre un jeu",
+    "follow": "Suivre",
+    "unfollow": "Ne plus suivre",
+    "provider": {
+      "google": "Google",
+      "email": "E-mail",
+      "steam": "Steam",
+      "steamPending": "Disponible à la sortie de notre premier jeu"
     }
   }
 }

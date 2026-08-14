@@ -2,6 +2,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Container } from '@/components/Container/Container';
 import { useAuth } from '@/auth/useAuth';
+import { useAccount } from '@/auth/useAccount';
 import styles from './SiteHeader.module.css';
 
 const NAV = [
@@ -14,6 +15,9 @@ const NAV = [
 export function SiteHeader() {
   const { t } = useTranslation();
   const { session, loading } = useAuth();
+  // Nakama's generated username is a random string like "CixjvnjvNP". Prefer
+  // the display name it took from Google, falling back only if absent.
+  const { account } = useAccount();
 
   return (
     <header className={styles.header}>
@@ -61,7 +65,7 @@ export function SiteHeader() {
                     isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink
                   }
                 >
-                  {session.username || t('auth.account')}
+                  {account?.displayName || session.username || t('auth.account')}
                 </NavLink>
               ) : (
                 <NavLink

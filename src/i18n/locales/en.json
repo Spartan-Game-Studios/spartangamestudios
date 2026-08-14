@@ -148,7 +148,22 @@
       "passwordTooShort": "Passwords must be at least 8 characters.",
       "rateLimited": "Too many attempts. Wait a minute and try again.",
       "unavailable": "Accounts are temporarily unavailable. Please try again later.",
-      "unknown": "Something went wrong. Please try again."
+      "unknown": "Something went wrong. Please try again.",
+      "profileUnavailable": "Your profile could not be loaded. Some details may be missing."
+    },
+    "connected": "Connected accounts",
+    "connectedYes": "Connected",
+    "notConnected": "Not connected",
+    "following": "Following",
+    "followingEmpty": "You aren't following any games yet.",
+    "followMore": "Follow a game",
+    "follow": "Follow",
+    "unfollow": "Unfollow",
+    "provider": {
+      "google": "Google",
+      "email": "Email",
+      "steam": "Steam",
+      "steamPending": "Available once our first game ships"
     }
   }
 }
