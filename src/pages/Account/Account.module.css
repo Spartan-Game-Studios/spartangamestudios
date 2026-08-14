@@ -1,17 +1,147 @@
-.details {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: var(--space-3) var(--space-5);
-  margin: 0 0 var(--space-6);
+.identity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
 }
 
-.term {
-  font-size: 0.875rem;
+.avatar,
+.avatarFallback {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.avatar {
+  object-fit: cover;
+  border: var(--border-hairline) solid var(--color-border-accent);
+}
+
+/* Shown when Google gave no picture, or for an email-only account. */
+.avatarFallback {
+  display: grid;
+  place-items: center;
+  font-size: 1.75rem;
+  color: var(--color-accent);
+  background: var(--color-surface-raised);
+  border: var(--border-hairline) solid var(--color-border);
+}
+
+.name {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.email {
+  margin: var(--space-1) 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+  overflow-wrap: anywhere;
+}
+
+.section {
+  margin-bottom: var(--space-7);
+}
+
+.sectionTitle {
+  margin: 0 0 var(--space-4);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--color-text-muted);
 }
 
-.value {
+.providers,
+.games {
   margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.provider,
+.game {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: var(--border-hairline) solid var(--color-border);
+}
+
+.provider:last-child,
+.game:last-child {
+  border-bottom: none;
+}
+
+.providerName,
+.gameName {
+  flex: 1;
+  min-width: 0;
+}
+
+.gameName {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.gameName:hover {
+  color: var(--color-accent);
+}
+
+.connected {
   color: var(--color-text);
   overflow-wrap: anywhere;
+}
+
+.disconnected,
+.empty {
+  color: var(--color-text-faint);
+  font-size: 0.9375rem;
+}
+
+.empty {
+  margin: 0 0 var(--space-4);
+}
+
+.follow,
+.unfollow {
+  padding: 0;
+  font: inherit;
+  font-size: 0.875rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-accent);
+}
+
+.unfollow {
+  color: var(--color-text-faint);
+}
+
+.follow:hover {
+  color: var(--color-accent-bright);
+}
+.unfollow:hover {
+  color: var(--color-text);
+}
+.follow:disabled,
+.unfollow:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.picker {
+  margin-top: var(--space-4);
+}
+
+.pickerSummary {
+  cursor: pointer;
+  font-size: 0.9375rem;
+  color: var(--color-accent);
+}
+
+.error {
+  margin: 0 0 var(--space-5);
+  color: var(--sgs-ember);
+  font-size: 0.9375rem;
 }

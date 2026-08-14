@@ -228,7 +228,22 @@
       "passwordTooShort": "Las contraseñas deben tener al menos 8 caracteres.",
       "rateLimited": "Demasiados intentos. Espera un minuto e inténtalo de nuevo.",
       "unavailable": "Las cuentas no están disponibles temporalmente. Inténtalo más tarde.",
-      "unknown": "Algo ha salido mal. Inténtalo de nuevo."
+      "unknown": "Algo ha salido mal. Inténtalo de nuevo.",
+      "profileUnavailable": "No se ha podido cargar tu perfil. Puede que falten algunos datos."
+    },
+    "connected": "Cuentas conectadas",
+    "connectedYes": "Conectada",
+    "notConnected": "No conectada",
+    "following": "Siguiendo",
+    "followingEmpty": "Aún no sigues ningún juego.",
+    "followMore": "Seguir un juego",
+    "follow": "Seguir",
+    "unfollow": "Dejar de seguir",
+    "provider": {
+      "google": "Google",
+      "email": "Correo electrónico",
+      "steam": "Steam",
+      "steamPending": "Disponible cuando salga nuestro primer juego"
     }
   }
 }

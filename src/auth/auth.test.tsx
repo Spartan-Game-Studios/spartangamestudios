@@ -33,6 +33,32 @@ function interceptNakama(handler: () => unknown) {
     const url = String(input);
     if (!url.includes('/nakama/')) return real(input as RequestInfo, init);
     calls.push([url, init ?? {}]);
+    // The account page reads the profile and the follow list, which are
+    // different shapes from an auth response. Only authenticate/* and the
+    // refresh go through the caller's handler.
+    if (url.includes('/v2/account') && !url.includes('/authenticate/')) {
+      return Promise.resolve({
+        ok: true,
+        status: 200,
+        json: () =>
+          Promise.resolve({
+            user: {
+              id: 'user-1',
+              username: 'ashenvale',
+              display_name: 'Ashen Vale',
+              google_id: 'g1',
+            },
+            email: 'player@example.com',
+          }),
+      });
+    }
+    if (url.includes('/v2/storage')) {
+      return Promise.resolve({
+        ok: true,
+        status: 200,
+        json: () => Promise.resolve({ objects: [] }),
+      });
+    }
     return Promise.resolve(handler());
   });
   vi.stubGlobal('fetch', mock);
@@ -235,7 +261,12 @@ describe('session restore', () => {
     interceptNakama(() => ({ ok: true, status: 200, json: () => Promise.resolve(sessionBody()) }));
 
     renderAt('/account');
-    expect(await screen.findByText('player@example.com')).toBeInTheDocument();
+    // The display name from the profile, not Nakama's generated username.
+    expect(
+      await screen.findByRole('heading', { level: 1, name: 'Ashen Vale' }),
+    ).toBeInTheDocument();
+    // Shown twice by design: in the identity block and against the Email provider.
+    expect(screen.getAllByText('player@example.com').length).toBeGreaterThan(0);
   });
 
   it('signs out when the refresh token is rejected', async () => {

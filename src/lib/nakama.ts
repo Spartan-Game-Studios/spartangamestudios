@@ -173,3 +173,135 @@ export async function refreshSession(refreshToken: string) {
   const body = await post<TokenResponse>('/v2/account/session/refresh', { token: refreshToken });
   return toSession(body);
 }
+
+/* ------------------------------------------------------------------ *
+ *  Authenticated calls — account and storage
+ * ------------------------------------------------------------------ */
+
+/** What the server knows about the signed-in user. */
+export interface Account {
+  userId: string;
+  /** Nakama's generated handle, e.g. "CixjvnjvNP" — rarely worth showing. */
+  username: string;
+  /** From the Google profile when it authenticated. Null for email-only. */
+  displayName: string | null;
+  avatarUrl: string | null;
+  email: string | null;
+  linked: {
+    google: boolean;
+    steam: boolean;
+    apple: boolean;
+    facebook: boolean;
+    /** Email/password credentials exist on the account. */
+    email: boolean;
+  };
+}
+
+async function authed<T>(path: string, token: string, init?: RequestInit): Promise<T> {
+  if (!nakamaConfigured()) throw new AuthError(0, 0, 'not_configured');
+  const res = await fetch(`${BASE}${path}`, {
+    ...init,
+    headers: {
+      'content-type': 'application/json',
+      accept: 'application/json',
+      authorization: `Bearer ${token}`,
+      ...(init?.headers ?? {}),
+    },
+  });
+  if (!res.ok) {
+    let message = `http_${res.status}`;
+    let code = 0;
+    try {
+      const err = (await res.json()) as { code?: number; message?: string };
+      code = err.code ?? 0;
+      message = err.message ?? message;
+    } catch {
+      // Non-JSON body; the status carries what we need.
+    }
+    throw new AuthError(code, res.status, message);
+  }
+  return (await res.json()) as T;
+}
+
+interface AccountResponse {
+  user: {
+    id: string;
+    username?: string;
+    display_name?: string;
+    avatar_url?: string;
+    google_id?: string;
+    steam_id?: string;
+    apple_id?: string;
+    facebook_id?: string;
+  };
+  email?: string;
+}
+
+/**
+ * The account as the server sees it.
+ *
+ * Worth fetching rather than reading the JWT: Nakama fills display_name and
+ * avatar_url from the Google profile at sign-in, and neither appears in the
+ * token. Without this call the site shows Nakama's generated username — a random
+ * string like "CixjvnjvNP" — to someone whose name it already knows.
+ */
+export async function getAccount(token: string): Promise<Account> {
+  const body = await authed<AccountResponse>('/v2/account', token);
+  const u = body.user;
+  return {
+    userId: u.id,
+    username: u.username ?? '',
+    displayName: u.display_name || null,
+    avatarUrl: u.avatar_url || null,
+    email: body.email || null,
+    linked: {
+      google: Boolean(u.google_id),
+      steam: Boolean(u.steam_id),
+      apple: Boolean(u.apple_id),
+      facebook: Boolean(u.facebook_id),
+      email: Boolean(body.email),
+    },
+  };
+}
+
+/** Games the user follows. Nakama storage, owner-read/owner-write. */
+const FOLLOW_COLLECTION = 'following';
+
+interface StorageObject {
+  key: string;
+  value: string;
+}
+
+export async function listFollowed(token: string, userId: string): Promise<string[]> {
+  const body = await authed<{ objects?: StorageObject[] }>(
+    `/v2/storage/${FOLLOW_COLLECTION}/${encodeURIComponent(userId)}`,
+    token,
+  );
+  return (body.objects ?? []).map((o) => o.key);
+}
+
+export async function follow(token: string, slug: string): Promise<void> {
+  await authed('/v2/storage', token, {
+    method: 'PUT',
+    body: JSON.stringify({
+      objects: [
+        {
+          collection: FOLLOW_COLLECTION,
+          key: slug,
+          value: JSON.stringify({ followedAt: new Date().toISOString() }),
+          // Owner-only. A follow list is not interesting to anyone else and
+          // publishing it by default would be a choice nobody asked for.
+          permission_read: 1,
+          permission_write: 1,
+        },
+      ],
+    }),
+  });
+}
+
+export async function unfollow(token: string, slug: string): Promise<void> {
+  await authed('/v2/storage/delete', token, {
+    method: 'PUT',
+    body: JSON.stringify({ object_ids: [{ collection: FOLLOW_COLLECTION, key: slug }] }),
+  });
+}
