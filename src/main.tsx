@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './routes';
+import { AuthProvider } from './auth/AuthContext';
 // Side-effect import: initialises i18next before the first render, so no
 // component ever mounts against an uninitialised instance.
 import './i18n';
@@ -14,6 +15,8 @@ if (!container) {
 
 createRoot(container).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 );

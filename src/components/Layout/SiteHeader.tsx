@@ -1,6 +1,7 @@
 import { NavLink, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Container } from '@/components/Container/Container';
+import { useAuth } from '@/auth/useAuth';
 import styles from './SiteHeader.module.css';
 
 const NAV = [
@@ -12,6 +13,7 @@ const NAV = [
 
 export function SiteHeader() {
   const { t } = useTranslation();
+  const { session, loading } = useAuth();
 
   return (
     <header className={styles.header}>
@@ -48,6 +50,29 @@ export function SiteHeader() {
                 {t(item.key)}
               </NavLink>
             ))}
+
+            {/* Rendered only once the stored session has resolved, so the header
+                does not flash "Sign in" at someone who is already signed in. */}
+            {!loading &&
+              (session ? (
+                <NavLink
+                  to="/account"
+                  className={({ isActive }) =>
+                    isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink
+                  }
+                >
+                  {session.username || t('auth.account')}
+                </NavLink>
+              ) : (
+                <NavLink
+                  to="/signin"
+                  className={({ isActive }) =>
+                    isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink
+                  }
+                >
+                  {t('auth.signIn')}
+                </NavLink>
+              ))}
           </nav>
         </div>
       </Container>

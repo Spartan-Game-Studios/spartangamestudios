@@ -2,13 +2,20 @@ import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { routes } from './routes';
+import { AuthProvider } from '@/auth/AuthContext';
 import { games } from '@/data';
 import i18n from '@/i18n';
 import { LOCALE_CODES } from '@/i18n/locales';
 
 function renderAt(path: string) {
   const router = createMemoryRouter(routes, { initialEntries: [path] });
-  return render(<RouterProvider router={router} />);
+  // The header reads session state, so every route needs the provider — the
+  // same wrapper main.tsx puts around the router in production.
+  return render(
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>,
+  );
 }
 
 describe('routing', () => {
