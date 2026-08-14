@@ -246,6 +246,16 @@
       "steam": "Steam"
     },
     "connect": "Verknüpfen",
-    "disconnect": "Trennen"
+    "disconnect": "Trennen",
+    "usernameHint": "Optional. Für andere Spieler sichtbar. Buchstaben, Zahlen, Bindestriche.",
+    "unverified": "nicht bestätigt",
+    "verifyResend": "Bestätigung erneut senden",
+    "verifySent": "Gesendet — sieh in deinem Postfach nach",
+    "verifyResendFailed": "Senden fehlgeschlagen",
+    "verifyTitle": "E-Mail bestätigen",
+    "verifyDone": "Deine E-Mail-Adresse ist bestätigt. Danke.",
+    "verifyFailed": "Dieser Link ist ungültig oder abgelaufen.",
+    "verifyFailedHint": "Links gelten einmalig und laufen nach 24 Stunden ab. Du kannst in deinem Konto einen neuen anfordern.",
+    "verifyNoToken": "Diese Seite benötigt einen Bestätigungslink aus deiner E-Mail."
   }
 }

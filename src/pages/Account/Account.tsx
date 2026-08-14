@@ -8,7 +8,13 @@ import { useAuth } from '@/auth/useAuth';
 import { useAccount } from '@/auth/useAccount';
 import { useFollowing } from '@/auth/useFollowing';
 import { listedGames } from '@/data';
-import { linkSteam, readSteamCallback, steamOpenIdUrl, unlinkSteam } from '@/lib/nakama';
+import {
+  linkSteam,
+  readSteamCallback,
+  requestEmailVerification,
+  steamOpenIdUrl,
+  unlinkSteam,
+} from '@/lib/nakama';
 import { useDocumentMeta } from '@/lib/useDocumentMeta';
 import page from '@/pages/shared/page.module.css';
 import styles from './Account.module.css';
@@ -36,6 +42,7 @@ export function Account() {
   const navigate = useNavigate();
   const [steamBusy, setSteamBusy] = useState(false);
   const [steamError, setSteamError] = useState<string | null>(null);
+  const [resend, setResend] = useState<'idle' | 'sending' | 'sent' | 'failed'>('idle');
 
   useDocumentMeta({ title: t('auth.account'), description: t('auth.metaDescription') });
 
@@ -115,10 +122,32 @@ export function Account() {
                       ? p === 'google'
                         ? (account?.displayName ?? t('auth.connectedYes'))
                         : p === 'email'
-                          ? (account?.email ?? t('auth.connectedYes'))
+                          ? `${account?.email ?? ''}${account?.emailVerified ? '' : ` — ${t('auth.unverified')}`}`
                           : (account?.steamId ?? t('auth.connectedYes'))
                       : t('auth.notConnected')}
                   </span>
+                  {p === 'email' && connected && !account?.emailVerified && (
+                    <button
+                      type="button"
+                      className={styles.follow}
+                      disabled={resend === 'sending' || resend === 'sent'}
+                      onClick={() => {
+                        if (!session) return;
+                        setResend('sending');
+                        requestEmailVerification(session.token)
+                          .then(() => setResend('sent'))
+                          .catch(() => setResend('failed'));
+                      }}
+                    >
+                      {resend === 'sent'
+                        ? t('auth.verifySent')
+                        : resend === 'sending'
+                          ? t('auth.working')
+                          : resend === 'failed'
+                            ? t('auth.verifyResendFailed')
+                            : t('auth.verifyResend')}
+                    </button>
+                  )}
                   {p === 'steam' &&
                     (connected ? (
                       <button

@@ -246,6 +246,16 @@
       "steam": "Steam"
     },
     "connect": "Associer",
-    "disconnect": "Dissocier"
+    "disconnect": "Dissocier",
+    "usernameHint": "Facultatif. Visible par les autres joueurs. Lettres, chiffres, tirets.",
+    "unverified": "non confirmée",
+    "verifyResend": "Renvoyer la confirmation",
+    "verifySent": "Envoyé — vérifiez votre boîte",
+    "verifyResendFailed": "Envoi impossible",
+    "verifyTitle": "Confirmez votre e-mail",
+    "verifyDone": "Votre adresse e-mail est confirmée. Merci.",
+    "verifyFailed": "Ce lien est invalide ou a expiré.",
+    "verifyFailedHint": "Les liens sont à usage unique et expirent au bout de 24 heures. Vous pouvez en demander un autre depuis votre compte.",
+    "verifyNoToken": "Cette page nécessite un lien de confirmation reçu par e-mail."
   }
 }

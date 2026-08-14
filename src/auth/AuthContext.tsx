@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { AuthContext, type AuthState } from './context';
 import {
+  requestEmailVerification,
   refreshSession,
   signInWithEmail,
   signInWithGoogle,
@@ -113,7 +114,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     () => ({
       session,
       loading,
-      signUp: async (email, password) => apply(await signUpWithEmail(email, password)),
+      signUp: async (email, password, username) => {
+        const created = await signUpWithEmail(email, password, username);
+        apply(created);
+        // Best effort. A verification mail that fails to send must not fail the
+        // signup — the account exists, and the account page offers a resend.
+        try {
+          await requestEmailVerification(created.token);
+        } catch {
+          // Reported on the account page as "not verified", which is accurate.
+        }
+      },
       signIn: async (email, password) => apply(await signInWithEmail(email, password)),
       signInGoogle: async (idToken) => apply(await signInWithGoogle(idToken)),
       signOut,

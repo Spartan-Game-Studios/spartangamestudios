@@ -189,6 +189,8 @@ export interface Account {
   email: string | null;
   /** SteamID64, from account metadata. Set by the OpenID flow, not by Nakama. */
   steamId: string | null;
+  /** Whether the address has been confirmed by clicking a link sent to it. */
+  emailVerified: boolean;
   linked: {
     google: boolean;
     steam: boolean;
@@ -241,13 +243,20 @@ interface AccountResponse {
   email?: string;
 }
 
-function steamIdFromMetadata(raw: string | undefined): string | null {
-  if (!raw) return null;
+/** Both flags live in the same metadata blob, so they are parsed together. */
+function parseMetadata(raw: string | undefined): {
+  steamId: string | null;
+  emailVerified: boolean;
+} {
+  if (!raw) return { steamId: null, emailVerified: false };
   try {
-    const parsed = JSON.parse(raw) as { steam_id?: unknown };
-    return typeof parsed.steam_id === 'string' ? parsed.steam_id : null;
+    const parsed = JSON.parse(raw) as { steam_id?: unknown; email_verified?: unknown };
+    return {
+      steamId: typeof parsed.steam_id === 'string' ? parsed.steam_id : null,
+      emailVerified: parsed.email_verified === true,
+    };
   } catch {
-    return null;
+    return { steamId: null, emailVerified: false };
   }
 }
 
@@ -262,10 +271,11 @@ function steamIdFromMetadata(raw: string | undefined): string | null {
 export async function getAccount(token: string): Promise<Account> {
   const body = await authed<AccountResponse>('/v2/account', token);
   const u = body.user;
-  const steamId = steamIdFromMetadata(u.metadata);
+  const meta = parseMetadata(u.metadata);
   return {
     userId: u.id,
-    steamId,
+    steamId: meta.steamId,
+    emailVerified: meta.emailVerified,
     username: u.username ?? '',
     displayName: u.display_name || null,
     avatarUrl: u.avatar_url || null,
@@ -274,7 +284,7 @@ export async function getAccount(token: string): Promise<Account> {
       google: Boolean(u.google_id),
       // Either route counts as linked: the native column (set by an in-game
       // session ticket) or our OpenID metadata.
-      steam: Boolean(u.steam_id) || Boolean(steamId),
+      steam: Boolean(u.steam_id) || Boolean(meta.steamId),
       apple: Boolean(u.apple_id),
       facebook: Boolean(u.facebook_id),
       email: Boolean(body.email),
@@ -388,4 +398,32 @@ export async function linkSteam(token: string, params: Record<string, string>): 
 
 export async function unlinkSteam(token: string): Promise<void> {
   await rpc('steam_openid_unlink', token, {});
+}
+
+/* ------------------------------------------------------------------ *
+ *  Email verification
+ * ------------------------------------------------------------------ */
+
+/** Asks the server to send a verification link to the account's own address. */
+export async function requestEmailVerification(
+  session: string,
+): Promise<{ alreadyVerified: boolean }> {
+  const out = await rpc<{ sent?: boolean; already_verified?: boolean }>(
+    'email_verify_request',
+    session,
+    {},
+  );
+  return { alreadyVerified: out.already_verified === true };
+}
+
+/**
+ * Redeems a token from a verification email.
+ *
+ * Requires a session, which is why the verify page signs someone in first and
+ * redeems afterwards. The alternative is exposing the RPC with Nakama's
+ * http_key, and shipping that key in a public bundle to save one sign-in is a
+ * poor trade — the token in the link is already the secret.
+ */
+export async function confirmEmailVerification(session: string, token: string): Promise<void> {
+  await rpc('email_verify_confirm', session, { token });
 }

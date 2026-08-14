@@ -166,6 +166,16 @@
       "steam": "Steam"
     },
     "connect": "Connect",
-    "disconnect": "Disconnect"
+    "disconnect": "Disconnect",
+    "usernameHint": "Optional. Shown to other players. Letters, numbers, dashes.",
+    "unverified": "not confirmed",
+    "verifyResend": "Resend confirmation",
+    "verifySent": "Sent — check your inbox",
+    "verifyResendFailed": "Could not send",
+    "verifyTitle": "Confirm your email",
+    "verifyDone": "Your email address is confirmed. Thank you.",
+    "verifyFailed": "That link is invalid or has expired.",
+    "verifyFailedHint": "Links can be used once and expire after 24 hours. You can send a new one from your account.",
+    "verifyNoToken": "This page needs a confirmation link from your email."
   }
 }
