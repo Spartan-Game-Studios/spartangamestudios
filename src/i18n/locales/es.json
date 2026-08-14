@@ -246,6 +246,16 @@
       "steam": "Steam"
     },
     "connect": "Conectar",
-    "disconnect": "Desconectar"
+    "disconnect": "Desconectar",
+    "usernameHint": "Opcional. Visible para otros jugadores. Letras, números y guiones.",
+    "unverified": "sin confirmar",
+    "verifyResend": "Reenviar confirmación",
+    "verifySent": "Enviado: revisa tu bandeja",
+    "verifyResendFailed": "No se ha podido enviar",
+    "verifyTitle": "Confirma tu correo",
+    "verifyDone": "Tu dirección de correo está confirmada. Gracias.",
+    "verifyFailed": "Ese enlace no es válido o ha caducado.",
+    "verifyFailedHint": "Los enlaces se usan una vez y caducan a las 24 horas. Puedes enviar otro desde tu cuenta.",
+    "verifyNoToken": "Esta página necesita un enlace de confirmación de tu correo."
   }
 }

@@ -10,6 +10,7 @@ import { About } from '@/pages/About/About';
 import { NotFound } from '@/pages/NotFound/NotFound';
 import { SignIn } from '@/pages/Account/SignIn';
 import { Account } from '@/pages/Account/Account';
+import { Verify } from '@/pages/Account/Verify';
 
 export const routes = [
   {
@@ -25,6 +26,7 @@ export const routes = [
       { path: 'about', element: <About /> },
       { path: 'signin', element: <SignIn /> },
       { path: 'account', element: <Account /> },
+      { path: 'verify', element: <Verify /> },
       { path: '*', element: <NotFound /> },
     ],
   },

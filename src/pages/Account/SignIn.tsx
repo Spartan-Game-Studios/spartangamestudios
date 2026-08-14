@@ -46,6 +46,7 @@ export function SignIn() {
   const [mode, setMode] = useState<Mode>('signin');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -78,8 +79,11 @@ export function SignIn() {
     }
     setBusy(true);
     try {
-      if (mode === 'signup') await signUp(email.trim(), password);
-      else await signIn(email.trim(), password);
+      if (mode === 'signup') {
+        await signUp(email.trim(), password, username.trim() || undefined);
+      } else {
+        await signIn(email.trim(), password);
+      }
     } catch (e: unknown) {
       setError(messageKey(e, mode));
     } finally {
@@ -148,6 +152,27 @@ export function SignIn() {
                 </span>
               )}
             </div>
+
+            {mode === 'signup' && (
+              <div className={styles.field}>
+                <label className={styles.label} htmlFor="username">
+                  {t('auth.username')}
+                </label>
+                <input
+                  id="username"
+                  className={styles.input}
+                  type="text"
+                  autoComplete="nickname"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  disabled={busy || !configured}
+                  aria-describedby="username-hint"
+                />
+                <span className={styles.hint} id="username-hint">
+                  {t('auth.usernameHint')}
+                </span>
+              </div>
+            )}
 
             {/* role=alert so a screen reader announces the failure without
                 needing the user to go looking for it. */}
