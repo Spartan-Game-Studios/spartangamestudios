@@ -176,6 +176,7 @@
     "verifyDone": "Your email address is confirmed. Thank you.",
     "verifyFailed": "That link is invalid or has expired.",
     "verifyFailedHint": "Links can be used once and expire after 24 hours. You can send a new one from your account.",
-    "verifyNoToken": "This page needs a confirmation link from your email."
+    "verifyNoToken": "This page needs a confirmation link from your email.",
+    "followNeedsVerification": "Confirm your email address before following a game. There is a resend button above."
   }
 }
