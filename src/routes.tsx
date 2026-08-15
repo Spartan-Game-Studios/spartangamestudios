@@ -12,6 +12,7 @@ import { SignIn } from '@/pages/Account/SignIn';
 import { Account } from '@/pages/Account/Account';
 import { Verify } from '@/pages/Account/Verify';
 import { DeleteAccount } from '@/pages/Account/DeleteAccount';
+import { Privacy } from '@/pages/Legal/Privacy';
 
 export const routes = [
   {
@@ -30,6 +31,7 @@ export const routes = [
       { path: 'verify', element: <Verify /> },
       // Public by requirement: Play checks this URL without a session.
       { path: 'delete-account', element: <DeleteAccount /> },
+      { path: 'privacy', element: <Privacy /> },
       { path: '*', element: <NotFound /> },
     ],
   },
