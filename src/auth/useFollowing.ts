@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { follow, listFollowed, unfollow } from '@/lib/nakama';
+import { AuthError, follow, listFollowed, unfollow } from '@/lib/nakama';
 import { useAuth } from './useAuth';
 
 /**
@@ -13,11 +13,14 @@ export function useFollowing(userId: string | null): {
   loading: boolean;
   toggle: (slug: string) => void;
   busy: string | null;
+  /** Set when the server refused because the address is not confirmed. */
+  blocked: boolean;
 } {
   const { session } = useAuth();
   const [followed, setFollowed] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState<string | null>(null);
+  const [blocked, setBlocked] = useState(false);
 
   useEffect(() => {
     if (!session || !userId) {
@@ -50,10 +53,14 @@ export function useFollowing(userId: string | null): {
       else next.add(slug);
       setFollowed(next);
       setBusy(slug);
+      setBlocked(false);
 
       const action = isFollowed ? unfollow : follow;
       action(session.token, slug)
-        .catch(() => {
+        .catch((e: unknown) => {
+          // FAILED_PRECONDITION is the server saying "confirm your email first".
+          // Reverting without explaining would look like the button is broken.
+          if (e instanceof AuthError && e.code === 9) setBlocked(true);
           // Put it back the way it was; the server is the source of truth.
           setFollowed((current) => {
             const reverted = new Set(current);
@@ -67,5 +74,5 @@ export function useFollowing(userId: string | null): {
     [session, followed],
   );
 
-  return { followed, loading, toggle, busy };
+  return { followed, loading, toggle, busy, blocked };
 }

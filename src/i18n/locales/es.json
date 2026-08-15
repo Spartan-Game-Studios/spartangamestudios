@@ -256,6 +256,7 @@
     "verifyDone": "Tu dirección de correo está confirmada. Gracias.",
     "verifyFailed": "Ese enlace no es válido o ha caducado.",
     "verifyFailedHint": "Los enlaces se usan una vez y caducan a las 24 horas. Puedes enviar otro desde tu cuenta.",
-    "verifyNoToken": "Esta página necesita un enlace de confirmación de tu correo."
+    "verifyNoToken": "Esta página necesita un enlace de confirmación de tu correo.",
+    "followNeedsVerification": "Confirma tu correo electrónico antes de seguir un juego. Arriba tienes un botón para reenviar."
   }
 }

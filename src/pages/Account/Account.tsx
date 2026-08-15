@@ -37,7 +37,7 @@ export function Account() {
   // listedGames() honours visibility — an unlisted title must not become
   // discoverable just because this page enumerates the catalogue.
   const games = listedGames();
-  const { followed, toggle, busy } = useFollowing(account?.userId ?? null);
+  const { followed, toggle, busy, blocked } = useFollowing(account?.userId ?? null);
   const location = useLocation();
   const navigate = useNavigate();
   const [steamBusy, setSteamBusy] = useState(false);
@@ -178,6 +178,11 @@ export function Account() {
 
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>{t('auth.following')}</h2>
+          {blocked && (
+            <p className={styles.error} role="alert">
+              {t('auth.followNeedsVerification')}
+            </p>
+          )}
           {loading ? null : followedGames.length === 0 ? (
             <p className={styles.empty}>{t('auth.followingEmpty')}</p>
           ) : (

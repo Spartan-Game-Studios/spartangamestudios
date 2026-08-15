@@ -256,6 +256,7 @@
     "verifyDone": "Deine E-Mail-Adresse ist bestätigt. Danke.",
     "verifyFailed": "Dieser Link ist ungültig oder abgelaufen.",
     "verifyFailedHint": "Links gelten einmalig und laufen nach 24 Stunden ab. Du kannst in deinem Konto einen neuen anfordern.",
-    "verifyNoToken": "Diese Seite benötigt einen Bestätigungslink aus deiner E-Mail."
+    "verifyNoToken": "Diese Seite benötigt einen Bestätigungslink aus deiner E-Mail.",
+    "followNeedsVerification": "Bestätige deine E-Mail-Adresse, bevor du einem Spiel folgst. Oben findest du einen Button zum erneuten Senden."
   }
 }
