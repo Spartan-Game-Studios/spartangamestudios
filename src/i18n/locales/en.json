@@ -180,5 +180,31 @@
     "verifyFailedHint": "Links can be used once and expire after 24 hours. You can send a new one from your account.",
     "verifyNoToken": "This page needs a confirmation link from your email.",
     "followNeedsVerification": "Confirm your email address before following a game. There is a resend button above."
+  },
+  "delete": {
+    "title": "Delete your account",
+    "metaDescription": "Delete your Spartan Game Studios account and the data held with it.",
+    "lede": "You can delete your account at any time. This page explains exactly what is removed and what is kept.",
+    "removedTitle": "What is deleted",
+    "keptTitle": "What is kept",
+    "howTitle": "Delete your account",
+    "removedAccount": "Your account, including your email address and display name.",
+    "removedIdentities": "Any linked Google, Steam or itch.io identities.",
+    "removedFollowing": "The list of games you follow.",
+    "keptPurchases": "Records of purchases, where we are required to keep them for tax and accounting.",
+    "keptSupport": "Support conversations you started, which may mention your address.",
+    "keptWhy": "These are kept only where the law requires it, and are not used to contact you afterwards.",
+    "irreversible": "This cannot be undone. Your account is deleted immediately — there is no grace period and no way to recover it.",
+    "typeToConfirm": "Type {{word}} to confirm.",
+    "confirmWord": "DELETE",
+    "button": "Delete my account",
+    "working": "Deleting…",
+    "failed": "Your account could not be deleted. Please try again, or email us.",
+    "signInFirst": "Sign in to delete your account.",
+    "cannotSignInTitle": "If you cannot sign in",
+    "cannotSignIn": "If you have lost access to your account, email us and we will delete it for you:",
+    "doneTitle": "Your account has been deleted",
+    "doneBody": "Your account and the data listed on this page have been removed. Thank you for having been here.",
+    "backHome": "Back to the site"
   }
 }
