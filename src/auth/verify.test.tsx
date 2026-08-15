@@ -1,5 +1,6 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { I18nextProvider } from 'react-i18next';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import i18n from '@/i18n';
@@ -124,5 +125,66 @@ describe('email verification', () => {
     await waitFor(() =>
       expect(calls.filter(([u]) => u.includes('email_verify_confirm')).length).toBe(1),
     );
+  });
+});
+
+describe('following requires a confirmed address', () => {
+  it('explains the refusal instead of silently reverting', async () => {
+    signedIn();
+    const real = globalThis.fetch.bind(globalThis);
+    vi.stubGlobal(
+      'fetch',
+      vi.fn((input: unknown, init?: RequestInit) => {
+        const url = String(input);
+        if (!url.includes('/nakama/')) return real(input as RequestInfo, init);
+        if (url.includes('/v2/rpc/follow_game')) {
+          // What the server actually returns: FAILED_PRECONDITION.
+          return Promise.resolve({
+            ok: false,
+            status: 400,
+            json: () =>
+              Promise.resolve({
+                code: 9,
+                message: 'confirm your email address before following a game',
+              }),
+          });
+        }
+        if (url.includes('/v2/account')) {
+          return Promise.resolve({
+            ok: true,
+            status: 200,
+            json: () =>
+              Promise.resolve({
+                user: { id: 'user-1', username: 'ashenvale', metadata: '{}' },
+                email: 'player@example.com',
+              }),
+          });
+        }
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          json: () => Promise.resolve({ objects: [] }),
+        });
+      }),
+    );
+
+    const { Account } = await import('@/pages/Account/Account');
+    render(
+      <I18nextProvider i18n={i18n}>
+        <AuthProvider>
+          <MemoryRouter initialEntries={['/account']}>
+            <Routes>
+              <Route path="/account" element={<Account />} />
+            </Routes>
+          </MemoryRouter>
+        </AuthProvider>
+      </I18nextProvider>,
+    );
+
+    const user = userEvent.setup();
+    // One Follow button per unfollowed game; any of them exercises the path.
+    const buttons = await screen.findAllByRole('button', { name: 'Follow' });
+    await user.click(buttons[0]);
+    expect(await screen.findByRole('alert')).toHaveTextContent(/confirm your email/i);
   });
 });

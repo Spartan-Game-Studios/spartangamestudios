@@ -308,30 +308,24 @@ export async function listFollowed(token: string, userId: string): Promise<strin
   return (body.objects ?? []).map((o) => o.key);
 }
 
+/**
+ * Follows a game.
+ *
+ * Goes through an RPC rather than writing storage directly, because the server
+ * requires a confirmed email address before adding anyone to a list it will
+ * later mail. Writing storage from here would skip that check.
+ *
+ * Throws AuthError with code 9 (FAILED_PRECONDITION) when the address is not
+ * confirmed yet, which the UI turns into an explanation rather than a shrug.
+ */
 export async function follow(token: string, slug: string): Promise<void> {
-  await authed('/v2/storage', token, {
-    method: 'PUT',
-    body: JSON.stringify({
-      objects: [
-        {
-          collection: FOLLOW_COLLECTION,
-          key: slug,
-          value: JSON.stringify({ followedAt: new Date().toISOString() }),
-          // Owner-only. A follow list is not interesting to anyone else and
-          // publishing it by default would be a choice nobody asked for.
-          permission_read: 1,
-          permission_write: 1,
-        },
-      ],
-    }),
-  });
+  await rpc('follow_game', token, { slug });
 }
 
+/** Unfollows. Not gated server-side: someone who cannot verify must still be
+ *  able to get off the list. */
 export async function unfollow(token: string, slug: string): Promise<void> {
-  await authed('/v2/storage/delete', token, {
-    method: 'PUT',
-    body: JSON.stringify({ object_ids: [{ collection: FOLLOW_COLLECTION, key: slug }] }),
-  });
+  await rpc('unfollow_game', token, { slug });
 }
 
 /* ------------------------------------------------------------------ *
