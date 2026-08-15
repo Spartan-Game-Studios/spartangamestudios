@@ -26,3 +26,26 @@ describe('steam openid', () => {
     expect(readSteamCallback('?openid.mode=cancel')).toBeNull();
   });
 });
+
+describe('itch.io oauth', () => {
+  it('reads the access token out of the fragment', async () => {
+    const { readItchCallback } = await import('./nakama');
+    expect(readItchCallback('#access_token=abc123&token_type=bearer')).toBe('abc123');
+    expect(readItchCallback('access_token=noHash')).toBe('noHash');
+    // Nothing to pick up: not an error, just not a callback.
+    expect(readItchCallback('')).toBeNull();
+    expect(readItchCallback('#state=xyz')).toBeNull();
+  });
+
+  it('builds an authorisation request asking only for identity', async () => {
+    const { itchAuthUrl } = await import('./nakama');
+    const raw = itchAuthUrl('/account');
+    // Empty when no client id is configured, which hides the button.
+    if (!raw) return;
+    const url = new URL(raw);
+    expect(url.origin + url.pathname).toBe('https://itch.io/user/oauth');
+    expect(url.searchParams.get('response_type')).toBe('token');
+    // Identity only — not their games, not their purchases.
+    expect(url.searchParams.get('scope')).toBe('profile:me');
+  });
+});

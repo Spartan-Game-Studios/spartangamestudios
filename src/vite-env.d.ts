@@ -16,6 +16,8 @@ interface ImportMetaEnv {
   readonly VITE_NAKAMA_SERVER_KEY?: string;
   /** Google Identity Services client id. Empty hides the Google button. */
   readonly VITE_GOOGLE_CLIENT_ID?: string;
+  /** itch.io OAuth application client id. Empty hides the itch.io button. */
+  readonly VITE_ITCH_CLIENT_ID?: string;
 }
 
 interface ImportMeta {
