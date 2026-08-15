@@ -281,9 +281,14 @@ export function Account() {
           </details>
         </section>
 
-        <Button variant="secondary" onClick={signOut}>
-          {t('auth.signOut')}
-        </Button>
+        <div className={styles.actions}>
+          <Button variant="secondary" onClick={signOut}>
+            {t('auth.signOut')}
+          </Button>
+          <Link to="/delete-account" className={styles.deleteLink}>
+            {t('delete.title')}
+          </Link>
+        </div>
       </div>
     </Container>
   );

@@ -145,3 +145,21 @@
   color: var(--sgs-ember);
   font-size: 0.9375rem;
 }
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+/* Present but not competing with sign out — someone looking for it will find
+   it, and nobody hits it by accident. */
+.deleteLink {
+  font-size: 0.875rem;
+  color: var(--color-text-faint);
+}
+
+.deleteLink:hover {
+  color: var(--sgs-ember);
+}

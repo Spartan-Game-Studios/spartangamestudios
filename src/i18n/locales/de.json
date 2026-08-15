@@ -260,5 +260,31 @@
     "verifyFailedHint": "Links gelten einmalig und laufen nach 24 Stunden ab. Du kannst in deinem Konto einen neuen anfordern.",
     "verifyNoToken": "Diese Seite benötigt einen Bestätigungslink aus deiner E-Mail.",
     "followNeedsVerification": "Bestätige deine E-Mail-Adresse, bevor du einem Spiel folgst. Oben findest du einen Button zum erneuten Senden."
+  },
+  "delete": {
+    "title": "Konto löschen",
+    "metaDescription": "Lösche dein Spartan-Game-Studios-Konto und die damit gespeicherten Daten.",
+    "lede": "Du kannst dein Konto jederzeit löschen. Diese Seite erklärt genau, was entfernt und was behalten wird.",
+    "removedTitle": "Was gelöscht wird",
+    "keptTitle": "Was behalten wird",
+    "howTitle": "Konto löschen",
+    "removedAccount": "Dein Konto, einschließlich E-Mail-Adresse und Anzeigename.",
+    "removedIdentities": "Alle verknüpften Google-, Steam- oder itch.io-Identitäten.",
+    "removedFollowing": "Die Liste der Spiele, denen du folgst.",
+    "keptPurchases": "Kaufbelege, soweit wir sie steuer- und buchhaltungsrechtlich aufbewahren müssen.",
+    "keptSupport": "Support-Anfragen, die du gestellt hast und die deine Adresse enthalten können.",
+    "keptWhy": "Diese werden nur aufbewahrt, wo das Gesetz es verlangt, und danach nicht zur Kontaktaufnahme genutzt.",
+    "irreversible": "Dies kann nicht rückgängig gemacht werden. Dein Konto wird sofort gelöscht — ohne Frist und ohne Wiederherstellung.",
+    "typeToConfirm": "Gib zur Bestätigung {{word}} ein.",
+    "confirmWord": "DELETE",
+    "button": "Mein Konto löschen",
+    "working": "Wird gelöscht…",
+    "failed": "Dein Konto konnte nicht gelöscht werden. Bitte versuche es erneut oder schreib uns.",
+    "signInFirst": "Melde dich an, um dein Konto zu löschen.",
+    "cannotSignInTitle": "Wenn du dich nicht anmelden kannst",
+    "cannotSignIn": "Wenn du keinen Zugriff mehr auf dein Konto hast, schreib uns und wir löschen es für dich:",
+    "doneTitle": "Dein Konto wurde gelöscht",
+    "doneBody": "Dein Konto und die auf dieser Seite genannten Daten wurden entfernt. Danke, dass du da warst.",
+    "backHome": "Zurück zur Website"
   }
 }

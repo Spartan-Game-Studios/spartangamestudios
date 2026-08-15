@@ -260,5 +260,31 @@
     "verifyFailedHint": "Los enlaces se usan una vez y caducan a las 24 horas. Puedes enviar otro desde tu cuenta.",
     "verifyNoToken": "Esta página necesita un enlace de confirmación de tu correo.",
     "followNeedsVerification": "Confirma tu correo electrónico antes de seguir un juego. Arriba tienes un botón para reenviar."
+  },
+  "delete": {
+    "title": "Eliminar tu cuenta",
+    "metaDescription": "Elimina tu cuenta de Spartan Game Studios y los datos asociados.",
+    "lede": "Puedes eliminar tu cuenta cuando quieras. Esta página explica exactamente qué se elimina y qué se conserva.",
+    "removedTitle": "Qué se elimina",
+    "keptTitle": "Qué se conserva",
+    "howTitle": "Eliminar tu cuenta",
+    "removedAccount": "Tu cuenta, incluidos tu correo electrónico y tu nombre visible.",
+    "removedIdentities": "Cualquier identidad vinculada de Google, Steam o itch.io.",
+    "removedFollowing": "La lista de juegos que sigues.",
+    "keptPurchases": "Registros de compras, cuando debemos conservarlos por motivos fiscales y contables.",
+    "keptSupport": "Conversaciones de soporte que iniciaste, que pueden mencionar tu dirección.",
+    "keptWhy": "Solo se conservan cuando la ley lo exige, y no se usan para contactarte después.",
+    "irreversible": "Esto no se puede deshacer. Tu cuenta se elimina de inmediato: sin periodo de gracia y sin recuperación.",
+    "typeToConfirm": "Escribe {{word}} para confirmar.",
+    "confirmWord": "DELETE",
+    "button": "Eliminar mi cuenta",
+    "working": "Eliminando…",
+    "failed": "No se ha podido eliminar tu cuenta. Inténtalo de nuevo o escríbenos.",
+    "signInFirst": "Inicia sesión para eliminar tu cuenta.",
+    "cannotSignInTitle": "Si no puedes iniciar sesión",
+    "cannotSignIn": "Si has perdido el acceso a tu cuenta, escríbenos y la eliminaremos por ti:",
+    "doneTitle": "Tu cuenta ha sido eliminada",
+    "doneBody": "Tu cuenta y los datos indicados en esta página se han eliminado. Gracias por haber estado aquí.",
+    "backHome": "Volver al sitio"
   }
 }

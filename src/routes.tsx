@@ -11,6 +11,7 @@ import { NotFound } from '@/pages/NotFound/NotFound';
 import { SignIn } from '@/pages/Account/SignIn';
 import { Account } from '@/pages/Account/Account';
 import { Verify } from '@/pages/Account/Verify';
+import { DeleteAccount } from '@/pages/Account/DeleteAccount';
 
 export const routes = [
   {
@@ -27,6 +28,8 @@ export const routes = [
       { path: 'signin', element: <SignIn /> },
       { path: 'account', element: <Account /> },
       { path: 'verify', element: <Verify /> },
+      // Public by requirement: Play checks this URL without a session.
+      { path: 'delete-account', element: <DeleteAccount /> },
       { path: '*', element: <NotFound /> },
     ],
   },

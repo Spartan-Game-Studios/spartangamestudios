@@ -492,3 +492,17 @@ export async function linkItch(session: string, accessToken: string): Promise<st
 export async function unlinkItch(session: string): Promise<void> {
   await rpc('itch_unlink', session, {});
 }
+
+/* ------------------------------------------------------------------ *
+ *  Account deletion
+ * ------------------------------------------------------------------ */
+
+/**
+ * Deletes the account and everything owned by it. Irreversible.
+ *
+ * The literal string 'DELETE' is required by the server as a second step, so an
+ * accidental call from anything holding a session cannot destroy an account.
+ */
+export async function deleteAccount(session: string): Promise<void> {
+  await rpc('delete_account', session, { confirm: 'DELETE' });
+}

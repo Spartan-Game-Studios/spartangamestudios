@@ -260,5 +260,31 @@
     "verifyFailedHint": "Les liens sont à usage unique et expirent au bout de 24 heures. Vous pouvez en demander un autre depuis votre compte.",
     "verifyNoToken": "Cette page nécessite un lien de confirmation reçu par e-mail.",
     "followNeedsVerification": "Confirmez votre adresse e-mail avant de suivre un jeu. Un bouton de renvoi se trouve ci-dessus."
+  },
+  "delete": {
+    "title": "Supprimer votre compte",
+    "metaDescription": "Supprimez votre compte Spartan Game Studios et les données associées.",
+    "lede": "Vous pouvez supprimer votre compte à tout moment. Cette page explique précisément ce qui est supprimé et ce qui est conservé.",
+    "removedTitle": "Ce qui est supprimé",
+    "keptTitle": "Ce qui est conservé",
+    "howTitle": "Supprimer votre compte",
+    "removedAccount": "Votre compte, y compris votre adresse e-mail et votre nom affiché.",
+    "removedIdentities": "Toute identité Google, Steam ou itch.io associée.",
+    "removedFollowing": "La liste des jeux que vous suivez.",
+    "keptPurchases": "Les justificatifs d’achat, lorsque nous devons les conserver à des fins fiscales et comptables.",
+    "keptSupport": "Les demandes d’assistance que vous avez ouvertes, qui peuvent mentionner votre adresse.",
+    "keptWhy": "Ils ne sont conservés que lorsque la loi l’exige, et ne servent pas à vous contacter ensuite.",
+    "irreversible": "Cette action est irréversible. Votre compte est supprimé immédiatement — sans délai de grâce ni récupération possible.",
+    "typeToConfirm": "Saisissez {{word}} pour confirmer.",
+    "confirmWord": "DELETE",
+    "button": "Supprimer mon compte",
+    "working": "Suppression…",
+    "failed": "Votre compte n’a pas pu être supprimé. Réessayez ou écrivez-nous.",
+    "signInFirst": "Connectez-vous pour supprimer votre compte.",
+    "cannotSignInTitle": "Si vous ne pouvez pas vous connecter",
+    "cannotSignIn": "Si vous avez perdu l’accès à votre compte, écrivez-nous et nous le supprimerons pour vous :",
+    "doneTitle": "Votre compte a été supprimé",
+    "doneBody": "Votre compte et les données indiquées sur cette page ont été supprimés. Merci d’être passé.",
+    "backHome": "Retour au site"
   }
 }
