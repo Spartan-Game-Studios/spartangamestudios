@@ -9,6 +9,11 @@ import { useAccount } from '@/auth/useAccount';
 import { useFollowing } from '@/auth/useFollowing';
 import { listedGames } from '@/data';
 import {
+  itchAuthUrl,
+  itchConfigured,
+  linkItch,
+  readItchCallback,
+  unlinkItch,
   linkSteam,
   readSteamCallback,
   requestEmailVerification,
@@ -27,7 +32,7 @@ import styles from './Account.module.css';
  * Steamworks session ticket a browser cannot produce. itch.io, GOG and Epic are
  * absent: a row that cannot do anything is worse than no row.
  */
-const PROVIDERS = ['google', 'email', 'steam'] as const;
+const PROVIDERS = ['google', 'email', 'steam', 'itch'] as const;
 type Provider = (typeof PROVIDERS)[number];
 
 export function Account() {
@@ -43,6 +48,7 @@ export function Account() {
   const [steamBusy, setSteamBusy] = useState(false);
   const [steamError, setSteamError] = useState<string | null>(null);
   const [resend, setResend] = useState<'idle' | 'sending' | 'sent' | 'failed'>('idle');
+  const [itchBusy, setItchBusy] = useState(false);
 
   useDocumentMeta({ title: t('auth.account'), description: t('auth.metaDescription') });
 
@@ -50,6 +56,25 @@ export function Account() {
   // It is handed straight to the server, which is the only party that can tell
   // whether Steam actually issued it — nothing here trusts these values.
   const token = session?.token;
+
+  // itch returns the access token in the URL FRAGMENT, which never reaches a
+  // server — the client has to pick it up and hand it over. It is spent once by
+  // the RPC and kept nowhere, here or there.
+  useEffect(() => {
+    const accessToken = readItchCallback(location.hash);
+    if (!accessToken || !token) return;
+    setItchBusy(true);
+    void linkItch(token, accessToken)
+      .then(() => reload())
+      .catch(() => setSteamError('auth.error.itchFailed'))
+      .finally(() => {
+        setItchBusy(false);
+        // Clear the fragment: it holds a live itch credential, and leaving it in
+        // the address bar puts it in history and in any shared link.
+        void navigate('/account', { replace: true });
+      });
+  }, [location.hash, token, navigate, reload]);
+
   useEffect(() => {
     const params = readSteamCallback(location.search);
     if (!params || !token) return;
@@ -121,9 +146,11 @@ export function Account() {
                     {connected
                       ? p === 'google'
                         ? (account?.displayName ?? t('auth.connectedYes'))
-                        : p === 'email'
-                          ? `${account?.email ?? ''}${account?.emailVerified ? '' : ` — ${t('auth.unverified')}`}`
-                          : (account?.steamId ?? t('auth.connectedYes'))
+                        : p === 'itch'
+                          ? (account?.itchUsername ?? t('auth.connectedYes'))
+                          : p === 'email'
+                            ? `${account?.email ?? ''}${account?.emailVerified ? '' : ` — ${t('auth.unverified')}`}`
+                            : (account?.steamId ?? t('auth.connectedYes'))
                       : t('auth.notConnected')}
                   </span>
                   {p === 'email' && connected && !account?.emailVerified && (
@@ -148,6 +175,29 @@ export function Account() {
                             : t('auth.verifyResend')}
                     </button>
                   )}
+                  {p === 'itch' &&
+                    itchConfigured() &&
+                    (connected ? (
+                      <button
+                        type="button"
+                        className={styles.unfollow}
+                        disabled={itchBusy}
+                        onClick={() => {
+                          if (!session) return;
+                          setItchBusy(true);
+                          void unlinkItch(session.token)
+                            .then(() => reload())
+                            .catch(() => setSteamError('auth.error.itchFailed'))
+                            .finally(() => setItchBusy(false));
+                        }}
+                      >
+                        {t('auth.disconnect')}
+                      </button>
+                    ) : (
+                      <a className={styles.follow} href={itchAuthUrl('/account')}>
+                        {itchBusy ? t('auth.working') : t('auth.connect')}
+                      </a>
+                    ))}
                   {p === 'steam' &&
                     (connected ? (
                       <button

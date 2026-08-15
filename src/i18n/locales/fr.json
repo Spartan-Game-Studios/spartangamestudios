@@ -230,7 +230,8 @@
       "unavailable": "Les comptes sont temporairement indisponibles. Réessayez plus tard.",
       "unknown": "Une erreur est survenue. Veuillez réessayer.",
       "profileUnavailable": "Votre profil n’a pas pu être chargé. Certaines informations peuvent manquer.",
-      "steamFailed": "Steam n’a pas pu confirmer cette connexion. Veuillez réessayer."
+      "steamFailed": "Steam n’a pas pu confirmer cette connexion. Veuillez réessayer.",
+      "itchFailed": "itch.io n’a pas pu confirmer cette connexion. Veuillez réessayer."
     },
     "connected": "Comptes associés",
     "connectedYes": "Associé",
@@ -243,7 +244,8 @@
     "provider": {
       "google": "Google",
       "email": "E-mail",
-      "steam": "Steam"
+      "steam": "Steam",
+      "itch": "itch.io"
     },
     "connect": "Associer",
     "disconnect": "Dissocier",

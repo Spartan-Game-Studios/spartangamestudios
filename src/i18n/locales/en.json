@@ -150,7 +150,8 @@
       "unavailable": "Accounts are temporarily unavailable. Please try again later.",
       "unknown": "Something went wrong. Please try again.",
       "profileUnavailable": "Your profile could not be loaded. Some details may be missing.",
-      "steamFailed": "Steam could not confirm that sign-in. Please try again."
+      "steamFailed": "Steam could not confirm that sign-in. Please try again.",
+      "itchFailed": "itch.io could not confirm that sign-in. Please try again."
     },
     "connected": "Connected accounts",
     "connectedYes": "Connected",
@@ -163,7 +164,8 @@
     "provider": {
       "google": "Google",
       "email": "Email",
-      "steam": "Steam"
+      "steam": "Steam",
+      "itch": "itch.io"
     },
     "connect": "Connect",
     "disconnect": "Disconnect",

@@ -191,7 +191,10 @@ export interface Account {
   steamId: string | null;
   /** Whether the address has been confirmed by clicking a link sent to it. */
   emailVerified: boolean;
+  /** itch.io handle, when linked. */
+  itchUsername: string | null;
   linked: {
+    itch: boolean;
     google: boolean;
     steam: boolean;
     apple: boolean;
@@ -244,19 +247,31 @@ interface AccountResponse {
 }
 
 /** Both flags live in the same metadata blob, so they are parsed together. */
-function parseMetadata(raw: string | undefined): {
+interface Metadata {
   steamId: string | null;
   emailVerified: boolean;
-} {
-  if (!raw) return { steamId: null, emailVerified: false };
+  itchUsername: string | null;
+  itchId: string | null;
+}
+
+function parseMetadata(raw: string | undefined): Metadata {
+  const empty: Metadata = { steamId: null, emailVerified: false, itchUsername: null, itchId: null };
+  if (!raw) return empty;
   try {
-    const parsed = JSON.parse(raw) as { steam_id?: unknown; email_verified?: unknown };
+    const parsed = JSON.parse(raw) as {
+      steam_id?: unknown;
+      email_verified?: unknown;
+      itch_username?: unknown;
+      itch_id?: unknown;
+    };
     return {
       steamId: typeof parsed.steam_id === 'string' ? parsed.steam_id : null,
       emailVerified: parsed.email_verified === true,
+      itchUsername: typeof parsed.itch_username === 'string' ? parsed.itch_username : null,
+      itchId: typeof parsed.itch_id === 'string' ? parsed.itch_id : null,
     };
   } catch {
-    return { steamId: null, emailVerified: false };
+    return empty;
   }
 }
 
@@ -276,11 +291,13 @@ export async function getAccount(token: string): Promise<Account> {
     userId: u.id,
     steamId: meta.steamId,
     emailVerified: meta.emailVerified,
+    itchUsername: meta.itchUsername,
     username: u.username ?? '',
     displayName: u.display_name || null,
     avatarUrl: u.avatar_url || null,
     email: body.email || null,
     linked: {
+      itch: Boolean(meta.itchId),
       google: Boolean(u.google_id),
       // Either route counts as linked: the native column (set by an in-game
       // session ticket) or our OpenID metadata.
@@ -420,4 +437,58 @@ export async function requestEmailVerification(
  */
 export async function confirmEmailVerification(session: string, token: string): Promise<void> {
   await rpc('email_verify_confirm', session, { token });
+}
+
+/* ------------------------------------------------------------------ *
+ *  itch.io
+ * ------------------------------------------------------------------ */
+
+/**
+ * Where to send someone to authorise us against their itch.io account.
+ *
+ * itch implements the OAuth 2.0 IMPLICIT flow, so the access token comes back
+ * in the URL fragment rather than as a code to exchange. `profile:me` is the
+ * narrowest scope that identifies them — we do not ask for their games or
+ * purchases, because we have no use for either.
+ */
+export function itchAuthUrl(returnTo: string): string {
+  const clientId = import.meta.env['VITE_ITCH_CLIENT_ID'] ?? '';
+  if (!clientId) return '';
+  const params = new URLSearchParams({
+    client_id: clientId,
+    scope: 'profile:me',
+    response_type: 'token',
+    redirect_uri: `${window.location.origin}${returnTo}`,
+  });
+  return `https://itch.io/user/oauth?${params.toString()}`;
+}
+
+export function itchConfigured(): boolean {
+  return Boolean(import.meta.env['VITE_ITCH_CLIENT_ID']);
+}
+
+/** Reads the access token itch leaves in the fragment. */
+export function readItchCallback(hash: string): string | null {
+  const h = hash.startsWith('#') ? hash.slice(1) : hash;
+  if (!h) return null;
+  const token = new URLSearchParams(h).get('access_token');
+  return token && token.length > 0 ? token : null;
+}
+
+/**
+ * Hands the access token to the server, which spends it once against itch.io.
+ *
+ * The token is not kept anywhere on this side either: it is a live credential
+ * for someone's itch account, and it has done its job the moment the server has
+ * confirmed the identity behind it.
+ */
+export async function linkItch(session: string, accessToken: string): Promise<string> {
+  const out = await rpc<{ itch_username?: string }>('itch_link', session, {
+    access_token: accessToken,
+  });
+  return out.itch_username ?? '';
+}
+
+export async function unlinkItch(session: string): Promise<void> {
+  await rpc('itch_unlink', session, {});
 }

@@ -230,7 +230,8 @@
       "unavailable": "Konten sind vorübergehend nicht verfügbar. Bitte versuche es später erneut.",
       "unknown": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
       "profileUnavailable": "Dein Profil konnte nicht geladen werden. Einige Angaben fehlen möglicherweise.",
-      "steamFailed": "Steam konnte die Anmeldung nicht bestätigen. Bitte versuche es erneut."
+      "steamFailed": "Steam konnte die Anmeldung nicht bestätigen. Bitte versuche es erneut.",
+      "itchFailed": "itch.io konnte die Anmeldung nicht bestätigen. Bitte versuche es erneut."
     },
     "connected": "Verknüpfte Konten",
     "connectedYes": "Verknüpft",
@@ -243,7 +244,8 @@
     "provider": {
       "google": "Google",
       "email": "E-Mail",
-      "steam": "Steam"
+      "steam": "Steam",
+      "itch": "itch.io"
     },
     "connect": "Verknüpfen",
     "disconnect": "Trennen",
