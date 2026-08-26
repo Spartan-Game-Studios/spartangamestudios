@@ -44,7 +44,8 @@
     "devlog": "Devlog",
     "pressKit": "Presse-Kit",
     "copyright": "© {{year}} {{studio}}",
-    "motto": "Einmal kaufen. Für immer besitzen."
+    "motto": "Einmal kaufen. Für immer besitzen.",
+    "wiki": "Wiki"
   },
   "home": {
     "heroLede": "Wir bauen kompakte, wiederspielbare Actionspiele — und verkaufen sie auf die alte Art. Ein Kauf, für immer deins, Updates kostenlos. Keine Mikrotransaktionen, kein Live-Service, nichts im Spiel, das dich nach Geld fragt.",
@@ -72,7 +73,8 @@
     "release": "Release",
     "price": "Preis",
     "priceUnset": "Einmal kaufen, für immer besitzen — der Preis wird näher am Release festgelegt",
-    "developer": "Entwickler"
+    "developer": "Entwickler",
+    "wikiLink": "{{title}}-Wiki"
   },
   "devlog": {
     "eyebrow": "Aus der Werkstatt",

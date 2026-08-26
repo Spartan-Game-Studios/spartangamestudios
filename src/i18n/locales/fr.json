@@ -44,7 +44,8 @@
     "devlog": "Journal",
     "pressKit": "Kit presse",
     "copyright": "© {{year}} {{studio}}",
-    "motto": "Achetez-le une fois. Il est à vous."
+    "motto": "Achetez-le une fois. Il est à vous.",
+    "wiki": "Wiki"
   },
   "home": {
     "heroLede": "Nous faisons des jeux d’action nerveux et rejouables — et nous les vendons à l’ancienne. Un seul achat, à vous pour toujours, mises à jour gratuites. Pas de microtransactions, pas de service en ligne permanent, rien dans le jeu qui vous redemande de l’argent.",
@@ -72,7 +73,8 @@
     "release": "Sortie",
     "price": "Prix",
     "priceUnset": "Achat unique, à vous pour toujours — le prix sera fixé à l’approche de la sortie",
-    "developer": "Développeur"
+    "developer": "Développeur",
+    "wikiLink": "Wiki de {{title}}"
   },
   "devlog": {
     "eyebrow": "De l’atelier",

@@ -44,7 +44,8 @@
     "devlog": "Devlog",
     "pressKit": "Press kit",
     "copyright": "© {{year}} {{studio}}",
-    "motto": "Buy once. Own it."
+    "motto": "Buy once. Own it.",
+    "wiki": "Wiki"
   },
   "home": {
     "heroLede": "We build tight, replayable action games — and sell them the old way. One purchase, yours forever, updates free. No microtransactions, no live service, nothing inside the game asking you for money.",
@@ -72,7 +73,8 @@
     "release": "Release",
     "price": "Price",
     "priceUnset": "Buy once, own forever — price set closer to launch",
-    "developer": "Developer"
+    "developer": "Developer",
+    "wikiLink": "{{title}} wiki"
   },
   "devlog": {
     "eyebrow": "From the workshop",

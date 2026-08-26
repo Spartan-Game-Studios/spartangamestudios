@@ -42,6 +42,10 @@ export function SiteFooter() {
                 <Link to="/devlog">{t('footer.devlog')}</Link>
               </li>
               <li>
+                {/* The wiki is a separate static site at /wiki/, not an SPA route. */}
+                <a href="/wiki/">{t('footer.wiki')}</a>
+              </li>
+              <li>
                 <Link to="/press">{t('footer.pressKit')}</Link>
               </li>
               <li>
