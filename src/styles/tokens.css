@@ -75,10 +75,20 @@
   /* Cinzel is the Trajan-lineage Roman capital the wordmark is cut from.
      Barlow (and its semi-condensed sibling for labels) is the neutral,
      slightly mechanical grotesque that carries body copy without arguing
-     with it. */
+     with it.
+
+     Both bundled faces are Latin-only. The tails add `system-ui` and the pan-
+     script Noto families so Cyrillic / Greek / CJK / Thai glyphs — the locale
+     endonyms today, translated copy later — resolve to a covering face
+     instead of a tofu box. Unavailable names are simply skipped, and browsers
+     already fall back per-glyph; this just makes the intended target explicit. */
   --font-display: 'Cinzel Variable', 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
-  --font-body: 'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-ui: 'Barlow Semi Condensed', 'Barlow', system-ui, sans-serif;
+  --font-body:
+    'Barlow', system-ui, -apple-system, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK SC', 'Noto Sans JP',
+    'Noto Sans KR', 'Noto Sans Thai', sans-serif;
+  --font-ui:
+    'Barlow Semi Condensed', 'Barlow', system-ui, 'Noto Sans', 'Noto Sans CJK SC', 'Noto Sans JP',
+    'Noto Sans KR', 'Noto Sans Thai', sans-serif;
   --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
 
   --fs-2xs: 0.6875rem;

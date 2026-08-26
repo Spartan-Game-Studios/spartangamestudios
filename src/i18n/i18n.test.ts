@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import i18n, { resources } from './index';
-import { DEFAULT_LOCALE, LOCALE_CODES, LOCALES, isLocaleCode, resolveLocale } from './locales';
+import {
+  DEFAULT_LOCALE,
+  LOCALE_CODES,
+  LOCALES,
+  TRANSLATED_LOCALES,
+  isLocaleCode,
+  resolveLocale,
+} from './locales';
 import en from './locales/en.json';
 import { devlog, games, ownershipPledge } from '@/data';
 
@@ -38,6 +45,10 @@ function placeholders(text: string): string[] {
 }
 
 const OTHER_LOCALES = LOCALE_CODES.filter((code) => code !== DEFAULT_LOCALE);
+// Locales whose bundle is fully authored — full parity is required of these.
+// Stub locales fall back to English, so they're only held to "don't introduce
+// stray or malformed keys", not to completeness.
+const TRANSLATED_OTHERS = TRANSLATED_LOCALES.filter((code) => code !== DEFAULT_LOCALE);
 const EN_KEYS = leafKeys(bundle(DEFAULT_LOCALE));
 const EN_FLAT = flatten(bundle(DEFAULT_LOCALE));
 const CONTENT_NAMESPACE = /^(catalogue|posts|studio|pledge)\./;
@@ -59,23 +70,38 @@ describe('locale registry', () => {
     }
   });
 
-  it('resolves regional tags down to the base language', () => {
+  it('resolves regional tags onto a supported locale', () => {
+    // Narrow to the base language when we don't ship the region.
     expect(resolveLocale('es-419')).toBe('es');
     expect(resolveLocale('fr-CA')).toBe('fr');
     expect(resolveLocale('de-AT')).toBe('de');
-    expect(resolveLocale('pt-BR')).toBe(DEFAULT_LOCALE);
+    expect(resolveLocale('pt-PT')).toBe('pt');
+    // Keep the regions we do ship distinct.
+    expect(resolveLocale('pt-BR')).toBe('pt-BR');
+    expect(resolveLocale('zh-CN')).toBe('zh-CN');
+    expect(resolveLocale('zh-TW')).toBe('zh-TW');
+    // Godot-style underscores and Chinese-by-script both resolve.
+    expect(resolveLocale('zh_CN')).toBe('zh-CN');
+    expect(resolveLocale('zh')).toBe('zh-CN');
+    expect(resolveLocale('zh-Hant')).toBe('zh-TW');
+    expect(resolveLocale('zh-HK')).toBe('zh-TW');
+    // Unknown or empty falls back to English.
+    expect(resolveLocale('sw')).toBe(DEFAULT_LOCALE);
     expect(resolveLocale(undefined)).toBe(DEFAULT_LOCALE);
     expect(resolveLocale('')).toBe(DEFAULT_LOCALE);
   });
 
   it('narrows only known codes', () => {
     expect(isLocaleCode('de')).toBe(true);
-    expect(isLocaleCode('ja')).toBe(false);
+    expect(isLocaleCode('ja')).toBe(true);
+    expect(isLocaleCode('zh-CN')).toBe(true);
+    expect(isLocaleCode('zh')).toBe(false);
+    expect(isLocaleCode('sw')).toBe(false);
   });
 });
 
 describe('UI chrome parity', () => {
-  it.each(OTHER_LOCALES)('%s translates every English chrome key', (code) => {
+  it.each(TRANSLATED_OTHERS)('%s translates every English chrome key', (code) => {
     const localeKeys = new Set(leafKeys(bundle(code)));
     expect(EN_KEYS.filter((key) => !localeKeys.has(key))).toEqual([]);
   });
@@ -88,19 +114,21 @@ describe('UI chrome parity', () => {
     expect(stray).toEqual([]);
   });
 
-  it.each(OTHER_LOCALES)('%s preserves every interpolation placeholder', (code) => {
+  it.each(OTHER_LOCALES)('%s preserves every interpolation placeholder it defines', (code) => {
+    // Only validate keys the locale actually overrides; a key it omits falls
+    // back to English, which already carries the correct placeholders.
     const flat = flatten(bundle(code));
     for (const [key, value] of Object.entries(EN_FLAT)) {
       if (typeof value !== 'string') continue;
       const expected = placeholders(value);
       if (expected.length === 0) continue;
-      const translated = flat[key];
-      expect(typeof translated, `${code}: ${key}`).toBe('string');
-      expect(placeholders(String(translated)), `${code}: ${key}`).toEqual(expected);
+      if (!(key in flat)) continue;
+      expect(typeof flat[key], `${code}: ${key}`).toBe('string');
+      expect(placeholders(String(flat[key])), `${code}: ${key}`).toEqual(expected);
     }
   });
 
-  it.each(OTHER_LOCALES)('%s keeps the <mail> tag the Trans component expects', (code) => {
+  it.each(TRANSLATED_OTHERS)('%s keeps the <mail> tag the Trans component expects', (code) => {
     const value = flatten(bundle(code))['press.permissionKeys'];
     expect(String(value), code).toContain('<mail>{{email}}</mail>');
   });
@@ -148,7 +176,7 @@ describe('content translations', () => {
     }
   });
 
-  it.each(OTHER_LOCALES)('%s translates every ownership-pledge point', (code) => {
+  it.each(TRANSLATED_OTHERS)('%s translates every ownership-pledge point', (code) => {
     const pledge = (bundle(code).pledge ?? {}) as Json;
     const points = (pledge.points ?? {}) as Json;
     for (const point of ownershipPledge.points) {

@@ -5,9 +5,10 @@ import { LOCALES, resolveLocale, DEFAULT_LOCALE } from '@/i18n/locales';
 import styles from './LanguagePicker.module.css';
 
 /**
- * A native `<select>` on purpose. Four options do not justify a custom
- * listbox, and the native control gets keyboard support, screen-reader
- * semantics, and the platform's own mobile picker for free.
+ * A native `<select>` on purpose. Even at ~28 locales a custom listbox earns
+ * its complexity poorly, and the native control gets keyboard support,
+ * screen-reader semantics, and the platform's own (scrollable) mobile picker
+ * for free — which matters more as the list grows.
  */
 export function LanguagePicker({ className }: { className?: string }) {
   const { t, i18n } = useTranslation();
