@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Container } from '@/components/Container/Container';
-import { LanguagePicker } from '@/components/LanguagePicker/LanguagePicker';
 import { listedGames, studio } from '@/data';
 import { useStudioCopy } from '@/i18n/content';
 import styles from './SiteFooter.module.css';
@@ -18,7 +17,6 @@ export function SiteFooter() {
           <div>
             <p className={`${styles.brandLine} u-gold-text`}>{studio.name}</p>
             <p className={styles.blurb}>{copy.description}</p>
-            <LanguagePicker className={styles.language} />
           </div>
 
           <div>

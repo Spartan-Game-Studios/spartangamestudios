@@ -10,7 +10,15 @@ import styles from './LanguagePicker.module.css';
  * screen-reader semantics, and the platform's own (scrollable) mobile picker
  * for free — which matters more as the list grows.
  */
-export function LanguagePicker({ className }: { className?: string }) {
+export function LanguagePicker({
+  className,
+  labelHidden = false,
+}: {
+  className?: string;
+  /** Keep the label for assistive tech but hide it visually — for tight spots
+   *  like the header, where the select's own value already reads as the cue. */
+  labelHidden?: boolean;
+}) {
   const { t, i18n } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const id = useId();
@@ -32,7 +40,10 @@ export function LanguagePicker({ className }: { className?: string }) {
 
   return (
     <div className={[styles.wrap, className].filter(Boolean).join(' ')}>
-      <label className={styles.label} htmlFor={id}>
+      <label
+        className={[styles.label, labelHidden && styles.visuallyHidden].filter(Boolean).join(' ')}
+        htmlFor={id}
+      >
         {t('common.language')}
       </label>
       <select

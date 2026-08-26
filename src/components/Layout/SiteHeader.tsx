@@ -1,6 +1,7 @@
 import { NavLink, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Container } from '@/components/Container/Container';
+import { LanguagePicker } from '@/components/LanguagePicker/LanguagePicker';
 import { useAuth } from '@/auth/useAuth';
 import { useAccount } from '@/auth/useAccount';
 import styles from './SiteHeader.module.css';
@@ -77,6 +78,8 @@ export function SiteHeader() {
                   {t('auth.signIn')}
                 </NavLink>
               ))}
+
+            <LanguagePicker className={styles.language} labelHidden />
           </nav>
         </div>
       </Container>

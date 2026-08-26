@@ -57,7 +57,17 @@
 .nav {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-2);
+}
+
+/* The language control sits at the end of the nav. A hairline separates the
+   bordered select from the borderless links so it reads as a control, not a
+   sixth link; the small inset keeps it from crowding the sign-in link. */
+.language {
+  margin-left: var(--space-1);
+  padding-left: var(--space-3);
+  border-left: var(--border-hairline);
 }
 
 .navLink {
@@ -125,5 +135,13 @@
   .navLink {
     padding-inline: var(--space-1);
     font-size: var(--fs-2xs);
+  }
+
+  /* The select wraps onto its own row here, so the vertical divider would hang
+     with nothing beside it — drop it and left-align the control. */
+  .language {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: 0;
   }
 }
