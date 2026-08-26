@@ -2,12 +2,10 @@
 
 A community reference for **Boothill** — the operators, the runs, and the numbers behind them.
 
-This wiki is written in the open: every page is a markdown file in the site's repository, so anyone can propose an edit or a new page with a pull request. There is no account or login for editing — just a PR.
-
 ## Pages
 
-- [Operators](/boothill/operators) — the playable characters and what sets them apart
+- [Operators](/boothill/operators) — the playable characters and their stat multipliers
+- [Enemies](/boothill/enemies) — the ordinary threats of a run
+- [Bosses](/boothill/bosses) — the set-piece fights
 
-## Contributing
-
-Add a page by dropping a `.md` file in `wiki/boothill/` and opening a pull request. Keep it factual, keep it spoiler-light, and it lands here once merged.
+The three pages above are **generated from the game's own data** (`wiki/generators/gen-boothill.mjs`), so their stats track the source and never drift. Prose pages like this one are hand-written — contribute by pull request; no account needed.

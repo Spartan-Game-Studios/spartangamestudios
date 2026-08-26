@@ -27,6 +27,8 @@ export default defineConfig({
           items: [
             { text: 'Overview', link: '/boothill/' },
             { text: 'Operators', link: '/boothill/operators' },
+            { text: 'Enemies', link: '/boothill/enemies' },
+            { text: 'Bosses', link: '/boothill/bosses' },
           ],
         },
       ],

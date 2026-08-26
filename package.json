@@ -21,7 +21,8 @@
     "check": "pnpm run typecheck && pnpm run lint && pnpm run format:check && pnpm run test",
     "prepare": "husky",
     "wiki:dev": "vitepress dev wiki",
-    "wiki:build": "vitepress build wiki"
+    "wiki:build": "vitepress build wiki",
+    "wiki:gen": "node wiki/generators/gen-boothill.mjs"
   },
   "dependencies": {
     "@fontsource-variable/cinzel": "^5.2.5",
