@@ -6,13 +6,13 @@ The ordinary threats of a run. Higher tiers unlock tougher spawns; **weight** is
 
 There are **8** enemy types.
 
-| Enemy | HP | Speed | Min tier | Weight |
-| --- | --- | --- | --- | --- |
-| **Ghost** | 0.90× | 1.25× | 0 | 1 |
-| **Outlaw** | — | — | — | — |
-| **Skeleton** | 1.10× | 1.10× | 0 | 1 |
-| **Zombie** | 1.60× | 0.70× | 0 | 1 |
-| **Bounty Hunter** | 1.30× | 1.40× | 1 | — |
-| **Sidewinder** | 0.90× | 1× | 1 | 0.8 |
-| **Posse Elite** | 2.50× | 1.05× | 2 | 0.1 |
-| **The Risen** | 1.60× | 1.20× | 3 | — |
+|  | Enemy | HP | Speed | Min tier | Weight |
+| --- | --- | --- | --- | --- | --- |
+| ![Ghost](/img/boothill/ghost.png) | **Ghost** | 0.90× | 1.25× | 0 | 1 |
+| ![Outlaw](/img/boothill/outlaw.png) | **Outlaw** | — | — | — | — |
+| ![Skeleton](/img/boothill/skeleton.png) | **Skeleton** | 1.10× | 1.10× | 0 | 1 |
+| ![Zombie](/img/boothill/zombie.png) | **Zombie** | 1.60× | 0.70× | 0 | 1 |
+| ![Bounty Hunter](/img/boothill/hunter.png) | **Bounty Hunter** | 1.30× | 1.40× | 1 | — |
+| ![Sidewinder](/img/boothill/viper.png) | **Sidewinder** | 0.90× | 1× | 1 | 0.8 |
+| ![Posse Elite](/img/boothill/elite.png) | **Posse Elite** | 2.50× | 1.05× | 2 | 0.1 |
+| ![The Risen](/img/boothill/risen.png) | **The Risen** | 1.60× | 1.20× | 3 | — |

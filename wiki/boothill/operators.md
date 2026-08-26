@@ -6,24 +6,24 @@ Boothill is played as an **operator** — a character with their own weapon feel
 
 There are **17** operators.
 
-| Operator | Starting weapon | HP | Might | Featured stat |
-| --- | --- | --- | --- | --- |
-| **Ironclad** | `axe` | 1.20× | 1.10× | max_hp (+0.03/lvl) |
-| **Nightshade** | `hexbolt` | 0.95× | 1.15× | lifesteal (+0.004/lvl) |
-| **Stiletto** | `rifle` | 0.90× | 1.05× | damage (+0.03/lvl) |
-| **Spike** | `knife` | 0.80× | 1.20× | crit (+0.005/lvl) |
-| **Pointe** | `flask` | 0.85× | — | crit_dmg (+0.01/lvl) |
-| **Kicks** | `machete` | — | — | speed (+0.025/lvl) |
-| **Ragnar** | `mjolnir` | 1.05× | 1.10× | size (+0.025/lvl) |
-| **Bozo** | `shotgun` | 1.10× | 0.90× | luck (+0.03/lvl) |
-| **Rollo** | `pistol` | 0.90× | — | xp_mult (+0.03/lvl) |
-| **Wheels** | `knife` | 0.85× | 0.95× | speed (+0.025/lvl) |
-| **Frost** | `frostbite` | 1.25× | — | size (+0.03/lvl) |
-| **Oxford** | `pistol` | — | 1.05× | greed (+0.03/lvl) |
-| **Warpath** | `bow` | 0.90× | — | speed (+0.02/lvl) |
-| **Flip** | `chonkla` | 0.80× | 0.95× | fire_rate (+0.02/lvl) |
-| **Cinder** | `firefootprints` | 0.90× | 1.10× | damage (+0.03/lvl) |
-| **Kingpin** | `bowlingball` | — | — | size (+0.03/lvl) |
-| **Deadeye** | `pistol` | — | — | crit (+0.005/lvl) |
+|  | Operator | Starting weapon | HP | Might | Featured stat |
+| --- | --- | --- | --- | --- | --- |
+| ![Ironclad](/img/boothill/ironclad.png) | **Ironclad** | `axe` | 1.20× | 1.10× | max_hp (+0.03/lvl) |
+| ![Nightshade](/img/boothill/nightshade.png) | **Nightshade** | `hexbolt` | 0.95× | 1.15× | lifesteal (+0.004/lvl) |
+| ![Stiletto](/img/boothill/stiletto.png) | **Stiletto** | `rifle` | 0.90× | 1.05× | damage (+0.03/lvl) |
+| ![Spike](/img/boothill/spike.png) | **Spike** | `knife` | 0.80× | 1.20× | crit (+0.005/lvl) |
+| ![Pointe](/img/boothill/pointe.png) | **Pointe** | `flask` | 0.85× | — | crit_dmg (+0.01/lvl) |
+| ![Kicks](/img/boothill/kicks.png) | **Kicks** | `machete` | — | — | speed (+0.025/lvl) |
+| ![Ragnar](/img/boothill/striker.png) | **Ragnar** | `mjolnir` | 1.05× | 1.10× | size (+0.025/lvl) |
+| ![Bozo](/img/boothill/bozo.png) | **Bozo** | `shotgun` | 1.10× | 0.90× | luck (+0.03/lvl) |
+| ![Rollo](/img/boothill/rollo.png) | **Rollo** | `pistol` | 0.90× | — | xp_mult (+0.03/lvl) |
+| ![Wheels](/img/boothill/wheels.png) | **Wheels** | `knife` | 0.85× | 0.95× | speed (+0.025/lvl) |
+| ![Frost](/img/boothill/frost.png) | **Frost** | `frostbite` | 1.25× | — | size (+0.03/lvl) |
+| ![Oxford](/img/boothill/oxford.png) | **Oxford** | `pistol` | — | 1.05× | greed (+0.03/lvl) |
+| ![Warpath](/img/boothill/hermes.png) | **Warpath** | `bow` | 0.90× | — | speed (+0.02/lvl) |
+| ![Flip](/img/boothill/flip.png) | **Flip** | `chonkla` | 0.80× | 0.95× | fire_rate (+0.02/lvl) |
+| ![Cinder](/img/boothill/cinder.png) | **Cinder** | `firefootprints` | 0.90× | 1.10× | damage (+0.03/lvl) |
+| ![Kingpin](/img/boothill/kingpin.png) | **Kingpin** | `bowlingball` | — | — | size (+0.03/lvl) |
+| ![Deadeye](/img/boothill/deadeye.png) | **Deadeye** | `pistol` | — | — | crit (+0.005/lvl) |
 
 _HP and Might are multipliers on the base values; a featured stat grows as the operator levels._

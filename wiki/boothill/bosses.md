@@ -6,10 +6,10 @@ The set-piece fights. Far more HP than a regular enemy, with their own contact d
 
 There are **5** bosses.
 
-| Boss | HP | Speed | Contact dmg | Wax |
-| --- | --- | --- | --- | --- |
-| **Bone Warlord** | 18× | 0.80× | 16 | 25 |
-| **Rotting Abomination** | 24× | 0.55× | 20 | 30 |
-| **The Bone Knight** | 40× | 0.75× | 26 | 120 |
-| **The Gunslinger** | 46× | 1.05× | 22 | 160 |
-| **The Pale Rider** | 46× | 0.90× | 22 | 40 |
+|  | Boss | HP | Speed | Contact dmg | Wax |
+| --- | --- | --- | --- | --- | --- |
+| ![Bone Warlord](/img/boothill/skeleton_boss.png) | **Bone Warlord** | 18× | 0.80× | 16 | 25 |
+| ![Rotting Abomination](/img/boothill/zombie_boss.png) | **Rotting Abomination** | 24× | 0.55× | 20 | 30 |
+| ![The Bone Knight](/img/boothill/skeleton_knight.png) | **The Bone Knight** | 40× | 0.75× | 26 | 120 |
+| ![The Gunslinger](/img/boothill/gunslinger.png) | **The Gunslinger** | 46× | 1.05× | 22 | 160 |
+| ![The Pale Rider](/img/boothill/pale_rider.png) | **The Pale Rider** | 46× | 0.90× | 22 | 40 |
