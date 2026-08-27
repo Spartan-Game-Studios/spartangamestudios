@@ -22,7 +22,15 @@
  * Boothill is a PRIVATE repo, so this is a local/CI tool run where a checkout is
  * available — not part of the public site build. Point --boothill at a checkout.
  */
-import { readFileSync, readdirSync, writeFileSync, existsSync, mkdirSync, rmSync } from 'node:fs';
+import {
+  readFileSync,
+  readdirSync,
+  writeFileSync,
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  rmSync,
+} from 'node:fs';
 import sharp from 'sharp';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -232,10 +240,22 @@ for (const it of allItems) {
   const ok = await extractIcon(join(it._dir, it._folder, 'icon.png'), it._folder);
   if (ok) haveImg.add(ok);
 }
+// Prefer the rendered card snapshot (the real DraftUI face, name + spec baked
+// in) that `tools/_synergy_card_shot.gd` writes to store/screenshots/synergies;
+// these are true-colour, not pixel art, so they're copied as-is. Fall back to
+// the small item icon on a checkout that hasn't generated the cards yet.
+const synergyCard = new Set();
 for (const s of synergies) {
-  const rel = s.icon.replace(/^res:\/\//, '');
-  const ok = await extractIcon(join(BOOTHILL, rel), s.id);
-  if (ok) haveImg.add(ok);
+  const snap = join(BOOTHILL, 'store/screenshots/synergies', s.id.replace(/^synergy_/, '') + '.png');
+  if (existsSync(snap)) {
+    copyFileSync(snap, join(IMG_DIR, `${s.id}.png`));
+    haveImg.add(s.id);
+    synergyCard.add(s.id);
+  } else {
+    const rel = s.icon.replace(/^res:\/\//, '');
+    const ok = await extractIcon(join(BOOTHILL, rel), s.id);
+    if (ok) haveImg.add(ok);
+  }
 }
 
 /** Markdown image cell for a basename, or '' when the image is missing. */
@@ -253,6 +273,16 @@ const trim = (n) => String(Number(Number(n).toFixed(2)));
 const titleize = (s) => String(s).split('_').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 /** Sanitise free text for a markdown table cell (collapse newlines, escape pipes). */
 const cell = (s) => String(s ?? '').replace(/\s*\r?\n\s*/g, ' ').replace(/\|/g, '\\|').trim();
+/** Collapse whitespace and escape HTML text for the raw-HTML blocks below. */
+const htmlText = (s) =>
+  String(s ?? '')
+    .replace(/\s*\r?\n\s*/g, ' ')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .trim();
+/** As htmlText, but also safe inside a double-quoted attribute. */
+const htmlAttr = (s) => htmlText(s).replace(/"/g, '&quot;');
 
 /** Human-readable per-level stat grant, e.g. "+10 shield/lvl", "+15% might/lvl". */
 function grantText(g) {
@@ -381,20 +411,31 @@ writeFileSync(
 );
 
 // --- synergies ---
+// Rendered as a card gallery: each synergy ships a full card snapshot (the
+// in-game draft face), so the page shows the real cards. The name and effect are
+// also emitted as text — the card art bakes them in as pixels, but real text
+// keeps the page searchable, selectable, and legible to screen readers.
+const cards = synergies
+  .map((s) => {
+    const title = name(s.nameKey);
+    const effect = name(s.descKey);
+    const image = haveImg.has(s.id)
+      ? `<img src="/img/boothill/${s.id}.png" alt="${htmlAttr(title)} synergy card" loading="lazy" />`
+      : '';
+    return (
+      `<figure class="synergy-card">${image}` +
+      `<figcaption><strong>${htmlText(title)}</strong>` +
+      `<span>${htmlText(effect)}</span></figcaption></figure>`
+    );
+  })
+  .join('\n');
 writeFileSync(
   join(WIKI, 'boothill/synergies.md'),
   BANNER +
     `# Synergies\n\n` +
     `Special cards unlocked when the right items are combined. Each rewrites how part of your kit behaves.\n\n` +
     `There are **${synergies.length}** synergies.\n\n` +
-    table(
-      ['', 'Synergy', 'Effect'],
-      synergies.map((s) => [
-        imgOf(s.id, name(s.nameKey)),
-        `**${cell(name(s.nameKey))}**`,
-        cell(name(s.descKey)) || '—',
-      ]),
-    ),
+    `<div class="synergy-grid">\n${cards}\n</div>\n`,
 );
 
 console.log(

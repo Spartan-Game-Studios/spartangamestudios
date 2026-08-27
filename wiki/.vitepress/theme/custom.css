@@ -77,3 +77,47 @@
   width: 64px;
   padding-right: 0;
 }
+
+/* Synergy gallery: the generated page emits a grid of full card snapshots
+   (the in-game draft face) with the name + effect repeated as real text. */
+.synergy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 28px 20px;
+  margin: 24px 0;
+}
+
+.synergy-card {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.synergy-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* The snapshots are hi-res card renders, not pixel art — scale them smoothly
+     (overriding the pixelated rule that styles table portraits). */
+  image-rendering: auto;
+}
+
+.synergy-card figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-align: center;
+}
+
+.synergy-card figcaption strong {
+  font-family: 'Cinzel Variable', 'Cinzel', 'Trajan Pro', serif;
+  letter-spacing: 0.02em;
+  color: var(--vp-c-brand-1);
+}
+
+.synergy-card figcaption span {
+  font-size: 0.82em;
+  line-height: 1.4;
+  color: var(--vp-c-text-2);
+}

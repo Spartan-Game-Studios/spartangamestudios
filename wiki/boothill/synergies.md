@@ -6,16 +6,16 @@ Special cards unlocked when the right items are combined. Each rewrites how part
 
 There are **11** synergies.
 
-|  | Synergy | Effect |
-| --- | --- | --- |
-| ![HURRICANE](/img/boothill/synergy_hurricane.png) | **HURRICANE** | Fire + Frost on Mjolnir call a storm around you — it grinds nearby foes and sweeps your bowling balls through the pack. |
-| ![BRIMSTONE VOLLEY](/img/boothill/synergy_brimstone.png) | **BRIMSTONE VOLLEY** | The Coach Gun's cone leaves fire at its edge and hits hexed enemies harder. |
-| ![WITCH'S BREW](/img/boothill/synergy_witches_brew.png) | **WITCH'S BREW** | Poison puddles also hex, and poison bites harder into hexed enemies. |
-| ![DEAD MAN'S DRAW](/img/boothill/synergy_dead_mans_draw.png) | **DEAD MAN'S DRAW** | A ricochet into a hexed enemy is always a critical hit. |
-| ![CHAIN LIGHTNING](/img/boothill/synergy_chain_lightning.png) | **CHAIN LIGHTNING** | Mjolnir's lightning chains without losing damage from leap to leap. |
-| ![FROSTFIRE BOWLING](/img/boothill/synergy_frostfire_bowling.png) | **FROSTFIRE BOWLING** | The bowling ball rolls longer and bowls chilled enemies over harder. |
-| ![TUMBLEWEED PACT](/img/boothill/synergy_tumbleweed_pact.png) | **TUMBLEWEED PACT** | The sandal slams each enemy it hits into its neighbours. |
-| ![SNAKE HANDLER](/img/boothill/synergy_snake_handler.png) | **SNAKE HANDLER** | Poisoned enemies leave a venom puddle when they die. |
-| ![GATLING SPIRIT](/img/boothill/synergy_gatling_spirit.png) | **GATLING SPIRIT** | The Repeater fires a three-round burst every pull. |
-| ![RAIL SPIKE](/img/boothill/synergy_rail_spike.png) | **RAIL SPIKE** | The Repeater reaches further and hexes everything its shot passes through. |
-| ![POWDER KEG](/img/boothill/synergy_powder_keg.png) | **POWDER KEG** | An enemy that dies hexed and burning explodes, zapping and igniting everything around it. |
+<div class="synergy-grid">
+<figure class="synergy-card"><img src="/img/boothill/synergy_hurricane.png" alt="HURRICANE synergy card" loading="lazy" /><figcaption><strong>HURRICANE</strong><span>Fire + Frost on Mjolnir call a storm around you — it grinds nearby foes and sweeps your bowling balls through the pack.</span></figcaption></figure>
+<figure class="synergy-card"><img src="/img/boothill/synergy_brimstone.png" alt="BRIMSTONE VOLLEY synergy card" loading="lazy" /><figcaption><strong>BRIMSTONE VOLLEY</strong><span>The Coach Gun's cone leaves fire at its edge and hits hexed enemies harder.</span></figcaption></figure>
+<figure class="synergy-card"><img src="/img/boothill/synergy_witches_brew.png" alt="WITCH'S BREW synergy card" loading="lazy" /><figcaption><strong>WITCH'S BREW</strong><span>Poison puddles also hex, and poison bites harder into hexed enemies.</span></figcaption></figure>
+<figure class="synergy-card"><img src="/img/boothill/synergy_dead_mans_draw.png" alt="DEAD MAN'S DRAW synergy card" loading="lazy" /><figcaption><strong>DEAD MAN'S DRAW</strong><span>A ricochet into a hexed enemy is always a critical hit.</span></figcaption></figure>
+<figure class="synergy-card"><img src="/img/boothill/synergy_chain_lightning.png" alt="CHAIN LIGHTNING synergy card" loading="lazy" /><figcaption><strong>CHAIN LIGHTNING</strong><span>Mjolnir's lightning chains without losing damage from leap to leap.</span></figcaption></figure>
+<figure class="synergy-card"><img src="/img/boothill/synergy_frostfire_bowling.png" alt="FROSTFIRE BOWLING synergy card" loading="lazy" /><figcaption><strong>FROSTFIRE BOWLING</strong><span>The bowling ball rolls longer and bowls chilled enemies over harder.</span></figcaption></figure>
+<figure class="synergy-card"><img src="/img/boothill/synergy_tumbleweed_pact.png" alt="TUMBLEWEED PACT synergy card" loading="lazy" /><figcaption><strong>TUMBLEWEED PACT</strong><span>The sandal slams each enemy it hits into its neighbours.</span></figcaption></figure>
+<figure class="synergy-card"><img src="/img/boothill/synergy_snake_handler.png" alt="SNAKE HANDLER synergy card" loading="lazy" /><figcaption><strong>SNAKE HANDLER</strong><span>Poisoned enemies leave a venom puddle when they die.</span></figcaption></figure>
+<figure class="synergy-card"><img src="/img/boothill/synergy_gatling_spirit.png" alt="GATLING SPIRIT synergy card" loading="lazy" /><figcaption><strong>GATLING SPIRIT</strong><span>The Repeater fires a three-round burst every pull.</span></figcaption></figure>
+<figure class="synergy-card"><img src="/img/boothill/synergy_rail_spike.png" alt="RAIL SPIKE synergy card" loading="lazy" /><figcaption><strong>RAIL SPIKE</strong><span>The Repeater reaches further and hexes everything its shot passes through.</span></figcaption></figure>
+<figure class="synergy-card"><img src="/img/boothill/synergy_powder_keg.png" alt="POWDER KEG synergy card" loading="lazy" /><figcaption><strong>POWDER KEG</strong><span>An enemy that dies hexed and burning explodes, zapping and igniting everything around it.</span></figcaption></figure>
+</div>
