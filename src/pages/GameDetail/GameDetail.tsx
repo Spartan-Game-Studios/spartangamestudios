@@ -28,6 +28,9 @@ function GameDetailView({ slug }: { slug: string }) {
   const { t } = useTranslation();
   const game = getGame(slug)!;
   const copy = useGameCopy(game);
+  // Games with a VitePress wiki under /wiki/<slug>/ (a separate static site the
+  // SPA can't introspect). Keep in sync when a game wiki is added.
+  const hasWiki = ['boothill', 'inkbreak', 'nightside'].includes(game.slug);
 
   useDocumentMeta({
     title: copy.title,
@@ -59,6 +62,12 @@ function GameDetailView({ slug }: { slug: string }) {
           <div className={styles.stores}>
             <StoreLinks links={game.stores} title={copy.title} fallbackTo="/devlog" size="large" />
           </div>
+
+          {hasWiki ? (
+            <a href={`/wiki/${game.slug}/`} className={styles.wikiLink}>
+              {t('gameDetail.wikiLink', { title: copy.title })}
+            </a>
+          ) : null}
         </Container>
       </header>
 

@@ -44,7 +44,8 @@
     "devlog": "Diario",
     "pressKit": "Kit de prensa",
     "copyright": "© {{year}} {{studio}}",
-    "motto": "Cómpralo una vez. Es tuyo."
+    "motto": "Cómpralo una vez. Es tuyo.",
+    "wiki": "Wiki"
   },
   "home": {
     "heroLede": "Hacemos juegos de acción compactos y rejugables, y los vendemos como se hacía antes. Una compra, tuyo para siempre, actualizaciones gratis. Sin microtransacciones, sin servicio en directo, sin nada dentro del juego pidiéndote dinero.",
@@ -72,7 +73,8 @@
     "release": "Lanzamiento",
     "price": "Precio",
     "priceUnset": "Cómpralo una vez y es tuyo para siempre; fijaremos el precio más cerca del lanzamiento",
-    "developer": "Desarrollador"
+    "developer": "Desarrollador",
+    "wikiLink": "Wiki de {{title}}"
   },
   "devlog": {
     "eyebrow": "Desde el taller",
