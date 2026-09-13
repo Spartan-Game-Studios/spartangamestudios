@@ -71,6 +71,14 @@ function GameDetailView({ slug }: { slug: string }) {
         </Container>
       </header>
 
+      {game.keyArt ? (
+        <Container>
+          <figure className={styles.keyArt}>
+            <img src={game.keyArt.src} alt={game.keyArt.alt} width={1280} height={720} />
+          </figure>
+        </Container>
+      ) : null}
+
       <div className={styles.body}>
         <Container>
           <div className={styles.layout}>
@@ -126,6 +134,27 @@ function GameDetailView({ slug }: { slug: string }) {
               </dl>
             </aside>
           </div>
+
+          {game.screenshots && game.screenshots.length > 0 ? (
+            <section className={styles.gallery} aria-labelledby="shots-heading">
+              <h2 id="shots-heading" className={styles.galleryTitle}>
+                {t('gameDetail.screenshots')}
+              </h2>
+              <div className={styles.shots}>
+                {game.screenshots.map((shot) => (
+                  <img
+                    key={shot.src}
+                    className={styles.shot}
+                    src={shot.src}
+                    alt={shot.alt}
+                    loading="lazy"
+                    width={1600}
+                    height={900}
+                  />
+                ))}
+              </div>
+            </section>
+          ) : null}
         </Container>
       </div>
     </article>

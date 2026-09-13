@@ -53,10 +53,45 @@ export const games: Game[] = [
     pitch:
       'A lone grave-robber on a cursed frontier, auto-firing six-shooters and salvaged hoodoo at a posse that will not stop coming. Every kill raises your Wanted level, and Wanted is the difficulty — push it for richer loot and deadlier hunters, or lay low and starve your own build. The best run rides the edge of the noose until sundown.',
     genre: 'Top-down survivors-like',
-    status: 'concept',
+    status: 'early-access',
     visibility: 'public',
     platforms: ['Windows', 'macOS', 'Linux'],
-    stores: [],
+    stores: [
+      // itch is live and playable now, so it leads; Steam is a wishlist page
+      // ahead of the full launch. (Google Play listing isn't public yet.)
+      {
+        store: 'itch',
+        url: 'https://spartan-game-studios.itch.io/boothill',
+        label: 'Play now',
+      },
+      {
+        store: 'steam',
+        url: 'https://store.steampowered.com/app/5104850/',
+        label: 'Wishlist',
+      },
+    ],
+    keyArt: {
+      src: '/games/boothill/key-art.jpg',
+      alt: 'A lone cowboy boot atop a boot-hill graveyard at sundown, beneath the Boothill logo',
+    },
+    screenshots: [
+      {
+        src: '/games/boothill/screenshot-2.jpg',
+        alt: 'A graveyard swarmed by the posse as area attacks scythe through the horde amid a storm of loot and damage numbers',
+      },
+      {
+        src: '/games/boothill/screenshot-4.jpg',
+        alt: 'Late in a run near sundown, radiant beams sweep a cemetery thick with cash and gem pickups',
+      },
+      {
+        src: '/games/boothill/screenshot-3.jpg',
+        alt: 'Early game at night in the rain, the lone gunslinger fighting skeletons among the headstones and angel statues',
+      },
+      {
+        src: '/games/boothill/screenshot-1.jpg',
+        alt: 'The level-up draft: choosing between Ferocity, Volley, and a Legendary Hurricane synergy card',
+      },
+    ],
     features: [
       'Every kill raises your Wanted level — and Wanted is the difficulty',
       'Weapons only evolve once you are notorious enough to deserve it',

@@ -1,9 +1,14 @@
 /** Content model for the site. All page content is data; pages are views. */
 
-/** Storefronts a game can ship on. Ordered as they are rendered. */
+/**
+ * Storefronts a game can ship on. This order is also the render order, and the
+ * first present storefront becomes the primary call-to-action — so itch (the
+ * studio's DRM-free "buy once, own it" store, and where games go live first)
+ * leads ahead of Steam.
+ */
 export const STOREFRONTS = [
-  'steam',
   'itch',
+  'steam',
   'epic',
   'gog',
   'ios',
