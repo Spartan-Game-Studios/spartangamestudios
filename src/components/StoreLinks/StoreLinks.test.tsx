@@ -41,8 +41,10 @@ describe('StoreLinks', () => {
       />,
     );
 
+    // Canonical order follows STOREFRONTS, with itch first so the DRM-free
+    // "buy once, own it" store leads as the primary call-to-action.
     const names = screen.getAllByRole('link').map((el) => el.textContent);
-    expect(names).toEqual(['Steam', 'itch.io', 'Google Play']);
+    expect(names).toEqual(['itch.io', 'Steam', 'Google Play']);
   });
 
   it('honours a custom label such as a pre-launch wishlist', () => {
