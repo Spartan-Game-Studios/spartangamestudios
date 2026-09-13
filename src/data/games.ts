@@ -16,7 +16,9 @@ export const games: Game[] = [
       'You carry the only light you can trust through a fog-drowned Whitechapel that is emptying of its own accord. Twelve minutes, one lantern, and a street full of things that only move where you cannot see them. Survive to dawn, or become another name in the morning papers.',
     genre: 'Top-down survivors-like',
     status: 'in-development',
-    visibility: 'public',
+    // Pulled from the public lineup for now; the page stays reachable by direct
+    // link. Flip back to 'public' to relist.
+    visibility: 'unlisted',
     platforms: ['Windows', 'macOS', 'Linux', 'Steam Deck'],
     stores: [],
     features: [
@@ -35,7 +37,9 @@ export const games: Game[] = [
       'You are a lab-augmented octopus that escaped, and you are going back for the others. Deep-sea black-sites where any surface is the floor — crawl the walls, hang from the ceiling, and fight from angles the guards cannot cover, four arms holding guns while four more carry you. Free the subjects, cuff the scientists, burn the research. Every one of those trips the alarm.',
     genre: '3D surface-crawling rogue-lite',
     status: 'in-development',
-    visibility: 'public',
+    // Pulled from the public lineup for now; the page stays reachable by direct
+    // link. Flip back to 'public' to relist.
+    visibility: 'unlisted',
     platforms: ['Windows', 'macOS', 'Linux'],
     stores: [],
     features: [
