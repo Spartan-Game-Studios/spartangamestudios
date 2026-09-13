@@ -102,7 +102,7 @@ export const games: Game[] = [
       'Fifteen minutes to sundown, and something waiting for you at the end',
       'Open frontier with real cover, so where you stand is a decision',
     ],
-    price: '~$4.99 at launch',
+    price: '$2.99 at launch',
   },
   {
     slug: 'nightside',
