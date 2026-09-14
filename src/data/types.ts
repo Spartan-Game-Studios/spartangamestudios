@@ -1,14 +1,13 @@
 /** Content model for the site. All page content is data; pages are views. */
 
 /**
- * Storefronts a game can ship on. This order is also the render order, and the
- * first present storefront becomes the primary call-to-action — so itch (the
- * studio's DRM-free "buy once, own it" store, and where games go live first)
- * leads ahead of Steam.
+ * Storefronts a game can ship on, in the order the "where to buy" row renders
+ * them. Which button is the primary (gold) call-to-action is a separate choice
+ * — see `StoreLink.primary` — so the order and the emphasis can differ.
  */
 export const STOREFRONTS = [
-  'itch',
   'steam',
+  'itch',
   'epic',
   'gog',
   'ios',
@@ -26,6 +25,9 @@ export interface StoreLink {
   url: string;
   /** Shown instead of the default verb, e.g. "Wishlist" before launch. */
   label?: string;
+  /** Marks the primary call-to-action (gold button), independent of order. If
+   *  no link sets it, the first in render order is primary. */
+  primary?: boolean;
 }
 
 /**

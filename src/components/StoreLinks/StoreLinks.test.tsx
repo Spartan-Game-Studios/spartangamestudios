@@ -41,10 +41,25 @@ describe('StoreLinks', () => {
       />,
     );
 
-    // Canonical order follows STOREFRONTS, with itch first so the DRM-free
-    // "buy once, own it" store leads as the primary call-to-action.
+    // Render order follows STOREFRONTS (Steam, itch, Google Play); which one is
+    // the primary CTA is a separate flag, not the position.
     const names = screen.getAllByRole('link').map((el) => el.textContent);
-    expect(names).toEqual(['itch.io', 'Steam', 'Google Play']);
+    expect(names).toEqual(['Steam', 'itch.io', 'Google Play']);
+  });
+
+  it('gives each store button its brand icon', () => {
+    const { container } = renderWithRouter(
+      <StoreLinks
+        title="Lantern"
+        links={[
+          { store: 'steam', url: 'https://store.steampowered.com/app/1' },
+          { store: 'itch', url: 'https://example.itch.io/lantern' },
+          { store: 'android', url: 'https://play.google.com/x' },
+        ]}
+      />,
+    );
+    // One inline SVG glyph per store button.
+    expect(container.querySelectorAll('a svg')).toHaveLength(3);
   });
 
   it('honours a custom label such as a pre-launch wishlist', () => {

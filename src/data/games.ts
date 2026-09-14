@@ -61,17 +61,25 @@ export const games: Game[] = [
     visibility: 'public',
     platforms: ['Windows', 'macOS', 'Linux'],
     stores: [
-      // itch is live and playable now, so it leads; Steam is a wishlist page
-      // ahead of the full launch. (Google Play listing isn't public yet.)
-      {
-        store: 'itch',
-        url: 'https://spartan-game-studios.itch.io/boothill',
-        label: 'Play now',
-      },
+      // Rendered in STOREFRONTS order (Steam, itch, Google Play). itch is the
+      // primary call-to-action — it's live and DRM-free — so it gets the gold
+      // button even though Steam sits first. Steam and Google Play are still
+      // pre-launch (wishlist / pre-register).
       {
         store: 'steam',
         url: 'https://store.steampowered.com/app/5104850/',
         label: 'Wishlist',
+      },
+      {
+        store: 'itch',
+        url: 'https://spartan-game-studios.itch.io/boothill',
+        label: 'Play now',
+        primary: true,
+      },
+      {
+        store: 'android',
+        url: 'https://play.google.com/store/apps/details?id=com.spartangamestudios.boothill',
+        label: 'Pre-register',
       },
     ],
     keyArt: {
