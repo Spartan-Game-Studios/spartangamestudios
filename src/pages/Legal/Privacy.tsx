@@ -24,7 +24,7 @@ import styles from './Legal.module.css';
  */
 
 /** Bump when the substance changes, not for typos — people re-read on a change. */
-const LAST_UPDATED = '2026-08-15';
+const LAST_UPDATED = '2026-09-13';
 
 export function Privacy() {
   const { t } = useTranslation();

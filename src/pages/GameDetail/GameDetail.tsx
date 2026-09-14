@@ -31,6 +31,10 @@ function GameDetailView({ slug }: { slug: string }) {
   // Games with a VitePress wiki under /wiki/<slug>/ (a separate static site the
   // SPA can't introspect). Keep in sync when a game wiki is added.
   const hasWiki = ['boothill', 'inkbreak', 'nightside'].includes(game.slug);
+  // Steam's official store widget, keyed on the app id parsed from the Steam
+  // store link. This is a third-party iframe that loads on view — the privacy
+  // policy's "no third-party tracking" carve-out covers it. See Privacy.tsx.
+  const steamAppId = game.stores.find((s) => s.store === 'steam')?.url.match(/\/app\/(\d+)/)?.[1];
 
   useDocumentMeta({
     title: copy.title,
@@ -76,6 +80,20 @@ function GameDetailView({ slug }: { slug: string }) {
           <figure className={styles.keyArt}>
             <img src={game.keyArt.src} alt={game.keyArt.alt} width={1280} height={720} />
           </figure>
+        </Container>
+      ) : null}
+
+      {steamAppId ? (
+        <Container>
+          <div className={styles.steam}>
+            <iframe
+              className={styles.steamWidget}
+              title={t('gameDetail.steamWidget', { title: copy.title })}
+              src={`https://store.steampowered.com/widget/${steamAppId}/`}
+              width={646}
+              height={190}
+            />
+          </div>
         </Container>
       ) : null}
 
