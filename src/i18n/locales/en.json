@@ -217,7 +217,7 @@
     "updated": "Last updated {{date}}",
     "lede": "This policy describes what this website and our accounts system collect. It is written to be specific rather than reassuring — everything below reflects what the software actually does.",
     "noTrackingTitle": "No tracking",
-    "noTracking": "This site runs no analytics, no advertising, and sets no tracking cookies of its own; our fonts are self-hosted, not pulled from a font network. The one exception is a game's page, which embeds Steam's official store widget \u2014 opening that page loads content from Valve and may let Steam set its own cookies. Every other page reports your visit to no one.",
+    "noTracking": "This site runs no analytics, no advertising, and sets no tracking cookies of its own; our fonts are self-hosted, not pulled from a font network. The one exception is a game's page, which embeds Steam's official store widget — opening that page loads content from Valve and may let Steam set its own cookies. Every other page reports your visit to no one.",
     "accountTitle": "If you create an account",
     "accountIntro": "Accounts are optional. If you create one, we store:",
     "accountEmail": "Your email address, and whether you have confirmed it.",
@@ -252,5 +252,11 @@
     "changes": "If this policy changes in substance, the date at the top changes with it. We will not quietly widen what we collect.",
     "contactTitle": "Contact",
     "contact": "Questions about this policy can go to"
+  },
+  "carousel": {
+    "previous": "Previous",
+    "next": "Next",
+    "status": "{{index}} of {{total}}",
+    "goTo": "Go to slide {{index}}"
   }
 }
