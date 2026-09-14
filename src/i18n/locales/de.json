@@ -332,5 +332,11 @@
     "changes": "Ändert sich diese Erklärung inhaltlich, ändert sich das Datum oben mit. Wir weiten stillschweigend nichts aus.",
     "contactTitle": "Kontakt",
     "contact": "Fragen zu dieser Erklärung gehen an"
+  },
+  "carousel": {
+    "previous": "Zurück",
+    "next": "Weiter",
+    "status": "{{index}} von {{total}}",
+    "goTo": "Zu Folie {{index}}"
   }
 }

@@ -7,6 +7,17 @@ import { DEFAULT_LOCALE } from '@/i18n/locales';
 // jsdom has no scrollTo; react-router's ScrollRestoration calls it on navigate.
 window.scrollTo = vi.fn();
 
+// jsdom implements neither ResizeObserver nor Element.scrollBy; the CardCarousel
+// observes its track's size and scrolls it. Stub both so components that use
+// them mount (jsdom reports zero size anyway, so they stay in the not-scrollable
+// state under test).
+window.ResizeObserver = class {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+};
+Element.prototype.scrollBy = vi.fn();
+
 /**
  * Lets a client-side redirect actually complete under jsdom.
  *

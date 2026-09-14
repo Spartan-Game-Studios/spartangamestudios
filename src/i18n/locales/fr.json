@@ -332,5 +332,11 @@
     "changes": "Si cette politique change sur le fond, la date en haut change avec elle. Nous n’élargirons pas discrètement ce que nous collectons.",
     "contactTitle": "Contact",
     "contact": "Les questions sur cette politique peuvent être adressées à"
+  },
+  "carousel": {
+    "previous": "Précédent",
+    "next": "Suivant",
+    "status": "{{index}} sur {{total}}",
+    "goTo": "Aller à la diapositive {{index}}"
   }
 }

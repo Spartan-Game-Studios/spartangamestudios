@@ -332,5 +332,11 @@
     "changes": "Si esta política cambia en lo sustancial, la fecha de arriba cambia con ella. No ampliaremos en silencio lo que recopilamos.",
     "contactTitle": "Contacto",
     "contact": "Las preguntas sobre esta política pueden dirigirse a"
+  },
+  "carousel": {
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "status": "{{index}} de {{total}}",
+    "goTo": "Ir a la diapositiva {{index}}"
   }
 }

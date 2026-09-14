@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Container } from '@/components/Container/Container';
 import { Button } from '@/components/Button/Button';
 import { GameCard } from '@/components/GameCard/GameCard';
+import { CardCarousel } from '@/components/CardCarousel/CardCarousel';
 import { MeanderRule } from '@/components/MeanderRule/MeanderRule';
 import { PostListItem } from '@/pages/Devlog/PostListItem';
 import { listedGames, listedPosts, studio } from '@/data';
@@ -58,11 +59,11 @@ export function Home() {
             <p className={styles.sectionLede}>{t('home.catalogueLede')}</p>
           </div>
 
-          <div className={styles.gameGrid}>
+          <CardCarousel label={t('home.catalogueTitle')}>
             {featured.map((game) => (
               <GameCard key={game.slug} game={game} />
             ))}
-          </div>
+          </CardCarousel>
         </Container>
       </section>
 

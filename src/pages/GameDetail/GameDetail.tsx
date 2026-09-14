@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Container } from '@/components/Container/Container';
 import { StatusBadge } from '@/components/StatusBadge/StatusBadge';
 import { StoreLinks } from '@/components/StoreLinks/StoreLinks';
+import { Carousel } from '@/components/Carousel/Carousel';
 import { getGame, statusKey, studio } from '@/data';
 import { useGameCopy } from '@/i18n/content';
 import { useDocumentMeta } from '@/lib/useDocumentMeta';
@@ -158,19 +159,7 @@ function GameDetailView({ slug }: { slug: string }) {
               <h2 id="shots-heading" className={styles.galleryTitle}>
                 {t('gameDetail.screenshots')}
               </h2>
-              <div className={styles.shots}>
-                {game.screenshots.map((shot) => (
-                  <img
-                    key={shot.src}
-                    className={styles.shot}
-                    src={shot.src}
-                    alt={shot.alt}
-                    loading="lazy"
-                    width={1600}
-                    height={900}
-                  />
-                ))}
-              </div>
+              <Carousel items={game.screenshots} label={t('gameDetail.screenshots')} />
             </section>
           ) : null}
         </Container>

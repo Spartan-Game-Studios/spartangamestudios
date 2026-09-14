@@ -1,0 +1,72 @@
+.wrap {
+  position: relative;
+}
+
+.track {
+  display: flex;
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  /* Hide the native scrollbar — the arrows and swipe are the affordance. */
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+/* When nothing overflows (e.g. a single game) the row has no scrollbar to fight,
+   so it's safe to centre it rather than leave one card stranded at the left. */
+.trackCentered {
+  justify-content: center;
+}
+
+.item {
+  flex: 0 0 min(22rem, 82%);
+  scroll-snap-align: start;
+}
+
+.arrow {
+  position: absolute;
+  top: 33%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: var(--border-hairline);
+  border-radius: 999px;
+  background-color: rgb(0 0 0 / 66%);
+  color: var(--color-text);
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+.arrow:hover:not(:disabled) {
+  background-color: rgb(0 0 0 / 82%);
+  border-color: var(--color-border-accent);
+  color: var(--color-accent);
+}
+
+.arrow:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.prev {
+  left: calc(-1 * var(--space-3));
+}
+
+.next {
+  right: calc(-1 * var(--space-3));
+}
