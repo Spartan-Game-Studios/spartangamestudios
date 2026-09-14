@@ -97,12 +97,6 @@
   color: var(--color-text-muted);
 }
 
-.gameGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
-  gap: var(--space-5);
-}
-
 /* ---- Ownership pledge -------------------------------------------------- */
 
 .pledge {
