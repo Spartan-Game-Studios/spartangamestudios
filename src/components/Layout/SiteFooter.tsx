@@ -39,6 +39,9 @@ export function SiteFooter() {
                 <Link to="/about">{t('footer.about')}</Link>
               </li>
               <li>
+                <Link to="/merch">{t('footer.merch')}</Link>
+              </li>
+              <li>
                 <Link to="/devlog">{t('footer.devlog')}</Link>
               </li>
               <li>

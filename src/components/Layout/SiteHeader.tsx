@@ -7,6 +7,7 @@ import styles from './SiteHeader.module.css';
 
 const NAV = [
   { to: '/games', key: 'nav.games' },
+  { to: '/merch', key: 'nav.merch' },
   { to: '/devlog', key: 'nav.devlog' },
   { to: '/press', key: 'nav.press' },
   { to: '/about', key: 'nav.about' },

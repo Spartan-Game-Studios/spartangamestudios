@@ -6,7 +6,8 @@
     "about": "About",
     "primaryLabel": "Primary",
     "home": "Spartan Game Studios — home",
-    "skipToContent": "Skip to content"
+    "skipToContent": "Skip to content",
+    "merch": "Merch"
   },
   "common": {
     "language": "Language",
@@ -45,7 +46,8 @@
     "pressKit": "Press kit",
     "copyright": "© {{year}} {{studio}}",
     "motto": "Buy once. Own it.",
-    "wiki": "Wiki"
+    "wiki": "Wiki",
+    "merch": "Merch"
   },
   "home": {
     "heroLede": "We build tight, replayable action games — and sell them the old way. One purchase, yours forever, updates free. No microtransactions, no live service, nothing inside the game asking you for money.",
@@ -127,7 +129,8 @@
   "meta": {
     "gamesDescription": "Every game from {{studio}}, with the full list of storefronts for each.",
     "devlogDescription": "Development writing from {{studio}} — what we're building and why.",
-    "pressDescription": "Press kit for {{studio}} — fact sheet, logos, and contact for press and creators."
+    "pressDescription": "Press kit for {{studio}} — fact sheet, logos, and contact for press and creators.",
+    "merchDescription": "Official {{studio}} merch — shirts, prints, and more, made to order."
   },
   "auth": {
     "signIn": "Sign in",
@@ -258,5 +261,16 @@
     "next": "Next",
     "status": "{{index}} of {{total}}",
     "goTo": "Go to slide {{index}}"
+  },
+  "merch": {
+    "eyebrow": "The shop",
+    "title": "Merch",
+    "lede": "Shirts, prints, and oddments from the studio — made to order, shipped worldwide.",
+    "openingSoonLead": "Opening soon",
+    "openingSoon": "The shop isn't live yet — everything's marked sold out while we get it set up.",
+    "followTheDrop": "Follow the devlog for the drop",
+    "soldOut": "Sold out",
+    "unavailable": "Sold out",
+    "addToCart": "Add to cart"
   }
 }
