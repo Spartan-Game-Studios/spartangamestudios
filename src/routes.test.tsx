@@ -63,6 +63,21 @@ describe('routing', () => {
     ).toBeInTheDocument();
   });
 
+  it('renders the merch index and a product page', async () => {
+    renderAt('/merch');
+    expect(await screen.findByRole('heading', { level: 1, name: 'Merch' })).toBeInTheDocument();
+
+    renderAt('/merch/boothill-wanted-tee');
+    expect(
+      await screen.findByRole('heading', { level: 1, name: /Boothill "Wanted" Tee/ }),
+    ).toBeInTheDocument();
+  });
+
+  it('404s an unknown merch slug rather than crashing', async () => {
+    renderAt('/merch/not-a-product');
+    expect(await screen.findByText('404')).toBeInTheDocument();
+  });
+
   it('falls through to 404 for unknown paths', async () => {
     renderAt('/nothing-here');
     expect(await screen.findByText('404')).toBeInTheDocument();
@@ -82,7 +97,17 @@ describe('routing', () => {
 
 describe('localised routing', () => {
   it('renders every route in every locale without falling back to a raw key', async () => {
-    const paths = ['/', '/games', '/games/lantern', '/devlog', '/press', '/about', '/nope'];
+    const paths = [
+      '/',
+      '/games',
+      '/games/lantern',
+      '/merch',
+      '/merch/boothill-wanted-tee',
+      '/devlog',
+      '/press',
+      '/about',
+      '/nope',
+    ];
 
     for (const code of LOCALE_CODES) {
       await i18n.changeLanguage(code);
@@ -91,7 +116,7 @@ describe('localised routing', () => {
         await screen.findByRole('heading', { level: 1 });
         // A missing key renders as its own dotted path — catch that anywhere.
         expect(container.textContent, `${code} ${path}`).not.toMatch(
-          /\b(nav|common|status|stores|footer|home|games|gameDetail|devlog|press|about|notFound|meta)\.[a-zA-Z]/,
+          /\b(nav|common|status|stores|footer|home|games|gameDetail|merch|devlog|press|about|notFound|meta)\.[a-zA-Z]/,
         );
         unmount();
       }

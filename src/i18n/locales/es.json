@@ -351,6 +351,7 @@
     "followTheDrop": "Sigue el devlog para el lanzamiento",
     "soldOut": "Agotado",
     "unavailable": "Agotado",
-    "addToCart": "Añadir al carrito"
+    "addToCart": "Añadir al carrito",
+    "backToShop": "Volver a la tienda"
   }
 }

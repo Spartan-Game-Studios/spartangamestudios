@@ -103,6 +103,8 @@ export interface MerchProduct {
   name: string;
   /** One-line hook for the card. */
   tagline: string;
+  /** A paragraph or two for the product page. */
+  description?: string;
   category: MerchCategory;
   /** Display price in `currency`, major units (24 => $24.00). */
   price: number;

@@ -63,6 +63,10 @@ export function merchIsOpen(): boolean {
   return merch.some((item) => item.available);
 }
 
+export function getMerch(slug: string): MerchProduct | undefined {
+  return merch.find((item) => item.slug === slug);
+}
+
 /** Formats a merch price like "$27.00" in the item's own currency. */
 export function formatPrice(amount: number, currency: string, locale = 'en'): string {
   return new Intl.NumberFormat(locale, { style: 'currency', currency }).format(amount);

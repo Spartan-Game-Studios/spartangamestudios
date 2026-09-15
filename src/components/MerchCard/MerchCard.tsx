@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { formatPrice, type MerchProduct } from '@/data';
 import styles from './MerchCard.module.css';
@@ -25,7 +26,11 @@ export function MerchCard({ product }: { product: MerchProduct }) {
       </div>
 
       <div className={styles.body}>
-        <h3 className={styles.title}>{product.name}</h3>
+        <h3 className={styles.title}>
+          <Link to={`/merch/${product.slug}`} className={styles.link}>
+            {product.name}
+          </Link>
+        </h3>
         <p className={styles.tagline}>{product.tagline}</p>
 
         <div className={styles.footer}>
