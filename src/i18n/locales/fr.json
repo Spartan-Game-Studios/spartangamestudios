@@ -353,5 +353,20 @@
     "unavailable": "Épuisé",
     "addToCart": "Ajouter au panier",
     "backToShop": "Retour à la boutique"
+  },
+  "cart": {
+    "title": "Panier",
+    "empty": "Votre panier est vide.",
+    "browse": "Parcourir la boutique",
+    "remove": "Retirer",
+    "subtotal": "Sous-total",
+    "checkout": "Paiement",
+    "working": "Traitement…",
+    "checkoutSoon": "Le paiement s'activera à l'ouverture de la boutique.",
+    "taxNote": "Les frais de port et les taxes sont calculés au paiement.",
+    "decrease": "Diminuer la quantité",
+    "increase": "Augmenter la quantité",
+    "quantity": "Quantité",
+    "cartLabel": "Panier ({{count}})"
   }
 }

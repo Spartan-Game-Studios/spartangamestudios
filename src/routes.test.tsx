@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { routes } from './routes';
 import { AuthProvider } from '@/auth/AuthContext';
+import { CartProvider } from '@/cart/CartContext';
 import { games } from '@/data';
 import i18n from '@/i18n';
 import { LOCALE_CODES } from '@/i18n/locales';
@@ -13,7 +14,9 @@ function renderAt(path: string) {
   // same wrapper main.tsx puts around the router in production.
   return render(
     <AuthProvider>
-      <RouterProvider router={router} />
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
     </AuthProvider>,
   );
 }
@@ -103,6 +106,7 @@ describe('localised routing', () => {
       '/games/lantern',
       '/merch',
       '/merch/boothill-wanted-tee',
+      '/cart',
       '/devlog',
       '/press',
       '/about',
@@ -116,7 +120,7 @@ describe('localised routing', () => {
         await screen.findByRole('heading', { level: 1 });
         // A missing key renders as its own dotted path — catch that anywhere.
         expect(container.textContent, `${code} ${path}`).not.toMatch(
-          /\b(nav|common|status|stores|footer|home|games|gameDetail|merch|devlog|press|about|notFound|meta)\.[a-zA-Z]/,
+          /\b(nav|common|status|stores|footer|home|games|gameDetail|merch|cart|devlog|press|about|notFound|meta)\.[a-zA-Z]/,
         );
         unmount();
       }

@@ -353,5 +353,20 @@
     "unavailable": "Ausverkauft",
     "addToCart": "In den Warenkorb",
     "backToShop": "Zurück zum Shop"
+  },
+  "cart": {
+    "title": "Warenkorb",
+    "empty": "Dein Warenkorb ist leer.",
+    "browse": "Zum Shop",
+    "remove": "Entfernen",
+    "subtotal": "Zwischensumme",
+    "checkout": "Zur Kasse",
+    "working": "Wird verarbeitet…",
+    "checkoutSoon": "Die Kasse öffnet, sobald der Shop startet.",
+    "taxNote": "Versand und Steuern werden an der Kasse berechnet.",
+    "decrease": "Menge verringern",
+    "increase": "Menge erhöhen",
+    "quantity": "Menge",
+    "cartLabel": "Warenkorb ({{count}})"
   }
 }

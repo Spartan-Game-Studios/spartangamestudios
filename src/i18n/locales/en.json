@@ -273,5 +273,20 @@
     "unavailable": "Sold out",
     "addToCart": "Add to cart",
     "backToShop": "Back to the shop"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty.",
+    "browse": "Browse the shop",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout",
+    "working": "Working…",
+    "checkoutSoon": "Checkout opens when the shop launches.",
+    "taxNote": "Shipping and tax are calculated at checkout.",
+    "decrease": "Decrease quantity",
+    "increase": "Increase quantity",
+    "quantity": "Quantity",
+    "cartLabel": "Cart ({{count}})"
   }
 }

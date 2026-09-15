@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Container } from '@/components/Container/Container';
 import { getMerch, formatPrice } from '@/data';
+import { useCart } from '@/cart/useCart';
 import { useDocumentMeta } from '@/lib/useDocumentMeta';
 import { NotFound } from '@/pages/NotFound/NotFound';
 import styles from './MerchDetail.module.css';
@@ -16,6 +17,7 @@ export function MerchDetail() {
 /** Split so the meta hook only runs for a product that exists. */
 function MerchDetailView({ slug }: { slug: string }) {
   const { t, i18n } = useTranslation();
+  const { add } = useCart();
   const product = getMerch(slug)!;
   const locale = i18n.resolvedLanguage ?? i18n.language;
 
@@ -53,7 +55,7 @@ function MerchDetailView({ slug }: { slug: string }) {
             <p className={styles.price}>{formatPrice(product.price, product.currency, locale)}</p>
 
             {product.available ? (
-              <button type="button" className={styles.buy}>
+              <button type="button" className={styles.buy} onClick={() => add(product.slug)}>
                 {t('merch.addToCart')}
               </button>
             ) : (

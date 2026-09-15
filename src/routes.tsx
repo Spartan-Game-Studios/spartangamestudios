@@ -5,6 +5,7 @@ import { Games } from '@/pages/Games/Games';
 import { GameDetail } from '@/pages/GameDetail/GameDetail';
 import { Merch } from '@/pages/Merch/Merch';
 import { MerchDetail } from '@/pages/Merch/MerchDetail';
+import { Cart } from '@/pages/Cart/Cart';
 import { Devlog } from '@/pages/Devlog/Devlog';
 import { DevlogPost } from '@/pages/Devlog/DevlogPost';
 import { Press } from '@/pages/Press/Press';
@@ -26,6 +27,7 @@ export const routes = [
       { path: 'games/:slug', element: <GameDetail /> },
       { path: 'merch', element: <Merch /> },
       { path: 'merch/:slug', element: <MerchDetail /> },
+      { path: 'cart', element: <Cart /> },
       { path: 'devlog', element: <Devlog /> },
       { path: 'devlog/:slug', element: <DevlogPost /> },
       { path: 'press', element: <Press /> },

@@ -353,5 +353,20 @@
     "unavailable": "Agotado",
     "addToCart": "Añadir al carrito",
     "backToShop": "Volver a la tienda"
+  },
+  "cart": {
+    "title": "Carrito",
+    "empty": "Tu carrito está vacío.",
+    "browse": "Explorar la tienda",
+    "remove": "Quitar",
+    "subtotal": "Subtotal",
+    "checkout": "Pagar",
+    "working": "Procesando…",
+    "checkoutSoon": "El pago se activará cuando abra la tienda.",
+    "taxNote": "El envío y los impuestos se calculan al pagar.",
+    "decrease": "Reducir cantidad",
+    "increase": "Aumentar cantidad",
+    "quantity": "Cantidad",
+    "cartLabel": "Carrito ({{count}})"
   }
 }
