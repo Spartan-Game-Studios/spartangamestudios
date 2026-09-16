@@ -397,6 +397,11 @@
     "total": "Total",
     "calculated": "Se calcula al pagar",
     "pay": "Pagar {{amount}}",
-    "notReady": "El pago se habilita cuando la tienda esté activa."
+    "notReady": "El pago se habilita cuando la tienda esté activa.",
+    "paying": "Procesando…",
+    "paid": "Pago recibido",
+    "paidLead": "Gracias: tu pedido está confirmado. Recibirás un recibo en tu correo.",
+    "continueShopping": "Volver a la tienda",
+    "payError": "No pudimos completar el pago. Revisa tus datos e inténtalo de nuevo."
   }
 }

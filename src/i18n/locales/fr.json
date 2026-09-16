@@ -397,6 +397,11 @@
     "total": "Total",
     "calculated": "Calculé au paiement",
     "pay": "Payer {{amount}}",
-    "notReady": "Le paiement s’ouvre au lancement de la boutique."
+    "notReady": "Le paiement s’ouvre au lancement de la boutique.",
+    "paying": "Traitement…",
+    "paid": "Paiement reçu",
+    "paidLead": "Merci — votre commande est confirmée. Un reçu arrive dans votre boîte mail.",
+    "continueShopping": "Retour à la boutique",
+    "payError": "Le paiement n’a pas pu aboutir. Vérifiez vos informations et réessayez."
   }
 }

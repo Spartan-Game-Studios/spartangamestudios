@@ -317,6 +317,11 @@
     "total": "Total",
     "calculated": "Calculated at payment",
     "pay": "Pay {{amount}}",
-    "notReady": "Checkout opens when the shop launches."
+    "notReady": "Checkout opens when the shop launches.",
+    "paying": "Processing…",
+    "paid": "Payment received",
+    "paidLead": "Thank you — your order is confirmed. A receipt is on its way to your email.",
+    "continueShopping": "Back to the shop",
+    "payError": "We couldn’t complete the payment. Please check your details and try again."
   }
 }

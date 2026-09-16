@@ -397,6 +397,11 @@
     "total": "Gesamt",
     "calculated": "Wird bei der Zahlung berechnet",
     "pay": "{{amount}} bezahlen",
-    "notReady": "Die Kasse öffnet, sobald der Shop startet."
+    "notReady": "Die Kasse öffnet, sobald der Shop startet.",
+    "paying": "Wird verarbeitet…",
+    "paid": "Zahlung erhalten",
+    "paidLead": "Danke – deine Bestellung ist bestätigt. Eine Quittung ist per E-Mail unterwegs.",
+    "continueShopping": "Zurück zum Shop",
+    "payError": "Die Zahlung konnte nicht abgeschlossen werden. Bitte prüfe deine Angaben und versuche es erneut."
   }
 }

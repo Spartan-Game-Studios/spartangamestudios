@@ -109,6 +109,12 @@
   margin: 0;
 }
 
+.payError {
+  font-size: var(--fs-xs);
+  color: var(--status-critical);
+  margin: 0;
+}
+
 /* Where the Stripe Payment Element mounts. Sized so the placeholder and the
    real widget occupy the same block and the page doesn't jump on wire-up. */
 .cardSlot {
