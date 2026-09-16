@@ -156,6 +156,9 @@
 }
 
 .checkout {
+  display: block;
+  text-align: center;
+  text-decoration: none;
   font-family: var(--font-ui);
   font-size: var(--fs-sm);
   font-weight: 600;
@@ -169,9 +172,8 @@
   cursor: pointer;
 }
 
-.checkout:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+.checkout:hover {
+  background-color: var(--color-accent-bright, var(--color-accent));
 }
 
 .soon {

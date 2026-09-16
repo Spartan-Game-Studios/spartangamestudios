@@ -1,0 +1,248 @@
+.back {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+.back:hover {
+  color: var(--color-accent);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 20rem;
+  gap: var(--space-7);
+  align-items: start;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border: var(--border-hairline) solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: var(--fs-base);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  padding-bottom: var(--space-2);
+  border-bottom: var(--border-hairline) solid var(--color-border);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+  min-width: 0;
+}
+
+.row {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.label {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.input {
+  padding: var(--space-3);
+  font: inherit;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: var(--border-hairline) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition-fast);
+}
+
+.input:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.promoRow {
+  display: flex;
+  gap: var(--space-3);
+  align-items: stretch;
+}
+
+.promoRow .input {
+  flex: 1;
+}
+
+.promoApply {
+  font-family: var(--font-ui);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text);
+  background: var(--surface-raised, var(--color-surface));
+  border: var(--border-hairline) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  padding: 0 var(--space-4);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.promoApply:hover {
+  border-color: var(--color-border-accent);
+  color: var(--color-accent);
+}
+
+.note {
+  font-size: var(--fs-xs);
+  color: var(--color-text-faint);
+  margin: 0;
+}
+
+/* Where the Stripe Payment Element mounts. Sized so the placeholder and the
+   real widget occupy the same block and the page doesn't jump on wire-up. */
+.cardSlot {
+  min-height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  background: var(--color-bg);
+  border: var(--border-hairline) dashed var(--color-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.cardPlaceholder {
+  margin: 0;
+  font-size: var(--fs-sm);
+  color: var(--color-text-faint);
+  text-align: center;
+}
+
+.summary {
+  border: var(--border-hairline);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  position: sticky;
+  top: var(--space-5);
+}
+
+.summaryTitle {
+  font-family: var(--font-display);
+  font-size: var(--fs-base);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.summaryLines {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0 0 var(--space-4);
+  list-style: none;
+  border-bottom: var(--border-hairline) solid var(--color-border);
+}
+
+.summaryLine {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--fs-sm);
+}
+
+.summaryName {
+  color: var(--color-text-muted);
+  min-width: 0;
+}
+
+.summaryQty {
+  color: var(--color-text-faint);
+  margin-left: var(--space-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.summaryValue {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.totals {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+.totalRow dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.pending {
+  color: var(--color-text-faint);
+  font-size: var(--fs-xs);
+}
+
+.grandTotal {
+  margin-top: var(--space-2);
+  padding-top: var(--space-3);
+  border-top: var(--border-hairline) solid var(--color-border);
+  font-family: var(--font-ui);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.pay {
+  font-family: var(--font-ui);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-on-accent);
+  background-color: var(--color-accent);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  cursor: pointer;
+}
+
+.pay:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (width < 48rem) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .summary {
+    position: static;
+  }
+}

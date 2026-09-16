@@ -1,9 +1,7 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Container } from '@/components/Container/Container';
 import { useCart } from '@/cart/useCart';
-import { checkoutConfigured, startCheckout } from '@/cart/checkout';
 import { formatPrice } from '@/data';
 import { useDocumentMeta } from '@/lib/useDocumentMeta';
 import page from '@/pages/shared/page.module.css';
@@ -13,16 +11,8 @@ export function Cart() {
   const { t, i18n } = useTranslation();
   const { lines, subtotal, currency, setQty, remove } = useCart();
   const locale = i18n.resolvedLanguage ?? i18n.language;
-  const [busy, setBusy] = useState(false);
-  const canCheckout = checkoutConfigured();
 
   useDocumentMeta({ title: t('cart.title'), description: t('cart.title'), path: '/cart' });
-
-  const onCheckout = () => {
-    if (!canCheckout || busy) return;
-    setBusy(true);
-    startCheckout(lines).catch(() => setBusy(false)); // on success the browser navigates away
-  };
 
   return (
     <div className={page.page}>
@@ -105,15 +95,9 @@ export function Cart() {
                 </span>
               </div>
               <p className={styles.taxNote}>{t('cart.taxNote')}</p>
-              <button
-                type="button"
-                className={styles.checkout}
-                onClick={onCheckout}
-                disabled={!canCheckout || busy}
-              >
-                {busy ? t('cart.working') : t('cart.checkout')}
-              </button>
-              {!canCheckout ? <p className={styles.soon}>{t('cart.checkoutSoon')}</p> : null}
+              <Link to="/checkout" className={styles.checkout}>
+                {t('cart.checkout')}
+              </Link>
             </aside>
           </div>
         )}

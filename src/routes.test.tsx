@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { routes } from './routes';
@@ -99,6 +99,24 @@ describe('routing', () => {
 });
 
 describe('localised routing', () => {
+  afterEach(() => localStorage.clear());
+
+  it('renders the checkout page (with a seeded cart) in every locale without raw keys', async () => {
+    // /checkout redirects to /cart when the cart is empty, so seed a line first.
+    localStorage.setItem('sgs-cart', JSON.stringify([{ slug: 'boothill-wanted-tee', qty: 2 }]));
+    for (const code of LOCALE_CODES) {
+      await i18n.changeLanguage(code);
+      const { unmount, container } = renderAt('/checkout');
+      await screen.findByRole('heading', { level: 1 });
+      // The shipping + card + promo sections and the order summary must render.
+      expect(screen.getByLabelText(i18n.t('checkout.fullName'))).toBeInTheDocument();
+      expect(container.textContent, `${code} /checkout`).not.toMatch(
+        /\b(nav|common|status|stores|footer|home|games|gameDetail|merch|cart|checkout|devlog|press|about|notFound|meta)\.[a-zA-Z]/,
+      );
+      unmount();
+    }
+  });
+
   it('renders every route in every locale without falling back to a raw key', async () => {
     const paths = [
       '/',
@@ -120,7 +138,7 @@ describe('localised routing', () => {
         await screen.findByRole('heading', { level: 1 });
         // A missing key renders as its own dotted path — catch that anywhere.
         expect(container.textContent, `${code} ${path}`).not.toMatch(
-          /\b(nav|common|status|stores|footer|home|games|gameDetail|merch|cart|devlog|press|about|notFound|meta)\.[a-zA-Z]/,
+          /\b(nav|common|status|stores|footer|home|games|gameDetail|merch|cart|checkout|devlog|press|about|notFound|meta)\.[a-zA-Z]/,
         );
         unmount();
       }
