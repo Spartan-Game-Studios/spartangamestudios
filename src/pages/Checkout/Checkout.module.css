@@ -129,6 +129,12 @@
   text-align: center;
 }
 
+/* Where the live Stripe Payment Element renders its own (iframed) fields. Full
+   width, no placeholder chrome — Stripe draws the border via the appearance API. */
+.cardMount {
+  width: 100%;
+}
+
 .summary {
   border: var(--border-hairline);
   border-radius: var(--radius-md);

@@ -4,10 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { Container } from '@/components/Container/Container';
 import { useCart } from '@/cart/useCart';
 import { stripeConfigured } from '@/cart/stripe';
+import { checkoutConfigured } from '@/cart/checkout';
 import { formatPrice } from '@/data';
 import { useDocumentMeta } from '@/lib/useDocumentMeta';
 import page from '@/pages/shared/page.module.css';
 import styles from './Checkout.module.css';
+import { PaymentSection } from './PaymentSection';
 
 /** ISO 3166-1 alpha-2 codes we ship to; names are localised at render via
  *  Intl.DisplayNames so we don't hand-translate a country list four times.
@@ -116,7 +118,9 @@ export function Checkout() {
   };
 
   const money = (n: number) => (currency ? formatPrice(n, currency, locale) : '—');
-  const ready = stripeConfigured();
+  // The card widget renders on the publishable key alone; paying additionally
+  // needs the backend (it mints the PaymentIntent), so the button waits on both.
+  const ready = stripeConfigured() && checkoutConfigured();
 
   return (
     <div className={page.page}>
@@ -271,12 +275,10 @@ export function Checkout() {
 
             <section className={styles.section}>
               <h2 className={styles.sectionTitle}>{t('checkout.paymentTitle')}</h2>
-              {/* The Stripe card widget (Payment Element) mounts here once a
-                  publishable key is configured. Until then it's a placeholder so
-                  the layout is real and the wiring is a drop-in. */}
-              <div className={styles.cardSlot} aria-live="polite">
-                <p className={styles.cardPlaceholder}>{t('checkout.paymentPlaceholder')}</p>
-              </div>
+              <PaymentSection
+                amountCents={Math.round(subtotal * 100)}
+                currency={currency || 'usd'}
+              />
               <p className={styles.note}>{t('checkout.paymentNote')}</p>
             </section>
           </form>
