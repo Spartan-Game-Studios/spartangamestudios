@@ -27,6 +27,14 @@ describe('MerchGallery', () => {
     expect(screen.getByRole('button', { name: 'Next' })).toBeDisabled();
   });
 
+  it('shows a clickable thumbnail strip in the detail variant', () => {
+    renderWithRouter(<MerchGallery images={images} label="Tee" variant="detail" />);
+    const thumbs = screen.getAllByRole('button', { name: /Go to slide/ });
+    expect(thumbs).toHaveLength(3);
+    fireEvent.click(screen.getByRole('button', { name: 'Go to slide 2' }));
+    expect(screen.getByText('2 of 3')).toBeInTheDocument();
+  });
+
   it('shows no controls for a single image', () => {
     renderWithRouter(<MerchGallery images={[{ src: '/1.jpg', alt: 'Front' }]} label="Mug" />);
     expect(screen.getByAltText('Front')).toBeInTheDocument();

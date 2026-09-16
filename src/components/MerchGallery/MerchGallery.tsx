@@ -112,7 +112,8 @@ export function MerchGallery({
           </button>
         ) : null}
 
-        {count > 1 ? (
+        {/* Dots for the compact card; the detail view uses a thumbnail strip below. */}
+        {count > 1 && variant === 'card' ? (
           <div className={styles.dots}>
             {images.map((img, i) => (
               <button
@@ -127,6 +128,24 @@ export function MerchGallery({
           </div>
         ) : null}
       </div>
+
+      {variant === 'detail' && count > 1 ? (
+        <ul className={styles.thumbs}>
+          {images.map((img, i) => (
+            <li key={img.src}>
+              <button
+                type="button"
+                className={`${styles.thumb} ${i === index ? styles.thumbActive : ''}`}
+                aria-label={t('carousel.goTo', { index: i + 1 })}
+                aria-current={i === index ? 'true' : undefined}
+                onClick={() => go(i)}
+              >
+                <img src={img.src} alt="" loading="lazy" draggable={false} />
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : null}
 
       {/* Announces the active slide to screen readers as it changes. */}
       <p className="u-visually-hidden" aria-live="polite">
