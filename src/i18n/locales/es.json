@@ -376,6 +376,7 @@
     "email": "Correo electrónico",
     "shippingTitle": "Dirección de envío",
     "fullName": "Nombre completo",
+    "phone": "Número de teléfono",
     "address1": "Dirección",
     "address2": "Apartamento, suite, etc. (opcional)",
     "city": "Ciudad",

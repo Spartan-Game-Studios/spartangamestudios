@@ -296,6 +296,7 @@
     "email": "Email",
     "shippingTitle": "Shipping address",
     "fullName": "Full name",
+    "phone": "Phone number",
     "address1": "Address",
     "address2": "Apartment, suite, etc. (optional)",
     "city": "City",

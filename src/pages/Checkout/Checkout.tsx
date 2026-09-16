@@ -47,6 +47,7 @@ const COUNTRY_CODES = [
 type Form = {
   email: string;
   fullName: string;
+  phone: string;
   address1: string;
   address2: string;
   city: string;
@@ -58,6 +59,7 @@ type Form = {
 const EMPTY: Form = {
   email: '',
   fullName: '',
+  phone: '',
   address1: '',
   address2: '',
   city: '',
@@ -164,6 +166,19 @@ export function Checkout() {
                   autoComplete="name"
                   value={form.fullName}
                   onChange={set('fullName')}
+                />
+              </div>
+              <div className={styles.field}>
+                <label className={styles.label} htmlFor="co-phone">
+                  {t('checkout.phone')}
+                </label>
+                <input
+                  id="co-phone"
+                  className={styles.input}
+                  type="tel"
+                  autoComplete="tel"
+                  value={form.phone}
+                  onChange={set('phone')}
                 />
               </div>
               <div className={styles.field}>
