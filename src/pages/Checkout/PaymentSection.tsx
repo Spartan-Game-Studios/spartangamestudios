@@ -16,16 +16,33 @@ function getStripe(pk: string): Promise<Stripe | null> {
   return stripePromise;
 }
 
-/** Match the card field to the studio's dark/gold theme + body font (Barlow). */
+/**
+ * Match the card field to the studio's dark/gold theme + body font (Barlow).
+ * The `.Input` rule mirrors our own inputs exactly: pure-black fill, the
+ * --color-border-strong (#3a3423) hairline at --radius-sm (2px), and the
+ * --color-accent gold (#c9a24f) on focus. Keep these in sync with the
+ * `.input` rule in Checkout.module.css.
+ */
 const appearance: Appearance = {
   theme: 'night',
   variables: {
-    colorPrimary: '#c9a24b',
-    colorBackground: '#0a0a0b',
+    colorPrimary: '#c9a24f',
+    colorBackground: '#000000',
     colorText: '#e8e6e1',
     colorTextSecondary: '#9a938a',
     fontFamily: "'Barlow', system-ui, sans-serif",
-    borderRadius: '4px',
+    borderRadius: '2px',
+  },
+  rules: {
+    '.Input': {
+      border: '1px solid #3a3423',
+      boxShadow: 'none',
+    },
+    '.Input:focus': {
+      border: '1px solid #c9a24f',
+      boxShadow: 'none',
+      outline: 'none',
+    },
   },
 };
 

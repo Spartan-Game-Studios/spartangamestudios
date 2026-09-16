@@ -63,7 +63,7 @@
   font: inherit;
   color: var(--color-text);
   background: var(--color-bg);
-  border: var(--border-hairline) solid var(--color-border-strong);
+  border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-sm);
   transition: border-color var(--transition-fast);
 }
@@ -91,7 +91,7 @@
   text-transform: uppercase;
   color: var(--color-text);
   background: var(--surface-raised, var(--color-surface));
-  border: var(--border-hairline) solid var(--color-border-strong);
+  border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-sm);
   padding: 0 var(--space-4);
   cursor: pointer;
@@ -118,7 +118,7 @@
   justify-content: center;
   padding: var(--space-4);
   background: var(--color-bg);
-  border: var(--border-hairline) dashed var(--color-border-strong);
+  border: 1px dashed var(--color-border-strong);
   border-radius: var(--radius-sm);
 }
 
