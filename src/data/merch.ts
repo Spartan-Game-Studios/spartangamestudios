@@ -8,6 +8,10 @@ import type { MerchProduct } from './types';
  * and nothing is buyable. When the real catalogue goes live it will be sourced
  * from a merch provider (Yoycol via a backend adapter) in this same shape —
  * only the data source changes, not the pages.
+ *
+ * `images` are PLACEHOLDER art for now — Boothill key art / screenshots and the
+ * studio mark — chosen only to exercise the card + product-page galleries. Real
+ * product photography replaces them when the Yoycol adapter lands.
  */
 export const merch: MerchProduct[] = [
   {
@@ -19,6 +23,20 @@ export const merch: MerchProduct[] = [
     category: 'apparel',
     price: 27,
     currency: 'USD',
+    images: [
+      {
+        src: '/games/boothill/key-art.jpg',
+        alt: 'Boothill "Wanted" tee — front print (placeholder art)',
+      },
+      {
+        src: '/games/boothill/screenshot-1.jpg',
+        alt: 'Boothill "Wanted" tee — detail (placeholder art)',
+      },
+      {
+        src: '/games/boothill/screenshot-2.jpg',
+        alt: 'Boothill "Wanted" tee — on-body (placeholder art)',
+      },
+    ],
     available: false,
   },
   {
@@ -30,10 +48,20 @@ export const merch: MerchProduct[] = [
     category: 'print',
     price: 19,
     currency: 'USD',
-    image: {
-      src: '/games/boothill/key-art.jpg',
-      alt: 'Boothill key art: a cowboy boot atop a graveyard hill at sundown',
-    },
+    images: [
+      {
+        src: '/games/boothill/key-art.jpg',
+        alt: 'Boothill key art: a cowboy boot atop a graveyard hill at sundown',
+      },
+      {
+        src: '/games/boothill/screenshot-3.jpg',
+        alt: 'Boothill key-art poster — framed (placeholder art)',
+      },
+      {
+        src: '/games/boothill/screenshot-4.jpg',
+        alt: 'Boothill key-art poster — scale reference (placeholder art)',
+      },
+    ],
     available: false,
   },
   {
@@ -45,6 +73,7 @@ export const merch: MerchProduct[] = [
     category: 'accessory',
     price: 16,
     currency: 'USD',
+    images: [{ src: '/brand/logo-512.png', alt: 'Spartan meander enamel mug (placeholder art)' }],
     available: false,
   },
   {
@@ -56,6 +85,20 @@ export const merch: MerchProduct[] = [
     category: 'accessory',
     price: 8,
     currency: 'USD',
+    images: [
+      {
+        src: '/games/boothill/screenshot-1.jpg',
+        alt: 'Boothill sticker pack — sheet (placeholder art)',
+      },
+      {
+        src: '/games/boothill/screenshot-2.jpg',
+        alt: 'Boothill sticker pack — die-cuts (placeholder art)',
+      },
+      {
+        src: '/games/boothill/screenshot-3.jpg',
+        alt: 'Boothill sticker pack — applied (placeholder art)',
+      },
+    ],
     available: false,
   },
   {
@@ -67,6 +110,13 @@ export const merch: MerchProduct[] = [
     category: 'apparel',
     price: 45,
     currency: 'USD',
+    images: [
+      { src: '/brand/logo-512.png', alt: 'Spartan Game Studios hoodie — front (placeholder art)' },
+      {
+        src: '/brand/logo-pixel.png',
+        alt: 'Spartan Game Studios hoodie — mark detail (placeholder art)',
+      },
+    ],
     available: false,
   },
 ];

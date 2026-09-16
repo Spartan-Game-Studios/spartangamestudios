@@ -1,0 +1,153 @@
+.gallery {
+  display: block;
+}
+
+.viewport {
+  position: relative;
+  overflow: hidden;
+  /* Reserve the 4:5 product frame so slides never jump as images load. */
+  aspect-ratio: 4 / 5;
+  background-color: var(--sgs-obsidian-850);
+}
+
+.track {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 100%;
+  transition: transform var(--transition-base);
+}
+
+.slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  height: 100%;
+}
+
+.slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.dimmed .slide img {
+  filter: grayscale(0.35) brightness(0.82);
+}
+
+/* Prev/next arrows, floated over the frame edges. */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-hairline);
+  border-radius: 999px;
+  background-color: rgb(0 0 0 / 62%);
+  color: var(--color-text);
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+.arrow:hover:not(:disabled) {
+  background-color: rgb(0 0 0 / 82%);
+  border-color: var(--color-border-accent);
+  color: var(--color-accent);
+}
+
+.arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.prev {
+  left: var(--space-2);
+}
+
+.next {
+  right: var(--space-2);
+}
+
+/* Dot indicators, overlaid along the bottom. */
+.dots {
+  position: absolute;
+  bottom: var(--space-2);
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background-color: rgb(255 255 255 / 45%);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.dot:hover {
+  background-color: rgb(255 255 255 / 70%);
+}
+
+.dotActive {
+  background-color: var(--color-accent);
+  transform: scale(1.25);
+}
+
+/* ---- card variant: compact, controls revealed on hover/focus ------------- */
+.card .arrow {
+  width: 30px;
+  height: 30px;
+  opacity: 0;
+}
+
+.card:hover .arrow,
+.card:focus-within .arrow {
+  opacity: 1;
+}
+
+/* The image lifts toward the viewer on hover — the card's own motion. Only the
+   ACTIVE slide scales: scaling the off-screen slides would push their edges into
+   the frame and bleed a sliver of the next image at the boundary. */
+.card:hover .slide[aria-hidden='false'] img {
+  transform: scale(1.05);
+}
+
+/* ---- detail variant: larger, controls always visible --------------------- */
+.detail .viewport {
+  border: var(--border-hairline);
+  border-radius: var(--radius-md);
+}
+
+.detail .arrow {
+  width: 40px;
+  height: 40px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track,
+  .slide img {
+    transition: none;
+  }
+
+  .card:hover .slide[aria-hidden='false'] img {
+    transform: none;
+  }
+}
