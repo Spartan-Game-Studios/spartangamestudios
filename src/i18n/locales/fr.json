@@ -6,7 +6,8 @@
     "about": "Studio",
     "primaryLabel": "Principal",
     "home": "Spartan Game Studios — accueil",
-    "skipToContent": "Aller au contenu"
+    "skipToContent": "Aller au contenu",
+    "merch": "Boutique"
   },
   "common": {
     "language": "Langue",
@@ -45,7 +46,8 @@
     "pressKit": "Kit presse",
     "copyright": "© {{year}} {{studio}}",
     "motto": "Achetez-le une fois. Il est à vous.",
-    "wiki": "Wiki"
+    "wiki": "Wiki",
+    "merch": "Boutique"
   },
   "home": {
     "heroLede": "Nous faisons des jeux d’action nerveux et rejouables — et nous les vendons à l’ancienne. Un seul achat, à vous pour toujours, mises à jour gratuites. Pas de microtransactions, pas de service en ligne permanent, rien dans le jeu qui vous redemande de l’argent.",
@@ -127,7 +129,8 @@
   "meta": {
     "gamesDescription": "Tous les jeux de {{studio}}, avec la liste complète des boutiques pour chacun.",
     "devlogDescription": "Le journal de développement de {{studio}} — ce que nous construisons et pourquoi.",
-    "pressDescription": "Kit presse de {{studio}} — fiche technique, logos et contacts pour la presse et les créateurs."
+    "pressDescription": "Kit presse de {{studio}} — fiche technique, logos et contacts pour la presse et les créateurs.",
+    "merchDescription": "Merch officiel de {{studio}} — t-shirts, affiches et plus, fabriqués à la commande."
   },
   "studio": {
     "tagline": "Des jeux qui vous appartiennent.",
@@ -338,5 +341,67 @@
     "next": "Suivant",
     "status": "{{index}} sur {{total}}",
     "goTo": "Aller à la diapositive {{index}}"
+  },
+  "merch": {
+    "eyebrow": "La boutique",
+    "title": "Boutique",
+    "lede": "T-shirts, affiches et bricoles du studio — fabriqués à la commande, expédiés dans le monde entier.",
+    "openingSoonLead": "Bientôt",
+    "openingSoon": "La boutique n'est pas encore ouverte : tout est indiqué épuisé le temps de la mettre en place.",
+    "followTheDrop": "Suivez le devlog pour la sortie",
+    "soldOut": "Épuisé",
+    "unavailable": "Épuisé",
+    "addToCart": "Ajouter au panier",
+    "backToShop": "Retour à la boutique"
+  },
+  "cart": {
+    "title": "Panier",
+    "empty": "Votre panier est vide.",
+    "browse": "Parcourir la boutique",
+    "remove": "Retirer",
+    "subtotal": "Sous-total",
+    "checkout": "Paiement",
+    "working": "Traitement…",
+    "checkoutSoon": "Le paiement s'activera à l'ouverture de la boutique.",
+    "taxNote": "Les frais de port et les taxes sont calculés au paiement.",
+    "decrease": "Diminuer la quantité",
+    "increase": "Augmenter la quantité",
+    "quantity": "Quantité",
+    "cartLabel": "Panier ({{count}})"
+  },
+  "checkout": {
+    "title": "Paiement",
+    "backToCart": "Retour au panier",
+    "contactTitle": "Contact",
+    "email": "E-mail",
+    "shippingTitle": "Adresse de livraison",
+    "fullName": "Nom complet",
+    "phone": "Numéro de téléphone",
+    "address1": "Adresse",
+    "address2": "Appartement, bâtiment, etc. (facultatif)",
+    "city": "Ville",
+    "state": "État / Province",
+    "postal": "Code postal",
+    "country": "Pays",
+    "promoTitle": "Code promo",
+    "promoPlaceholder": "Saisir le code",
+    "promoApply": "Appliquer",
+    "promoSoon": "Les codes promo sont validés au lancement de la boutique.",
+    "paymentTitle": "Paiement",
+    "paymentPlaceholder": "Le paiement par carte apparaîtra ici au lancement de la boutique.",
+    "paymentNote": "Sécurisé par Stripe — les données de votre carte ne transitent jamais par nos serveurs.",
+    "summaryTitle": "Récapitulatif de la commande",
+    "subtotal": "Sous-total",
+    "shipping": "Livraison",
+    "tax": "Taxes",
+    "total": "Total",
+    "calculated": "Calculé au paiement",
+    "pay": "Payer {{amount}}",
+    "notReady": "Le paiement s’ouvre au lancement de la boutique.",
+    "paying": "Traitement…",
+    "paid": "Paiement reçu",
+    "paidLead": "Merci — votre commande est confirmée. Un reçu arrive dans votre boîte mail.",
+    "continueShopping": "Retour à la boutique",
+    "payError": "Le paiement n’a pas pu aboutir. Vérifiez vos informations et réessayez."
   }
 }

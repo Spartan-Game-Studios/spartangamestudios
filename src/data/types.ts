@@ -85,6 +85,36 @@ export interface DevlogPost {
   visibility: Visibility;
 }
 
+export interface MerchImage {
+  src: string;
+  alt: string;
+}
+
+/**
+ * A merch item, in a deliberately provider-agnostic shape. Today these are
+ * hand-authored stubs and everything is `available: false` (the shop isn't
+ * open); later this same shape is what a merch provider adapter (Yoycol first)
+ * will produce, so the pages don't change when the catalogue goes live.
+ */
+export type MerchCategory = 'apparel' | 'print' | 'accessory' | 'other';
+
+export interface MerchProduct {
+  slug: string;
+  name: string;
+  /** One-line hook for the card. */
+  tagline: string;
+  /** A paragraph or two for the product page. */
+  description?: string;
+  category: MerchCategory;
+  /** Display price in `currency`, major units (24 => $24.00). */
+  price: number;
+  /** ISO-4217, e.g. "USD". */
+  currency: string;
+  image?: MerchImage;
+  /** Buyable right now. False for every item until the shop opens. */
+  available: boolean;
+}
+
 export interface SocialLink {
   label: string;
   url: string;

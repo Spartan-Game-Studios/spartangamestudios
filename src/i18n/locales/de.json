@@ -6,7 +6,8 @@
     "about": "Studio",
     "primaryLabel": "Hauptnavigation",
     "home": "Spartan Game Studios — Startseite",
-    "skipToContent": "Zum Inhalt springen"
+    "skipToContent": "Zum Inhalt springen",
+    "merch": "Shop"
   },
   "common": {
     "language": "Sprache",
@@ -45,7 +46,8 @@
     "pressKit": "Presse-Kit",
     "copyright": "© {{year}} {{studio}}",
     "motto": "Einmal kaufen. Für immer besitzen.",
-    "wiki": "Wiki"
+    "wiki": "Wiki",
+    "merch": "Shop"
   },
   "home": {
     "heroLede": "Wir bauen kompakte, wiederspielbare Actionspiele — und verkaufen sie auf die alte Art. Ein Kauf, für immer deins, Updates kostenlos. Keine Mikrotransaktionen, kein Live-Service, nichts im Spiel, das dich nach Geld fragt.",
@@ -127,7 +129,8 @@
   "meta": {
     "gamesDescription": "Alle Spiele von {{studio}}, jeweils mit der vollständigen Liste der Shops.",
     "devlogDescription": "Entwicklungstagebuch von {{studio}} — woran wir bauen und warum.",
-    "pressDescription": "Presse-Kit von {{studio}} — Datenblatt, Logos und Kontakt für Presse und Creator."
+    "pressDescription": "Presse-Kit von {{studio}} — Datenblatt, Logos und Kontakt für Presse und Creator.",
+    "merchDescription": "Offizieller {{studio}}-Merch – Shirts, Prints und mehr, auf Bestellung gefertigt."
   },
   "studio": {
     "tagline": "Spiele, die dir gehören.",
@@ -338,5 +341,67 @@
     "next": "Weiter",
     "status": "{{index}} von {{total}}",
     "goTo": "Zu Folie {{index}}"
+  },
+  "merch": {
+    "eyebrow": "Der Shop",
+    "title": "Shop",
+    "lede": "Shirts, Prints und Kleinkram aus dem Studio – auf Bestellung gefertigt, weltweit versandt.",
+    "openingSoonLead": "Bald verfügbar",
+    "openingSoon": "Der Shop ist noch nicht offen – alles ist als ausverkauft markiert, während wir ihn einrichten.",
+    "followTheDrop": "Folge dem Devlog für den Drop",
+    "soldOut": "Ausverkauft",
+    "unavailable": "Ausverkauft",
+    "addToCart": "In den Warenkorb",
+    "backToShop": "Zurück zum Shop"
+  },
+  "cart": {
+    "title": "Warenkorb",
+    "empty": "Dein Warenkorb ist leer.",
+    "browse": "Zum Shop",
+    "remove": "Entfernen",
+    "subtotal": "Zwischensumme",
+    "checkout": "Zur Kasse",
+    "working": "Wird verarbeitet…",
+    "checkoutSoon": "Die Kasse öffnet, sobald der Shop startet.",
+    "taxNote": "Versand und Steuern werden an der Kasse berechnet.",
+    "decrease": "Menge verringern",
+    "increase": "Menge erhöhen",
+    "quantity": "Menge",
+    "cartLabel": "Warenkorb ({{count}})"
+  },
+  "checkout": {
+    "title": "Kasse",
+    "backToCart": "Zurück zum Warenkorb",
+    "contactTitle": "Kontakt",
+    "email": "E-Mail",
+    "shippingTitle": "Lieferadresse",
+    "fullName": "Vollständiger Name",
+    "phone": "Telefonnummer",
+    "address1": "Adresse",
+    "address2": "Wohnung, Etage usw. (optional)",
+    "city": "Stadt",
+    "state": "Bundesland / Provinz",
+    "postal": "Postleitzahl",
+    "country": "Land",
+    "promoTitle": "Gutscheincode",
+    "promoPlaceholder": "Code eingeben",
+    "promoApply": "Anwenden",
+    "promoSoon": "Gutscheincodes werden geprüft, sobald der Shop live ist.",
+    "paymentTitle": "Zahlung",
+    "paymentPlaceholder": "Die Kartenzahlung erscheint hier, sobald der Shop live ist.",
+    "paymentNote": "Gesichert durch Stripe – deine Kartendaten erreichen nie unsere Server.",
+    "summaryTitle": "Bestellübersicht",
+    "subtotal": "Zwischensumme",
+    "shipping": "Versand",
+    "tax": "Steuern",
+    "total": "Gesamt",
+    "calculated": "Wird bei der Zahlung berechnet",
+    "pay": "{{amount}} bezahlen",
+    "notReady": "Die Kasse öffnet, sobald der Shop startet.",
+    "paying": "Wird verarbeitet…",
+    "paid": "Zahlung erhalten",
+    "paidLead": "Danke – deine Bestellung ist bestätigt. Eine Quittung ist per E-Mail unterwegs.",
+    "continueShopping": "Zurück zum Shop",
+    "payError": "Die Zahlung konnte nicht abgeschlossen werden. Bitte prüfe deine Angaben und versuche es erneut."
   }
 }

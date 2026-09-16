@@ -6,7 +6,8 @@
     "about": "Estudio",
     "primaryLabel": "Principal",
     "home": "Spartan Game Studios — inicio",
-    "skipToContent": "Saltar al contenido"
+    "skipToContent": "Saltar al contenido",
+    "merch": "Tienda"
   },
   "common": {
     "language": "Idioma",
@@ -45,7 +46,8 @@
     "pressKit": "Kit de prensa",
     "copyright": "© {{year}} {{studio}}",
     "motto": "Cómpralo una vez. Es tuyo.",
-    "wiki": "Wiki"
+    "wiki": "Wiki",
+    "merch": "Tienda"
   },
   "home": {
     "heroLede": "Hacemos juegos de acción compactos y rejugables, y los vendemos como se hacía antes. Una compra, tuyo para siempre, actualizaciones gratis. Sin microtransacciones, sin servicio en directo, sin nada dentro del juego pidiéndote dinero.",
@@ -127,7 +129,8 @@
   "meta": {
     "gamesDescription": "Todos los juegos de {{studio}}, con la lista completa de tiendas de cada uno.",
     "devlogDescription": "Diario de desarrollo de {{studio}}: qué estamos construyendo y por qué.",
-    "pressDescription": "Kit de prensa de {{studio}}: ficha técnica, logotipos y contacto para prensa y creadores."
+    "pressDescription": "Kit de prensa de {{studio}}: ficha técnica, logotipos y contacto para prensa y creadores.",
+    "merchDescription": "Merch oficial de {{studio}}: camisetas, láminas y más, hechos por encargo."
   },
   "studio": {
     "tagline": "Juegos que son tuyos.",
@@ -338,5 +341,67 @@
     "next": "Siguiente",
     "status": "{{index}} de {{total}}",
     "goTo": "Ir a la diapositiva {{index}}"
+  },
+  "merch": {
+    "eyebrow": "La tienda",
+    "title": "Tienda",
+    "lede": "Camisetas, láminas y rarezas del estudio: hechas por encargo y enviadas a todo el mundo.",
+    "openingSoonLead": "Próximamente",
+    "openingSoon": "La tienda aún no está abierta: todo aparece agotado mientras la preparamos.",
+    "followTheDrop": "Sigue el devlog para el lanzamiento",
+    "soldOut": "Agotado",
+    "unavailable": "Agotado",
+    "addToCart": "Añadir al carrito",
+    "backToShop": "Volver a la tienda"
+  },
+  "cart": {
+    "title": "Carrito",
+    "empty": "Tu carrito está vacío.",
+    "browse": "Explorar la tienda",
+    "remove": "Quitar",
+    "subtotal": "Subtotal",
+    "checkout": "Pagar",
+    "working": "Procesando…",
+    "checkoutSoon": "El pago se activará cuando abra la tienda.",
+    "taxNote": "El envío y los impuestos se calculan al pagar.",
+    "decrease": "Reducir cantidad",
+    "increase": "Aumentar cantidad",
+    "quantity": "Cantidad",
+    "cartLabel": "Carrito ({{count}})"
+  },
+  "checkout": {
+    "title": "Pago",
+    "backToCart": "Volver al carrito",
+    "contactTitle": "Contacto",
+    "email": "Correo electrónico",
+    "shippingTitle": "Dirección de envío",
+    "fullName": "Nombre completo",
+    "phone": "Número de teléfono",
+    "address1": "Dirección",
+    "address2": "Apartamento, suite, etc. (opcional)",
+    "city": "Ciudad",
+    "state": "Estado / Provincia",
+    "postal": "Código postal",
+    "country": "País",
+    "promoTitle": "Código promocional",
+    "promoPlaceholder": "Introduce el código",
+    "promoApply": "Aplicar",
+    "promoSoon": "Los códigos promocionales se validan cuando la tienda esté activa.",
+    "paymentTitle": "Pago",
+    "paymentPlaceholder": "El pago con tarjeta aparecerá aquí cuando la tienda esté activa.",
+    "paymentNote": "Protegido por Stripe: los datos de tu tarjeta nunca pasan por nuestros servidores.",
+    "summaryTitle": "Resumen del pedido",
+    "subtotal": "Subtotal",
+    "shipping": "Envío",
+    "tax": "Impuestos",
+    "total": "Total",
+    "calculated": "Se calcula al pagar",
+    "pay": "Pagar {{amount}}",
+    "notReady": "El pago se habilita cuando la tienda esté activa.",
+    "paying": "Procesando…",
+    "paid": "Pago recibido",
+    "paidLead": "Gracias: tu pedido está confirmado. Recibirás un recibo en tu correo.",
+    "continueShopping": "Volver a la tienda",
+    "payError": "No pudimos completar el pago. Revisa tus datos e inténtalo de nuevo."
   }
 }

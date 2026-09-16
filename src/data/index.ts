@@ -1,10 +1,12 @@
 import { games } from './games';
 import { devlog } from './devlog';
-import type { DevlogPost, Game, GameStatus, Storefront } from './types';
+import { merch } from './merch';
+import type { DevlogPost, Game, GameStatus, MerchProduct, Storefront } from './types';
 
 export * from './types';
 export { games } from './games';
 export { devlog } from './devlog';
+export { merch } from './merch';
 export { studio, ownershipPledge } from './studio';
 
 const STATUS_ORDER: Record<GameStatus, number> = {
@@ -49,6 +51,25 @@ export function listedPosts(): DevlogPost[] {
 
 export function getPost(slug: string): DevlogPost | undefined {
   return devlog.find((post) => post.slug === slug);
+}
+
+/** The merch catalogue, available items first (all sold out for now). */
+export function listedMerch(): MerchProduct[] {
+  return [...merch].sort((a, b) => Number(b.available) - Number(a.available));
+}
+
+/** Whether any merch item can currently be bought. */
+export function merchIsOpen(): boolean {
+  return merch.some((item) => item.available);
+}
+
+export function getMerch(slug: string): MerchProduct | undefined {
+  return merch.find((item) => item.slug === slug);
+}
+
+/** Formats a merch price like "$27.00" in the item's own currency. */
+export function formatPrice(amount: number, currency: string, locale = 'en'): string {
+  return new Intl.NumberFormat(locale, { style: 'currency', currency }).format(amount);
 }
 
 export function formatDate(iso: string, locale = 'en'): string {

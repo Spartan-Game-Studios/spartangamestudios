@@ -1,8 +1,9 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { routes } from './routes';
 import { AuthProvider } from '@/auth/AuthContext';
+import { CartProvider } from '@/cart/CartContext';
 import { games } from '@/data';
 import i18n from '@/i18n';
 import { LOCALE_CODES } from '@/i18n/locales';
@@ -13,7 +14,9 @@ function renderAt(path: string) {
   // same wrapper main.tsx puts around the router in production.
   return render(
     <AuthProvider>
-      <RouterProvider router={router} />
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
     </AuthProvider>,
   );
 }
@@ -63,6 +66,21 @@ describe('routing', () => {
     ).toBeInTheDocument();
   });
 
+  it('renders the merch index and a product page', async () => {
+    renderAt('/merch');
+    expect(await screen.findByRole('heading', { level: 1, name: 'Merch' })).toBeInTheDocument();
+
+    renderAt('/merch/boothill-wanted-tee');
+    expect(
+      await screen.findByRole('heading', { level: 1, name: /Boothill "Wanted" Tee/ }),
+    ).toBeInTheDocument();
+  });
+
+  it('404s an unknown merch slug rather than crashing', async () => {
+    renderAt('/merch/not-a-product');
+    expect(await screen.findByText('404')).toBeInTheDocument();
+  });
+
   it('falls through to 404 for unknown paths', async () => {
     renderAt('/nothing-here');
     expect(await screen.findByText('404')).toBeInTheDocument();
@@ -81,8 +99,37 @@ describe('routing', () => {
 });
 
 describe('localised routing', () => {
+  afterEach(() => localStorage.clear());
+
+  it('renders the checkout page (with a seeded cart) in every locale without raw keys', async () => {
+    // /checkout redirects to /cart when the cart is empty, so seed a line first.
+    localStorage.setItem('sgs-cart', JSON.stringify([{ slug: 'boothill-wanted-tee', qty: 2 }]));
+    for (const code of LOCALE_CODES) {
+      await i18n.changeLanguage(code);
+      const { unmount, container } = renderAt('/checkout');
+      await screen.findByRole('heading', { level: 1 });
+      // The shipping + card + promo sections and the order summary must render.
+      expect(screen.getByLabelText(i18n.t('checkout.fullName'))).toBeInTheDocument();
+      expect(container.textContent, `${code} /checkout`).not.toMatch(
+        /\b(nav|common|status|stores|footer|home|games|gameDetail|merch|cart|checkout|devlog|press|about|notFound|meta)\.[a-zA-Z]/,
+      );
+      unmount();
+    }
+  });
+
   it('renders every route in every locale without falling back to a raw key', async () => {
-    const paths = ['/', '/games', '/games/lantern', '/devlog', '/press', '/about', '/nope'];
+    const paths = [
+      '/',
+      '/games',
+      '/games/lantern',
+      '/merch',
+      '/merch/boothill-wanted-tee',
+      '/cart',
+      '/devlog',
+      '/press',
+      '/about',
+      '/nope',
+    ];
 
     for (const code of LOCALE_CODES) {
       await i18n.changeLanguage(code);
@@ -91,7 +138,7 @@ describe('localised routing', () => {
         await screen.findByRole('heading', { level: 1 });
         // A missing key renders as its own dotted path — catch that anywhere.
         expect(container.textContent, `${code} ${path}`).not.toMatch(
-          /\b(nav|common|status|stores|footer|home|games|gameDetail|devlog|press|about|notFound|meta)\.[a-zA-Z]/,
+          /\b(nav|common|status|stores|footer|home|games|gameDetail|merch|cart|checkout|devlog|press|about|notFound|meta)\.[a-zA-Z]/,
         );
         unmount();
       }

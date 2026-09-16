@@ -3,6 +3,10 @@ import { Layout } from '@/components/Layout/Layout';
 import { Home } from '@/pages/Home/Home';
 import { Games } from '@/pages/Games/Games';
 import { GameDetail } from '@/pages/GameDetail/GameDetail';
+import { Merch } from '@/pages/Merch/Merch';
+import { MerchDetail } from '@/pages/Merch/MerchDetail';
+import { Cart } from '@/pages/Cart/Cart';
+import { Checkout } from '@/pages/Checkout/Checkout';
 import { Devlog } from '@/pages/Devlog/Devlog';
 import { DevlogPost } from '@/pages/Devlog/DevlogPost';
 import { Press } from '@/pages/Press/Press';
@@ -22,6 +26,10 @@ export const routes = [
       { index: true, element: <Home /> },
       { path: 'games', element: <Games /> },
       { path: 'games/:slug', element: <GameDetail /> },
+      { path: 'merch', element: <Merch /> },
+      { path: 'merch/:slug', element: <MerchDetail /> },
+      { path: 'cart', element: <Cart /> },
+      { path: 'checkout', element: <Checkout /> },
       { path: 'devlog', element: <Devlog /> },
       { path: 'devlog/:slug', element: <DevlogPost /> },
       { path: 'press', element: <Press /> },
