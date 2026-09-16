@@ -6,6 +6,7 @@ import { createMemoryRouter, MemoryRouter, Route, Routes, RouterProvider } from 
 import i18n from '@/i18n';
 import { routes } from '@/routes';
 import { AuthProvider } from './AuthContext';
+import { CartProvider } from '@/cart/CartContext';
 import { Account } from '@/pages/Account/Account';
 import { SignIn } from '@/pages/Account/SignIn';
 
@@ -114,7 +115,9 @@ function renderAt(path: string) {
   return render(
     <I18nextProvider i18n={i18n}>
       <AuthProvider>
-        <RouterProvider router={router} />
+        <CartProvider>
+          <RouterProvider router={router} />
+        </CartProvider>
       </AuthProvider>
     </I18nextProvider>,
   );
