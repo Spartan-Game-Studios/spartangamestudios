@@ -16,7 +16,7 @@ function getStripe(pk: string): Promise<Stripe | null> {
   return stripePromise;
 }
 
-/** Match the card field to the studio's dark/gold theme. */
+/** Match the card field to the studio's dark/gold theme + body font (Barlow). */
 const appearance: Appearance = {
   theme: 'night',
   variables: {
@@ -24,10 +24,30 @@ const appearance: Appearance = {
     colorBackground: '#0a0a0b',
     colorText: '#e8e6e1',
     colorTextSecondary: '#9a938a',
-    fontFamily: 'inherit',
+    fontFamily: "'Barlow', system-ui, sans-serif",
     borderRadius: '4px',
   },
 };
+
+/**
+ * Register the site's body font (Barlow) inside the Stripe iframe so the card
+ * fields match the rest of the page rather than falling back to a system sans.
+ * `inherit` can't cross the iframe boundary — Stripe has to fetch the font
+ * itself, which it does over HTTPS from our own origin (served from
+ * /public/fonts, same self-hosted files @fontsource bundles for the site).
+ *
+ * This resolves in production; during local `vite preview` the HTTPS Stripe
+ * iframe can't fetch an http://localhost file, so the card gracefully falls
+ * back to the system font there.
+ */
+function barlowFonts() {
+  if (typeof window === 'undefined') return undefined;
+  const { origin } = window.location;
+  return [
+    { family: 'Barlow', src: `url(${origin}/fonts/barlow-400.woff2)`, weight: '400' },
+    { family: 'Barlow', src: `url(${origin}/fonts/barlow-600.woff2)`, weight: '600' },
+  ];
+}
 
 /**
  * The embedded Stripe card widget. Runs in Elements "deferred" mode: it renders
@@ -64,6 +84,7 @@ export function PaymentSection({
           amount: amountCents,
           currency: currency.toLowerCase(),
           appearance,
+          fonts: barlowFonts(),
         }}
       >
         <PaymentElement options={{ layout: 'tabs' }} />
