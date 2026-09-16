@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { loadStripe, type Stripe, type Appearance } from '@stripe/stripe-js';
+import { loadStripe, type Stripe, type Appearance, type CustomFontSource } from '@stripe/stripe-js';
 import { Elements, PaymentElement } from '@stripe/react-stripe-js';
 import { useTranslation } from 'react-i18next';
 import { stripePublishableKey } from '@/cart/stripe';
@@ -57,8 +57,8 @@ const appearance: Appearance = {
  * iframe can't fetch an http://localhost file, so the card gracefully falls
  * back to the system font there.
  */
-function barlowFonts() {
-  if (typeof window === 'undefined') return undefined;
+function barlowFonts(): CustomFontSource[] {
+  if (typeof window === 'undefined') return [];
   const { origin } = window.location;
   return [
     { family: 'Barlow', src: `url(${origin}/fonts/barlow-400.woff2)`, weight: '400' },
