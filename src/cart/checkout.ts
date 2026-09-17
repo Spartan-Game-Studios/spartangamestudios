@@ -56,3 +56,39 @@ export async function createPaymentIntent(payload: CheckoutPayload): Promise<Pay
   }
   return (await res.json()) as PaymentIntentResult;
 }
+
+export interface QuoteResult {
+  currency: string;
+  breakdown: { subtotal: number; discount: number; tax: number; shipping: number; total: number };
+  /** null = no code entered; {valid:false} = entered but unknown/expired. */
+  promo: { code: string; valid: boolean } | null;
+}
+
+/**
+ * Price-only preview: ask the backend what a cart (optionally with a promo code)
+ * would cost, WITHOUT creating a PaymentIntent. Lets the checkout show a promo's
+ * discount the moment it's applied. Same authoritative pricing as the real
+ * charge, so the previewed total is what `createPaymentIntent` will charge.
+ */
+export async function getQuote(
+  payload: Pick<CheckoutPayload, 'items' | 'promoCode'>,
+): Promise<QuoteResult> {
+  const API = apiBase();
+  if (!API) throw new Error('checkout-not-configured');
+  const res = await fetch(`${API}/quote`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) {
+    let message = `quote-failed-${res.status}`;
+    try {
+      const body = (await res.json()) as { error?: string };
+      if (body?.error) message = body.error;
+    } catch {
+      // keep the status-based message
+    }
+    throw new Error(message);
+  }
+  return (await res.json()) as QuoteResult;
+}

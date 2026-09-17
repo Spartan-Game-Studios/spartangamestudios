@@ -5,7 +5,12 @@ import { Elements, PaymentElement } from '@stripe/react-stripe-js';
 import { Container } from '@/components/Container/Container';
 import { useCart } from '@/cart/useCart';
 import { stripeConfigured } from '@/cart/stripe';
-import { type CheckoutPayload } from '@/cart/checkout';
+import {
+  checkoutConfigured,
+  getQuote,
+  type CheckoutPayload,
+  type QuoteResult,
+} from '@/cart/checkout';
 import { formatPrice } from '@/data';
 import { useDocumentMeta } from '@/lib/useDocumentMeta';
 import page from '@/pages/shared/page.module.css';
@@ -77,7 +82,10 @@ export function Checkout() {
 
   const [form, setForm] = useState<Form>(EMPTY);
   const [promo, setPromo] = useState('');
-  const [promoMsg, setPromoMsg] = useState<string | null>(null);
+  const [quote, setQuote] = useState<QuoteResult | null>(null);
+  const [promoState, setPromoState] = useState<'idle' | 'applying' | 'invalid' | 'soon' | 'error'>(
+    'idle',
+  );
   const [paid, setPaid] = useState(false);
 
   useDocumentMeta({
@@ -102,7 +110,14 @@ export function Checkout() {
   }, [locale]);
 
   const configured = stripeConfigured();
-  const amountCents = Math.round(subtotal * 100);
+  // A validated promo discounts the preview and the amount the card widget shows;
+  // the backend re-prices authoritatively at pay time, so this stays a preview.
+  // The backend breakdown is in minor units (cents); the cart/money() work in
+  // major units, so convert with /100.
+  const appliedQuote = quote?.promo?.valid ? quote : null;
+  const discount = appliedQuote ? appliedQuote.breakdown.discount / 100 : 0;
+  const effectiveTotal = appliedQuote ? appliedQuote.breakdown.total / 100 : subtotal;
+  const amountCents = Math.round(effectiveTotal * 100);
   const cur = (currency || 'usd').toLowerCase();
 
   // Stable across keystrokes so we don't thrash elements.update: only the amount
@@ -146,12 +161,41 @@ export function Checkout() {
   const set = (key: keyof Form) => (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setForm((f) => ({ ...f, [key]: e.target.value }));
 
-  const onApplyPromo = (e: FormEvent) => {
+  // Editing the code clears any previously applied discount.
+  const onPromoChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPromo(e.target.value);
+    if (quote || promoState !== 'idle') {
+      setQuote(null);
+      setPromoState('idle');
+    }
+  };
+
+  const onApplyPromo = async (e: FormEvent) => {
     e.preventDefault();
-    // The code is validated by the backend when it prices the PaymentIntent; the
-    // discount comes back on the order. Until the backend is live we just
-    // acknowledge the entry rather than pretend to discount anything here.
-    setPromoMsg(promo.trim() ? 'checkout.promoSoon' : null);
+    const code = promo.trim();
+    if (!code) {
+      setQuote(null);
+      setPromoState('idle');
+      return;
+    }
+    // Previewing the discount needs the backend; while it's unconfigured (the
+    // current public state) we just say the code is checked once the shop is live.
+    if (!checkoutConfigured()) {
+      setPromoState('soon');
+      return;
+    }
+    setPromoState('applying');
+    try {
+      const q = await getQuote({
+        items: lines.map((l) => ({ slug: l.product.slug, qty: l.qty })),
+        promoCode: code,
+      });
+      setQuote(q);
+      setPromoState(q.promo?.valid ? 'idle' : 'invalid');
+    } catch {
+      setQuote(null);
+      setPromoState('error');
+    }
   };
 
   // Guards a stray Enter in the address form — paying is the Pay button's job.
@@ -324,15 +368,34 @@ export function Checkout() {
               className={styles.input}
               type="text"
               value={promo}
-              onChange={(e) => setPromo(e.target.value)}
+              onChange={onPromoChange}
               placeholder={t('checkout.promoPlaceholder')}
               aria-label={t('checkout.promoTitle')}
             />
-            <button type="button" className={styles.promoApply} onClick={onApplyPromo}>
-              {t('checkout.promoApply')}
+            <button
+              type="button"
+              className={styles.promoApply}
+              onClick={(e) => void onApplyPromo(e)}
+              disabled={promoState === 'applying'}
+            >
+              {promoState === 'applying' ? t('checkout.promoApplying') : t('checkout.promoApply')}
             </button>
           </div>
-          {promoMsg ? <p className={styles.note}>{t(promoMsg)}</p> : null}
+          {appliedQuote ? (
+            <p className={styles.promoOk} role="status">
+              {t('checkout.promoApplied', { code: appliedQuote.promo?.code ?? promo.trim() })}
+            </p>
+          ) : promoState === 'invalid' ? (
+            <p className={styles.payError} role="alert">
+              {t('checkout.promoInvalid')}
+            </p>
+          ) : promoState === 'error' ? (
+            <p className={styles.payError} role="alert">
+              {t('checkout.promoErrorMsg')}
+            </p>
+          ) : promoState === 'soon' ? (
+            <p className={styles.note}>{t('checkout.promoSoon')}</p>
+          ) : null}
         </section>
 
         <section className={styles.section}>
@@ -369,6 +432,12 @@ export function Checkout() {
             <dt>{t('checkout.subtotal')}</dt>
             <dd>{money(subtotal)}</dd>
           </div>
+          {discount > 0 ? (
+            <div className={styles.totalRow}>
+              <dt>{t('checkout.discount')}</dt>
+              <dd className={styles.discountValue}>&minus;{money(discount)}</dd>
+            </div>
+          ) : null}
           <div className={styles.totalRow}>
             <dt>{t('checkout.shipping')}</dt>
             <dd className={styles.pending}>{t('checkout.calculated')}</dd>
@@ -379,16 +448,16 @@ export function Checkout() {
           </div>
           <div className={`${styles.totalRow} ${styles.grandTotal}`}>
             <dt>{t('checkout.total')}</dt>
-            <dd>{money(subtotal)}</dd>
+            <dd>{money(effectiveTotal)}</dd>
           </div>
         </dl>
 
         {configured ? (
-          <PayButton payload={buildPayload} total={money(subtotal)} onPaid={onPaid} />
+          <PayButton payload={buildPayload} total={money(effectiveTotal)} onPaid={onPaid} />
         ) : (
           <>
             <button type="button" className={styles.pay} disabled>
-              {t('checkout.pay', { amount: money(subtotal) })}
+              {t('checkout.pay', { amount: money(effectiveTotal) })}
             </button>
             <p className={styles.note}>{t('checkout.notReady')}</p>
           </>
