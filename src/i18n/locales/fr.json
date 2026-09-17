@@ -403,5 +403,27 @@
     "paidLead": "Merci — votre commande est confirmée. Un reçu arrive dans votre boîte mail.",
     "continueShopping": "Retour à la boutique",
     "payError": "Le paiement n’a pas pu aboutir. Vérifiez vos informations et réessayez."
+  },
+  "orders": {
+    "title": "Commandes",
+    "loading": "Chargement de vos commandes…",
+    "errorMsg": "Impossible de charger vos commandes. Réessayez.",
+    "empty": "Aucune commande pour l’instant.",
+    "browse": "Voir la boutique",
+    "orderNumber": "Commande {{id}}",
+    "placed": "Passée le {{date}}",
+    "trackingTitle": "Suivi",
+    "status": {
+      "received": "Commande reçue",
+      "printed": "Imprimée et emballée",
+      "dispatched": "Expédiée",
+      "in_transit": "En transit",
+      "out_for_delivery": "En cours de livraison",
+      "delivered": "Livrée",
+      "paid": "Payée",
+      "processing": "En traitement",
+      "shipped": "Expédiée",
+      "canceled": "Annulée"
+    }
   }
 }

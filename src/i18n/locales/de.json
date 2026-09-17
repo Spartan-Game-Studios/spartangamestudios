@@ -403,5 +403,27 @@
     "paidLead": "Danke – deine Bestellung ist bestätigt. Eine Quittung ist per E-Mail unterwegs.",
     "continueShopping": "Zurück zum Shop",
     "payError": "Die Zahlung konnte nicht abgeschlossen werden. Bitte prüfe deine Angaben und versuche es erneut."
+  },
+  "orders": {
+    "title": "Bestellungen",
+    "loading": "Deine Bestellungen werden geladen…",
+    "errorMsg": "Deine Bestellungen konnten nicht geladen werden. Bitte erneut versuchen.",
+    "empty": "Noch keine Bestellungen.",
+    "browse": "Zum Shop",
+    "orderNumber": "Bestellung {{id}}",
+    "placed": "Aufgegeben am {{date}}",
+    "trackingTitle": "Sendungsverfolgung",
+    "status": {
+      "received": "Bestellung eingegangen",
+      "printed": "Gedruckt & verpackt",
+      "dispatched": "Versandt",
+      "in_transit": "Unterwegs",
+      "out_for_delivery": "In Zustellung",
+      "delivered": "Zugestellt",
+      "paid": "Bezahlt",
+      "processing": "In Bearbeitung",
+      "shipped": "Versandt",
+      "canceled": "Storniert"
+    }
   }
 }

@@ -323,5 +323,27 @@
     "paidLead": "Thank you — your order is confirmed. A receipt is on its way to your email.",
     "continueShopping": "Back to the shop",
     "payError": "We couldn’t complete the payment. Please check your details and try again."
+  },
+  "orders": {
+    "title": "Orders",
+    "loading": "Loading your orders…",
+    "errorMsg": "We couldn’t load your orders. Please try again.",
+    "empty": "No orders yet.",
+    "browse": "Browse the shop",
+    "orderNumber": "Order {{id}}",
+    "placed": "Placed {{date}}",
+    "trackingTitle": "Tracking",
+    "status": {
+      "received": "Order received",
+      "printed": "Printed & packed",
+      "dispatched": "Dispatched",
+      "in_transit": "In transit",
+      "out_for_delivery": "Out for delivery",
+      "delivered": "Delivered",
+      "paid": "Paid",
+      "processing": "Processing",
+      "shipped": "Shipped",
+      "canceled": "Canceled"
+    }
   }
 }
