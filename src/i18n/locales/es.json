@@ -403,5 +403,27 @@
     "paidLead": "Gracias: tu pedido está confirmado. Recibirás un recibo en tu correo.",
     "continueShopping": "Volver a la tienda",
     "payError": "No pudimos completar el pago. Revisa tus datos e inténtalo de nuevo."
+  },
+  "orders": {
+    "title": "Pedidos",
+    "loading": "Cargando tus pedidos…",
+    "errorMsg": "No pudimos cargar tus pedidos. Inténtalo de nuevo.",
+    "empty": "Aún no tienes pedidos.",
+    "browse": "Ver la tienda",
+    "orderNumber": "Pedido {{id}}",
+    "placed": "Realizado el {{date}}",
+    "trackingTitle": "Seguimiento",
+    "status": {
+      "received": "Pedido recibido",
+      "printed": "Impreso y empaquetado",
+      "dispatched": "Despachado",
+      "in_transit": "En tránsito",
+      "out_for_delivery": "En reparto",
+      "delivered": "Entregado",
+      "paid": "Pagado",
+      "processing": "Procesando",
+      "shipped": "Enviado",
+      "canceled": "Cancelado"
+    }
   }
 }
