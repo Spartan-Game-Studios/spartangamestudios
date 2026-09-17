@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { formatPrice, type MerchProduct } from '@/data';
 import { useCart } from '@/cart/useCart';
+import { MerchGallery } from '@/components/MerchGallery/MerchGallery';
 import styles from './MerchCard.module.css';
 
 export function MerchCard({ product }: { product: MerchProduct }) {
@@ -12,12 +13,12 @@ export function MerchCard({ product }: { product: MerchProduct }) {
   return (
     <article className={`${styles.card} ${product.available ? '' : styles.unavailable}`}>
       <div className={styles.media}>
-        {product.image ? (
-          <img
-            className={styles.art}
-            src={product.image.src}
-            alt={product.image.alt}
-            loading="lazy"
+        {product.images?.length ? (
+          <MerchGallery
+            images={product.images}
+            label={product.name}
+            variant="card"
+            dimmed={!product.available}
           />
         ) : (
           <div className={`${styles.art} ${styles.placeholder}`} aria-hidden="true">

@@ -1,7 +1,7 @@
 import { games } from './games';
 import { devlog } from './devlog';
 import { merch } from './merch';
-import type { DevlogPost, Game, GameStatus, MerchProduct, Storefront } from './types';
+import type { DevlogPost, Game, GameStatus, MerchImage, MerchProduct, Storefront } from './types';
 
 export * from './types';
 export { games } from './games';
@@ -65,6 +65,11 @@ export function merchIsOpen(): boolean {
 
 export function getMerch(slug: string): MerchProduct | undefined {
   return merch.find((item) => item.slug === slug);
+}
+
+/** The cover image (first of the gallery), or undefined when a product has none. */
+export function merchCover(product: MerchProduct): MerchImage | undefined {
+  return product.images?.[0];
 }
 
 /** Formats a merch price like "$27.00" in the item's own currency. */

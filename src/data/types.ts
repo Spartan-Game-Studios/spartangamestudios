@@ -110,7 +110,9 @@ export interface MerchProduct {
   price: number;
   /** ISO-4217, e.g. "USD". */
   currency: string;
-  image?: MerchImage;
+  /** Product photos; the first is the cover. A Yoycol adapter will fill these
+   *  with real product shots later — for now they're placeholder art. */
+  images?: MerchImage[];
   /** Buyable right now. False for every item until the shop opens. */
   available: boolean;
 }

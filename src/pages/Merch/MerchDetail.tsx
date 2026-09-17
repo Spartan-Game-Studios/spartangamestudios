@@ -1,8 +1,9 @@
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Container } from '@/components/Container/Container';
-import { getMerch, formatPrice } from '@/data';
+import { getMerch, formatPrice, merchCover } from '@/data';
 import { useCart } from '@/cart/useCart';
+import { MerchGallery } from '@/components/MerchGallery/MerchGallery';
 import { useDocumentMeta } from '@/lib/useDocumentMeta';
 import { NotFound } from '@/pages/NotFound/NotFound';
 import styles from './MerchDetail.module.css';
@@ -20,12 +21,13 @@ function MerchDetailView({ slug }: { slug: string }) {
   const { add } = useCart();
   const product = getMerch(slug)!;
   const locale = i18n.resolvedLanguage ?? i18n.language;
+  const cover = merchCover(product);
 
   useDocumentMeta({
     title: product.name,
     description: product.tagline,
     path: `/merch/${slug}`,
-    ...(product.image ? { image: product.image.src } : {}),
+    ...(cover ? { image: cover.src } : {}),
   });
 
   return (
@@ -37,8 +39,13 @@ function MerchDetailView({ slug }: { slug: string }) {
 
         <div className={styles.layout}>
           <div className={styles.media}>
-            {product.image ? (
-              <img className={styles.art} src={product.image.src} alt={product.image.alt} />
+            {product.images?.length ? (
+              <MerchGallery
+                images={product.images}
+                label={product.name}
+                variant="detail"
+                dimmed={!product.available}
+              />
             ) : (
               <div className={`${styles.art} ${styles.placeholder}`} aria-hidden="true">
                 <span className={styles.placeholderMark}>{product.name.charAt(0)}</span>

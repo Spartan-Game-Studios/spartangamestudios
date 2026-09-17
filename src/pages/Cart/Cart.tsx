@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Container } from '@/components/Container/Container';
 import { useCart } from '@/cart/useCart';
-import { formatPrice } from '@/data';
+import { formatPrice, merchCover } from '@/data';
 import { useDocumentMeta } from '@/lib/useDocumentMeta';
 import page from '@/pages/shared/page.module.css';
 import styles from './Cart.module.css';
@@ -33,8 +33,12 @@ export function Cart() {
             <ul className={styles.lines}>
               {lines.map(({ product, qty, lineTotal }) => (
                 <li key={product.slug} className={styles.line}>
-                  {product.image ? (
-                    <img className={styles.thumb} src={product.image.src} alt={product.image.alt} />
+                  {merchCover(product) ? (
+                    <img
+                      className={styles.thumb}
+                      src={merchCover(product)!.src}
+                      alt={merchCover(product)!.alt}
+                    />
                   ) : (
                     <div
                       className={`${styles.thumb} ${styles.thumbPlaceholder}`}
