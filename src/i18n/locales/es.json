@@ -402,6 +402,11 @@
     "paid": "Pago recibido",
     "paidLead": "Gracias: tu pedido está confirmado. Recibirás un recibo en tu correo.",
     "continueShopping": "Volver a la tienda",
-    "payError": "No pudimos completar el pago. Revisa tus datos e inténtalo de nuevo."
+    "payError": "No pudimos completar el pago. Revisa tus datos e inténtalo de nuevo.",
+    "discount": "Descuento",
+    "promoApplying": "Aplicando…",
+    "promoApplied": "«{{code}}» aplicado.",
+    "promoInvalid": "Ese código no es válido.",
+    "promoErrorMsg": "No pudimos verificar el código; inténtalo de nuevo."
   }
 }

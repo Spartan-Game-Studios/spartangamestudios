@@ -322,6 +322,11 @@
     "paid": "Payment received",
     "paidLead": "Thank you — your order is confirmed. A receipt is on its way to your email.",
     "continueShopping": "Back to the shop",
-    "payError": "We couldn’t complete the payment. Please check your details and try again."
+    "payError": "We couldn’t complete the payment. Please check your details and try again.",
+    "discount": "Discount",
+    "promoApplying": "Applying…",
+    "promoApplied": "“{{code}}” applied.",
+    "promoInvalid": "That code isn’t valid.",
+    "promoErrorMsg": "Couldn’t check that code — please try again."
   }
 }
