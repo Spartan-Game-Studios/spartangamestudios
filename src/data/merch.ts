@@ -37,7 +37,7 @@ export const merch: MerchProduct[] = [
         alt: 'Boothill "Wanted" tee — on-body (placeholder art)',
       },
     ],
-    available: false,
+    available: true,
   },
   {
     slug: 'boothill-keyart-poster',
