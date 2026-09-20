@@ -73,6 +73,31 @@
   border-color: var(--color-accent);
 }
 
+/* Browsers paint autofilled fields with their own (light) background and text
+   colour, which clashes with the dark form. Override it: keep our text colour
+   and hairline, but use a subtly lighter, warm fill so an autofilled field still
+   reads as "filled for you" — on-theme instead of a bright yellow/blue box. The
+   background can't be set directly (the UA wins), so we paint it with an inset
+   box-shadow; the huge transition delay defeats the autofill background flash. */
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-text);
+  -webkit-box-shadow: inset 0 0 0 100px rgb(38 32 22);
+  caret-color: var(--color-text);
+  border-color: var(--color-border-strong);
+  transition: background-color 100000s ease 0s;
+}
+
+.input:-webkit-autofill:focus {
+  border-color: var(--color-accent);
+}
+
+/* Standard selector (Firefox et al.) — same intent where the engine allows it. */
+.input:autofill {
+  border-color: var(--color-border-strong);
+}
+
 .phoneRow {
   display: flex;
   gap: var(--space-3);
