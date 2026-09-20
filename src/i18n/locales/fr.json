@@ -424,6 +424,7 @@
       "processing": "En traitement",
       "shipped": "Expédiée",
       "canceled": "Annulée"
-    }
+    },
+    "mapLabel": "Itinéraire du colis"
   }
 }

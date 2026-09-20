@@ -424,6 +424,7 @@
       "processing": "In Bearbeitung",
       "shipped": "Versandt",
       "canceled": "Storniert"
-    }
+    },
+    "mapLabel": "Sendungsverlauf"
   }
 }

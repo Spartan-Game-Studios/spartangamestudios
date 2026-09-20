@@ -424,6 +424,7 @@
       "processing": "Procesando",
       "shipped": "Enviado",
       "canceled": "Cancelado"
-    }
+    },
+    "mapLabel": "Ruta del envío"
   }
 }

@@ -344,6 +344,7 @@
       "processing": "Processing",
       "shipped": "Shipped",
       "canceled": "Canceled"
-    }
+    },
+    "mapLabel": "Shipment route"
   }
 }

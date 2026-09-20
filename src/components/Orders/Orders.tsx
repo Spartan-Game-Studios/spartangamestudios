@@ -2,10 +2,31 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { formatPrice } from '@/data';
-import { fetchOrders, merchApiConfigured, type MerchOrder } from '@/cart/orders';
+import {
+  fetchOrders,
+  merchApiConfigured,
+  type MerchOrder,
+  type TrackingEvent,
+} from '@/cart/orders';
+import { TrackingMap, type MapPoint } from './TrackingMap';
 import styles from './Orders.module.css';
 
 type State = { phase: 'loading' } | { phase: 'error' } | { phase: 'ready'; orders: MerchOrder[] };
+
+/** Located scans in order, one point per distinct facility (consecutive scans at
+ *  the same place — received/printed/dispatched — collapse to a single marker). */
+function toMapPoints(events: TrackingEvent[]): MapPoint[] {
+  const seen = new Set<string>();
+  const points: MapPoint[] = [];
+  for (const e of events) {
+    if (!e.location) continue;
+    const key = `${e.location.lat},${e.location.lon}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    points.push({ label: e.location.label, lat: e.location.lat, lon: e.location.lon });
+  }
+  return points;
+}
 
 /** Statuses that read as "done" / "bad" get their own colour; the rest are in-progress. */
 function statusClass(status: string): string {
@@ -66,6 +87,7 @@ export function Orders({ token, locale }: { token: string | undefined; locale: s
         <ul className={styles.orders}>
           {state.orders.map((order) => {
             const headline = order.tracking?.status ?? order.status;
+            const mapPoints = order.tracking ? toMapPoints(order.tracking.events) : [];
             return (
               <li key={order.id} className={styles.order}>
                 <header className={styles.orderHead}>
@@ -111,6 +133,9 @@ export function Orders({ token, locale }: { token: string | undefined; locale: s
                         </span>
                       ) : null}
                     </div>
+                    {mapPoints.length > 0 ? (
+                      <TrackingMap points={mapPoints} label={t('orders.mapLabel')} />
+                    ) : null}
                     <ol className={styles.timeline}>
                       {order.tracking.events
                         .slice()
