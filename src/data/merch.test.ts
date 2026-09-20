@@ -17,9 +17,10 @@ describe('merch catalogue', () => {
     }
   });
 
-  it('is entirely sold out while the shop is being set up', () => {
-    expect(merch.every((m) => m.available === false)).toBe(true);
-    expect(merchIsOpen()).toBe(false);
+  it('has the launch item open and the rest still sold out', () => {
+    expect(merchIsOpen()).toBe(true);
+    const available = merch.filter((m) => m.available).map((m) => m.slug);
+    expect(available).toEqual(['boothill-wanted-tee']);
   });
 
   it('lists available items first', () => {
