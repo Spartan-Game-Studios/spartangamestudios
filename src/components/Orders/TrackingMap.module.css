@@ -1,0 +1,43 @@
+.map {
+  height: 220px;
+  width: 100%;
+  margin-bottom: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  /* Leaflet panes sit at high z-index; keep the map from covering site chrome. */
+  z-index: 0;
+}
+
+.map :global(.leaflet-container) {
+  height: 100%;
+  background: var(--sgs-obsidian-850);
+  font-family: var(--font-ui);
+}
+
+/* Darken the light OSM tiles so the map fits the site's palette. Only the tile
+   layer is filtered — the gold markers + route line sit in the overlay pane. */
+.map :global(.leaflet-tile) {
+  filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9) saturate(0.7);
+}
+
+.map :global(.leaflet-control-attribution) {
+  background: rgb(0 0 0 / 55%);
+  color: var(--color-text-faint);
+}
+
+.map :global(.leaflet-control-attribution a) {
+  color: var(--color-text-muted);
+}
+
+.map :global(.leaflet-control-zoom a) {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+.map :global(.leaflet-popup-content-wrapper),
+.map :global(.leaflet-popup-tip) {
+  background: var(--color-surface);
+  color: var(--color-text);
+}

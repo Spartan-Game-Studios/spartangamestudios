@@ -408,5 +408,28 @@
     "promoApplied": "„{{code}}“ angewendet.",
     "promoInvalid": "Dieser Code ist ungültig.",
     "promoErrorMsg": "Der Code konnte nicht geprüft werden – bitte erneut versuchen."
+  },
+  "orders": {
+    "title": "Bestellungen",
+    "loading": "Deine Bestellungen werden geladen…",
+    "errorMsg": "Deine Bestellungen konnten nicht geladen werden. Bitte erneut versuchen.",
+    "empty": "Noch keine Bestellungen.",
+    "browse": "Zum Shop",
+    "orderNumber": "Bestellung {{id}}",
+    "placed": "Aufgegeben am {{date}}",
+    "trackingTitle": "Sendungsverfolgung",
+    "mapLabel": "Sendungsverlauf",
+    "status": {
+      "received": "Bestellung eingegangen",
+      "printed": "Gedruckt & verpackt",
+      "dispatched": "Versandt",
+      "in_transit": "Unterwegs",
+      "out_for_delivery": "In Zustellung",
+      "delivered": "Zugestellt",
+      "paid": "Bezahlt",
+      "processing": "In Bearbeitung",
+      "shipped": "Versandt",
+      "canceled": "Storniert"
+    }
   }
 }

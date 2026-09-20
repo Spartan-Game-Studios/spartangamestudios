@@ -408,5 +408,28 @@
     "promoApplied": "« {{code}} » appliqué.",
     "promoInvalid": "Ce code n’est pas valide.",
     "promoErrorMsg": "Impossible de vérifier ce code — réessayez."
+  },
+  "orders": {
+    "title": "Commandes",
+    "loading": "Chargement de vos commandes…",
+    "errorMsg": "Impossible de charger vos commandes. Réessayez.",
+    "empty": "Aucune commande pour l’instant.",
+    "browse": "Voir la boutique",
+    "orderNumber": "Commande {{id}}",
+    "placed": "Passée le {{date}}",
+    "trackingTitle": "Suivi",
+    "mapLabel": "Itinéraire du colis",
+    "status": {
+      "received": "Commande reçue",
+      "printed": "Imprimée et emballée",
+      "dispatched": "Expédiée",
+      "in_transit": "En transit",
+      "out_for_delivery": "En cours de livraison",
+      "delivered": "Livrée",
+      "paid": "Payée",
+      "processing": "En traitement",
+      "shipped": "Expédiée",
+      "canceled": "Annulée"
+    }
   }
 }

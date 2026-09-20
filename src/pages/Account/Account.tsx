@@ -7,6 +7,7 @@ import { StatusBadge } from '@/components/StatusBadge/StatusBadge';
 import { useAuth } from '@/auth/useAuth';
 import { useAccount } from '@/auth/useAccount';
 import { useFollowing } from '@/auth/useFollowing';
+import { Orders } from '@/components/Orders/Orders';
 import { listedGames } from '@/data';
 import {
   itchAuthUrl,
@@ -36,7 +37,7 @@ const PROVIDERS = ['google', 'email', 'steam', 'itch'] as const;
 type Provider = (typeof PROVIDERS)[number];
 
 export function Account() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { session, loading: sessionLoading, signOut } = useAuth();
   const { account, loading, error, reload } = useAccount();
   // listedGames() honours visibility — an unlisted title must not become
@@ -280,6 +281,8 @@ export function Account() {
             </ul>
           </details>
         </section>
+
+        <Orders token={session?.token} locale={i18n.resolvedLanguage ?? i18n.language} />
 
         <div className={styles.actions}>
           <Button variant="secondary" onClick={signOut}>
