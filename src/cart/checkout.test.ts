@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { checkoutConfigured, createPaymentIntent } from './checkout';
+import { checkoutConfigured, createPaymentIntent, getQuote } from './checkout';
 
 describe('merch checkout API', () => {
   afterEach(() => {
@@ -39,6 +39,31 @@ describe('merch checkout API', () => {
     expect(call[0]).toBe('https://api.example/payment-intent');
     expect(call[1].method).toBe('POST');
     expect(JSON.parse(call[1].body)).toEqual(payload);
+  });
+
+  it('getQuote previews the breakdown + promo from /quote', async () => {
+    vi.stubEnv('VITE_MERCH_API_URL', 'https://api.example');
+    const fetchMock = vi.fn((_url: string, _init: { method: string; body: string }) =>
+      Promise.resolve({
+        ok: true,
+        json: () =>
+          Promise.resolve({
+            currency: 'usd',
+            breakdown: { subtotal: 2700, discount: 270, tax: 0, shipping: 0, total: 2430 },
+            promo: { code: 'SPARTAN10', valid: true },
+          }),
+      }),
+    );
+    vi.stubGlobal('fetch', fetchMock);
+
+    const out = await getQuote({
+      items: [{ slug: 'boothill-wanted-tee', qty: 1 }],
+      promoCode: 'SPARTAN10',
+    });
+
+    expect(out.breakdown.discount).toBe(270);
+    expect(out.promo?.valid).toBe(true);
+    expect(fetchMock.mock.calls[0][0]).toBe('https://api.example/quote');
   });
 
   it('surfaces the backend error message (e.g. sold out)', async () => {
