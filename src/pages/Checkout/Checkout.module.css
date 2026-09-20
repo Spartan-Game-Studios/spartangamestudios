@@ -73,6 +73,24 @@
   border-color: var(--color-accent);
 }
 
+.phoneRow {
+  display: flex;
+  gap: var(--space-3);
+  align-items: stretch;
+}
+
+.phoneRow .input:last-child {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Dial-code prefix: sized to its content, not stretched. */
+.dialSelect {
+  flex: 0 0 auto;
+  width: auto;
+  font-variant-numeric: tabular-nums;
+}
+
 .promoRow {
   display: flex;
   gap: var(--space-3);
