@@ -377,6 +377,7 @@
     "shippingTitle": "Lieferadresse",
     "fullName": "Vollständiger Name",
     "phone": "Telefonnummer",
+    "phoneCountry": "Ländervorwahl (Telefon)",
     "address1": "Adresse",
     "address2": "Wohnung, Etage usw. (optional)",
     "city": "Stadt",

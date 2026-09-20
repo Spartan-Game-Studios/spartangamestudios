@@ -51,10 +51,47 @@ const COUNTRY_CODES = [
   'CO',
 ];
 
+/** Dialing codes for the ship-to countries, for the phone-number prefix. */
+const DIAL_CODES: Record<string, string> = {
+  MX: '52',
+  US: '1',
+  CA: '1',
+  GB: '44',
+  IE: '353',
+  FR: '33',
+  DE: '49',
+  ES: '34',
+  IT: '39',
+  PT: '351',
+  NL: '31',
+  BE: '32',
+  CH: '41',
+  AT: '43',
+  SE: '46',
+  NO: '47',
+  DK: '45',
+  FI: '358',
+  PL: '48',
+  CZ: '420',
+  AU: '61',
+  NZ: '64',
+  JP: '81',
+  BR: '55',
+  AR: '54',
+  CL: '56',
+  CO: '57',
+};
+
+/** ISO alpha-2 -> flag emoji (regional indicator letters). */
+function flag(code: string): string {
+  return code.replace(/./g, (c) => String.fromCodePoint(127397 + c.charCodeAt(0)));
+}
+
 type Form = {
   email: string;
   fullName: string;
   phone: string;
+  phoneCountry: string;
   address1: string;
   address2: string;
   city: string;
@@ -67,6 +104,7 @@ const EMPTY: Form = {
   email: '',
   fullName: '',
   phone: '',
+  phoneCountry: 'MX',
   address1: '',
   address2: '',
   city: '',
@@ -209,7 +247,9 @@ export function Checkout() {
     ...(promo.trim() ? { promoCode: promo.trim() } : {}),
     shipping: {
       name: form.fullName,
-      phone: form.phone,
+      phone: form.phone.trim()
+        ? `+${DIAL_CODES[form.phoneCountry] ?? ''} ${form.phone.trim()}`
+        : '',
       address1: form.address1,
       address2: form.address2,
       city: form.city,
@@ -263,14 +303,28 @@ export function Checkout() {
             <label className={styles.label} htmlFor="co-phone">
               {t('checkout.phone')}
             </label>
-            <input
-              id="co-phone"
-              className={styles.input}
-              type="tel"
-              autoComplete="tel"
-              value={form.phone}
-              onChange={set('phone')}
-            />
+            <div className={styles.phoneRow}>
+              <select
+                className={`${styles.input} ${styles.dialSelect}`}
+                aria-label={t('checkout.phoneCountry')}
+                value={form.phoneCountry}
+                onChange={set('phoneCountry')}
+              >
+                {countries.map((c) => (
+                  <option key={c.code} value={c.code}>
+                    {flag(c.code)} +{DIAL_CODES[c.code]}
+                  </option>
+                ))}
+              </select>
+              <input
+                id="co-phone"
+                className={styles.input}
+                type="tel"
+                autoComplete="tel"
+                value={form.phone}
+                onChange={set('phone')}
+              />
+            </div>
           </div>
           <div className={styles.field}>
             <label className={styles.label} htmlFor="co-addr1">

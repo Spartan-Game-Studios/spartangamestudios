@@ -377,6 +377,7 @@
     "shippingTitle": "Dirección de envío",
     "fullName": "Nombre completo",
     "phone": "Número de teléfono",
+    "phoneCountry": "Código de país del teléfono",
     "address1": "Dirección",
     "address2": "Apartamento, suite, etc. (opcional)",
     "city": "Ciudad",

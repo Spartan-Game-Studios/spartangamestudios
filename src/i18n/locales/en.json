@@ -297,6 +297,7 @@
     "shippingTitle": "Shipping address",
     "fullName": "Full name",
     "phone": "Phone number",
+    "phoneCountry": "Phone country code",
     "address1": "Address",
     "address2": "Apartment, suite, etc. (optional)",
     "city": "City",
