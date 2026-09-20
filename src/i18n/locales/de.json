@@ -402,7 +402,12 @@
     "paid": "Zahlung erhalten",
     "paidLead": "Danke – deine Bestellung ist bestätigt. Eine Quittung ist per E-Mail unterwegs.",
     "continueShopping": "Zurück zum Shop",
-    "payError": "Die Zahlung konnte nicht abgeschlossen werden. Bitte prüfe deine Angaben und versuche es erneut."
+    "payError": "Die Zahlung konnte nicht abgeschlossen werden. Bitte prüfe deine Angaben und versuche es erneut.",
+    "discount": "Rabatt",
+    "promoApplying": "Wird angewendet…",
+    "promoApplied": "„{{code}}“ angewendet.",
+    "promoInvalid": "Dieser Code ist ungültig.",
+    "promoErrorMsg": "Der Code konnte nicht geprüft werden – bitte erneut versuchen."
   },
   "orders": {
     "title": "Bestellungen",
@@ -413,6 +418,7 @@
     "orderNumber": "Bestellung {{id}}",
     "placed": "Aufgegeben am {{date}}",
     "trackingTitle": "Sendungsverfolgung",
+    "mapLabel": "Sendungsverlauf",
     "status": {
       "received": "Bestellung eingegangen",
       "printed": "Gedruckt & verpackt",
@@ -424,7 +430,6 @@
       "processing": "In Bearbeitung",
       "shipped": "Versandt",
       "canceled": "Storniert"
-    },
-    "mapLabel": "Sendungsverlauf"
+    }
   }
 }
