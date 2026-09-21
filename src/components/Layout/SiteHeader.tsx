@@ -4,6 +4,7 @@ import { Container } from '@/components/Container/Container';
 import { useAuth } from '@/auth/useAuth';
 import { useAccount } from '@/auth/useAccount';
 import { useCart } from '@/cart/useCart';
+import { SHOP_ENABLED } from '@/config';
 import styles from './SiteHeader.module.css';
 
 const NAV = [
@@ -21,9 +22,9 @@ export function SiteHeader() {
   // the display name it took from Google, falling back only if absent.
   const { account } = useAccount();
   const { count } = useCart();
-  // The shop (and its cart) is sign-in only, so don't advertise it to a
-  // signed-out visitor. Gate on !loading too, so it doesn't flash then vanish.
-  const showShop = !loading && !!session;
+  // The shop is off (SHOP_ENABLED) and, when on, sign-in only. Gate on !loading
+  // too, so a signed-in visitor's Merch link doesn't flash then vanish.
+  const showShop = SHOP_ENABLED && !loading && !!session;
 
   return (
     <header className={styles.header}>

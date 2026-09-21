@@ -7,6 +7,7 @@ import { CartProvider } from '@/cart/CartContext';
 import { games } from '@/data';
 import i18n from '@/i18n';
 import { LOCALE_CODES } from '@/i18n/locales';
+import { SHOP_ENABLED } from '@/config';
 
 // The header/account read the profile over the network when signed in; stub it
 // so the auth-gated (signed-in) route tests don't make real requests.
@@ -91,14 +92,19 @@ describe('routing', () => {
     ).toBeInTheDocument();
   });
 
-  it('sends a signed-out visitor from the shop to sign in', async () => {
+  it.runIf(!SHOP_ENABLED)('does not mount the shop while disabled (/merch 404s)', async () => {
+    renderAt('/merch');
+    expect(await screen.findByText('404')).toBeInTheDocument();
+  });
+
+  it.skipIf(!SHOP_ENABLED)('sends a signed-out visitor from the shop to sign in', async () => {
     renderAt('/merch');
     expect(await screen.findByRole('heading', { level: 1 })).toHaveTextContent(
       i18n.t('auth.signIn'),
     );
   });
 
-  it('renders the merch index and a product page (signed in)', async () => {
+  it.skipIf(!SHOP_ENABLED)('renders the merch index and a product page (signed in)', async () => {
     signIn();
     renderAt('/merch');
     expect(await screen.findByRole('heading', { level: 1, name: 'Merch' })).toBeInTheDocument();
@@ -109,7 +115,7 @@ describe('routing', () => {
     ).toBeInTheDocument();
   });
 
-  it('404s an unknown merch slug rather than crashing', async () => {
+  it.skipIf(!SHOP_ENABLED)('404s an unknown merch slug rather than crashing', async () => {
     signIn();
     renderAt('/merch/not-a-product');
     expect(await screen.findByText('404')).toBeInTheDocument();
@@ -135,22 +141,25 @@ describe('routing', () => {
 describe('localised routing', () => {
   afterEach(() => localStorage.clear());
 
-  it('renders the checkout page (with a seeded cart) in every locale without raw keys', async () => {
-    signIn(); // the shop is sign-in only
-    // /checkout redirects to /cart when the cart is empty, so seed a line first.
-    localStorage.setItem('sgs-cart', JSON.stringify([{ slug: 'boothill-wanted-tee', qty: 2 }]));
-    for (const code of LOCALE_CODES) {
-      await i18n.changeLanguage(code);
-      const { unmount, container } = renderAt('/checkout');
-      await screen.findByRole('heading', { level: 1 });
-      // The shipping + card + promo sections and the order summary must render.
-      expect(screen.getByLabelText(i18n.t('checkout.fullName'))).toBeInTheDocument();
-      expect(container.textContent, `${code} /checkout`).not.toMatch(
-        /\b(nav|common|status|stores|footer|home|games|gameDetail|merch|cart|checkout|devlog|press|about|notFound|meta)\.[a-zA-Z]/,
-      );
-      unmount();
-    }
-  });
+  it.skipIf(!SHOP_ENABLED)(
+    'renders the checkout page (with a seeded cart) in every locale without raw keys',
+    async () => {
+      signIn(); // the shop is sign-in only
+      // /checkout redirects to /cart when the cart is empty, so seed a line first.
+      localStorage.setItem('sgs-cart', JSON.stringify([{ slug: 'boothill-wanted-tee', qty: 2 }]));
+      for (const code of LOCALE_CODES) {
+        await i18n.changeLanguage(code);
+        const { unmount, container } = renderAt('/checkout');
+        await screen.findByRole('heading', { level: 1 });
+        // The shipping + card + promo sections and the order summary must render.
+        expect(screen.getByLabelText(i18n.t('checkout.fullName'))).toBeInTheDocument();
+        expect(container.textContent, `${code} /checkout`).not.toMatch(
+          /\b(nav|common|status|stores|footer|home|games|gameDetail|merch|cart|checkout|devlog|press|about|notFound|meta)\.[a-zA-Z]/,
+        );
+        unmount();
+      }
+    },
+  );
 
   it('renders every route in every locale without falling back to a raw key', async () => {
     signIn(); // so the sign-in-gated shop routes render rather than redirect
@@ -158,9 +167,7 @@ describe('localised routing', () => {
       '/',
       '/games',
       '/games/lantern',
-      '/merch',
-      '/merch/boothill-wanted-tee',
-      '/cart',
+      ...(SHOP_ENABLED ? ['/merch', '/merch/boothill-wanted-tee', '/cart'] : []),
       '/devlog',
       '/press',
       '/about',

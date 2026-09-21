@@ -5,6 +5,7 @@ import { LanguagePicker } from '@/components/LanguagePicker/LanguagePicker';
 import { useAuth } from '@/auth/useAuth';
 import { listedGames, studio } from '@/data';
 import { useStudioCopy } from '@/i18n/content';
+import { SHOP_ENABLED } from '@/config';
 import styles from './SiteFooter.module.css';
 
 export function SiteFooter() {
@@ -12,8 +13,8 @@ export function SiteFooter() {
   const { session, loading } = useAuth();
   const copy = useStudioCopy();
   const year = new Date().getFullYear();
-  // The shop is sign-in only — don't link it for signed-out visitors.
-  const showShop = !loading && !!session;
+  // The shop is off (SHOP_ENABLED) and, when on, sign-in only.
+  const showShop = SHOP_ENABLED && !loading && !!session;
 
   return (
     <footer className={styles.footer}>

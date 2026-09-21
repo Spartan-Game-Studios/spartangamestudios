@@ -18,16 +18,12 @@ import { Verify } from '@/pages/Account/Verify';
 import { DeleteAccount } from '@/pages/Account/DeleteAccount';
 import { Privacy } from '@/pages/Legal/Privacy';
 import { RequireAuth } from '@/auth/RequireAuth';
+import { SHOP_ENABLED } from '@/config';
 
-export const routes = [
-  {
-    path: '/',
-    element: <Layout />,
-    children: [
-      { index: true, element: <Home /> },
-      { path: 'games', element: <Games /> },
-      { path: 'games/:slug', element: <GameDetail /> },
-      // The shop is sign-in only — browsing, cart, and checkout all sit behind auth.
+// The shop is sign-in only, and only mounted at all while SHOP_ENABLED. Off:
+// these paths fall through to the 404 catch-all.
+const shopRoutes = SHOP_ENABLED
+  ? [
       {
         element: <RequireAuth />,
         children: [
@@ -37,6 +33,18 @@ export const routes = [
           { path: 'checkout', element: <Checkout /> },
         ],
       },
+    ]
+  : [];
+
+export const routes = [
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: 'games', element: <Games /> },
+      { path: 'games/:slug', element: <GameDetail /> },
+      ...shopRoutes,
       { path: 'devlog', element: <Devlog /> },
       { path: 'devlog/:slug', element: <DevlogPost /> },
       { path: 'press', element: <Press /> },
