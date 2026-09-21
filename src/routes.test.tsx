@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { routes } from './routes';
@@ -7,6 +7,29 @@ import { CartProvider } from '@/cart/CartContext';
 import { games } from '@/data';
 import i18n from '@/i18n';
 import { LOCALE_CODES } from '@/i18n/locales';
+
+// The header/account read the profile over the network when signed in; stub it
+// so the auth-gated (signed-in) route tests don't make real requests.
+vi.mock('@/auth/useAccount', () => ({
+  useAccount: () => ({ account: null, loading: false, error: false, reload: () => {} }),
+}));
+
+// Seed a non-expiring stored session so AuthProvider restores it without a
+// network refresh — i.e. sign the visitor in for the shop routes.
+function signIn() {
+  localStorage.setItem(
+    'sgs.session',
+    JSON.stringify({
+      token: 't',
+      refreshToken: 'r',
+      expiresAt: Date.now() + 3_600_000,
+      userId: 'u1',
+      username: 'tester',
+      email: 'tester@example.com',
+      created: false,
+    }),
+  );
+}
 
 function renderAt(path: string) {
   const router = createMemoryRouter(routes, { initialEntries: [path] });
@@ -22,6 +45,8 @@ function renderAt(path: string) {
 }
 
 describe('routing', () => {
+  afterEach(() => localStorage.clear());
+
   it('renders the home page at /', async () => {
     renderAt('/');
     expect(await screen.findByRole('heading', { level: 1 })).toHaveTextContent(/games you own/i);
@@ -66,7 +91,15 @@ describe('routing', () => {
     ).toBeInTheDocument();
   });
 
-  it('renders the merch index and a product page', async () => {
+  it('sends a signed-out visitor from the shop to sign in', async () => {
+    renderAt('/merch');
+    expect(await screen.findByRole('heading', { level: 1 })).toHaveTextContent(
+      i18n.t('auth.signIn'),
+    );
+  });
+
+  it('renders the merch index and a product page (signed in)', async () => {
+    signIn();
     renderAt('/merch');
     expect(await screen.findByRole('heading', { level: 1, name: 'Merch' })).toBeInTheDocument();
 
@@ -77,6 +110,7 @@ describe('routing', () => {
   });
 
   it('404s an unknown merch slug rather than crashing', async () => {
+    signIn();
     renderAt('/merch/not-a-product');
     expect(await screen.findByText('404')).toBeInTheDocument();
   });
@@ -102,6 +136,7 @@ describe('localised routing', () => {
   afterEach(() => localStorage.clear());
 
   it('renders the checkout page (with a seeded cart) in every locale without raw keys', async () => {
+    signIn(); // the shop is sign-in only
     // /checkout redirects to /cart when the cart is empty, so seed a line first.
     localStorage.setItem('sgs-cart', JSON.stringify([{ slug: 'boothill-wanted-tee', qty: 2 }]));
     for (const code of LOCALE_CODES) {
@@ -118,6 +153,7 @@ describe('localised routing', () => {
   });
 
   it('renders every route in every locale without falling back to a raw key', async () => {
+    signIn(); // so the sign-in-gated shop routes render rather than redirect
     const paths = [
       '/',
       '/games',

@@ -2,14 +2,18 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Container } from '@/components/Container/Container';
 import { LanguagePicker } from '@/components/LanguagePicker/LanguagePicker';
+import { useAuth } from '@/auth/useAuth';
 import { listedGames, studio } from '@/data';
 import { useStudioCopy } from '@/i18n/content';
 import styles from './SiteFooter.module.css';
 
 export function SiteFooter() {
   const { t } = useTranslation();
+  const { session, loading } = useAuth();
   const copy = useStudioCopy();
   const year = new Date().getFullYear();
+  // The shop is sign-in only — don't link it for signed-out visitors.
+  const showShop = !loading && !!session;
 
   return (
     <footer className={styles.footer}>
@@ -38,9 +42,11 @@ export function SiteFooter() {
               <li>
                 <Link to="/about">{t('footer.about')}</Link>
               </li>
-              <li>
-                <Link to="/merch">{t('footer.merch')}</Link>
-              </li>
+              {showShop ? (
+                <li>
+                  <Link to="/merch">{t('footer.merch')}</Link>
+                </li>
+              ) : null}
               <li>
                 <Link to="/devlog">{t('footer.devlog')}</Link>
               </li>
