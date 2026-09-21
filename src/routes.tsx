@@ -17,6 +17,7 @@ import { Account } from '@/pages/Account/Account';
 import { Verify } from '@/pages/Account/Verify';
 import { DeleteAccount } from '@/pages/Account/DeleteAccount';
 import { Privacy } from '@/pages/Legal/Privacy';
+import { RequireAuth } from '@/auth/RequireAuth';
 
 export const routes = [
   {
@@ -26,10 +27,16 @@ export const routes = [
       { index: true, element: <Home /> },
       { path: 'games', element: <Games /> },
       { path: 'games/:slug', element: <GameDetail /> },
-      { path: 'merch', element: <Merch /> },
-      { path: 'merch/:slug', element: <MerchDetail /> },
-      { path: 'cart', element: <Cart /> },
-      { path: 'checkout', element: <Checkout /> },
+      // The shop is sign-in only — browsing, cart, and checkout all sit behind auth.
+      {
+        element: <RequireAuth />,
+        children: [
+          { path: 'merch', element: <Merch /> },
+          { path: 'merch/:slug', element: <MerchDetail /> },
+          { path: 'cart', element: <Cart /> },
+          { path: 'checkout', element: <Checkout /> },
+        ],
+      },
       { path: 'devlog', element: <Devlog /> },
       { path: 'devlog/:slug', element: <DevlogPost /> },
       { path: 'press', element: <Press /> },
