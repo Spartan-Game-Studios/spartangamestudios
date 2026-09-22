@@ -8,6 +8,7 @@ import { useAuth } from '@/auth/useAuth';
 import { useAccount } from '@/auth/useAccount';
 import { useFollowing } from '@/auth/useFollowing';
 import { Orders } from '@/components/Orders/Orders';
+import { SHOP_ENABLED } from '@/config';
 import { listedGames } from '@/data';
 import {
   itchAuthUrl,
@@ -282,7 +283,9 @@ export function Account() {
           </details>
         </section>
 
-        <Orders token={session?.token} locale={i18n.resolvedLanguage ?? i18n.language} />
+        {SHOP_ENABLED ? (
+          <Orders token={session?.token} locale={i18n.resolvedLanguage ?? i18n.language} />
+        ) : null}
 
         <div className={styles.actions}>
           <Button variant="secondary" onClick={signOut}>
