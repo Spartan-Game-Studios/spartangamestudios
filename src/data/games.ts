@@ -2,9 +2,8 @@ import type { Game } from './types';
 
 // Boothill launch instant. The site flips itself to "out now" once the visitor's
 // clock passes this — no timed deploy needed (see useResolvedGame).
-// ⚠️ SET TO THE ACTUAL LAUNCH TIME. Placeholder below is 2026-09-25 17:00 UTC
-//    (= 10:00 Pacific / 11:00 Mexico City). Change the instant, not the format.
-const BOOTHILL_RELEASE = '2026-09-25T17:00:00Z';
+// 2026-09-25 16:20 Mexico City (CST, UTC-6) = 22:20 UTC.
+const BOOTHILL_RELEASE = '2026-09-25T22:20:00Z';
 
 /**
  * The studio catalogue. Sourced from the design vault's project specs.
