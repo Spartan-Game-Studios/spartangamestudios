@@ -69,6 +69,20 @@ export interface Game {
   features?: string[];
   /** Falls back to the studio-wide price stance when absent. */
   price?: string;
+  /** Launch instant (ISO, e.g. "2026-09-25T17:00:00Z"). Evaluated against the
+   *  visitor's own clock: before it the game renders as authored; at/after it the
+   *  `atRelease` fields override — so the site flips to "out now" on its own, with
+   *  no timed deploy. A page left open across the moment flips live. */
+  releaseAt?: string;
+  /** Fields that take effect at `releaseAt`. */
+  atRelease?: GameReleaseOverrides;
+}
+
+export interface GameReleaseOverrides {
+  status?: GameStatus;
+  price?: string;
+  /** Per-store label overrides, keyed by storefront (e.g. steam: "Buy on Steam"). */
+  storeLabels?: Partial<Record<Storefront, string>>;
 }
 
 export interface DevlogPost {

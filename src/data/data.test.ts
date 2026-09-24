@@ -4,6 +4,7 @@ import {
   formatDate,
   games,
   getGame,
+  resolveGame,
   getPost,
   listedGames,
   listedPosts,
@@ -137,5 +138,28 @@ describe('formatDate', () => {
     for (const locale of ['en', 'es', 'fr', 'de']) {
       expect(formatDate('2026-01-01', locale)).toMatch(/\b1\b/);
     }
+  });
+});
+
+describe('game launch flip (resolveGame)', () => {
+  it('applies atRelease overrides only once releaseAt has passed', () => {
+    const boothill = getGame('boothill')!;
+
+    const before = resolveGame(boothill, Date.parse('2020-01-01T00:00:00Z'));
+    expect(before.status).toBe('early-access');
+    expect(before.price).toBe('$2.99 at launch');
+    expect(before.stores.find((s) => s.store === 'steam')?.label).toBe('Wishlist');
+
+    const after = resolveGame(boothill, Date.parse('2099-01-01T00:00:00Z'));
+    expect(after.status).toBe('released');
+    expect(after.price).toBe('$2.99');
+    expect(after.stores.find((s) => s.store === 'steam')?.label).toBe('Buy on Steam');
+    // Stores without an override are untouched.
+    expect(after.stores.find((s) => s.store === 'itch')?.label).toBe('Play now');
+  });
+
+  it('is a no-op before launch, returning the same game reference', () => {
+    const boothill = getGame('boothill')!;
+    expect(resolveGame(boothill, Date.parse('2020-01-01T00:00:00Z'))).toBe(boothill);
   });
 });
