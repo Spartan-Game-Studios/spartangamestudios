@@ -43,6 +43,30 @@ export function getGame(slug: string): Game | undefined {
   return games.find((game) => game.slug === slug);
 }
 
+/**
+ * Apply a game's launch overrides once its `releaseAt` has passed, measured
+ * against `now` (the caller's clock by default). Pure; the reactive wrapper that
+ * flips an open page at the moment is `useResolvedGame`. Games with no launch —
+ * or before it — are returned unchanged.
+ */
+export function resolveGame(game: Game, now: number = Date.now()): Game {
+  if (!game.releaseAt || !game.atRelease) return game;
+  const at = Date.parse(game.releaseAt);
+  if (!Number.isFinite(at) || now < at) return game;
+  const o = game.atRelease;
+  return {
+    ...game,
+    ...(o.status ? { status: o.status } : {}),
+    ...(o.price ? { price: o.price } : {}),
+    stores: o.storeLabels
+      ? game.stores.map((s) => {
+          const label = o.storeLabels?.[s.store];
+          return label ? { ...s, label } : s;
+        })
+      : game.stores,
+  };
+}
+
 export function listedPosts(): DevlogPost[] {
   return devlog
     .filter((post) => post.visibility === 'public')

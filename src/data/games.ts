@@ -1,5 +1,10 @@
 import type { Game } from './types';
 
+// Boothill launch instant. The site flips itself to "out now" once the visitor's
+// clock passes this — no timed deploy needed (see useResolvedGame).
+// 2026-09-25 16:20 Mexico City (CST, UTC-6) = 22:20 UTC.
+const BOOTHILL_RELEASE = '2026-09-25T22:20:00Z';
+
 /**
  * The studio catalogue. Sourced from the design vault's project specs.
  *
@@ -103,6 +108,13 @@ export const games: Game[] = [
       'Open frontier with real cover, so where you stand is a decision',
     ],
     price: '$2.99 at launch',
+    // Launch flip, evaluated on the visitor's clock (see useResolvedGame).
+    releaseAt: BOOTHILL_RELEASE,
+    atRelease: {
+      status: 'released',
+      price: '$2.99',
+      storeLabels: { steam: 'Buy on Steam' },
+    },
   },
   {
     slug: 'nightside',

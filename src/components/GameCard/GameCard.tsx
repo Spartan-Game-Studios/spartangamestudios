@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
 import type { Game } from '@/data';
 import { useGameCopy } from '@/i18n/content';
+import { useResolvedGame } from '@/lib/useResolvedGame';
 import { StatusBadge } from '@/components/StatusBadge/StatusBadge';
 import styles from './GameCard.module.css';
 
-export function GameCard({ game }: { game: Game }) {
+export function GameCard({ game: gameProp }: { game: Game }) {
+  // Applies the launch flip (e.g. "out now") once its releaseAt passes.
+  const game = useResolvedGame(gameProp);
   const copy = useGameCopy(game);
 
   return (

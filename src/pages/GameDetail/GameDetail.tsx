@@ -6,6 +6,7 @@ import { StoreLinks } from '@/components/StoreLinks/StoreLinks';
 import { Carousel } from '@/components/Carousel/Carousel';
 import { getGame, statusKey, studio } from '@/data';
 import { useGameCopy } from '@/i18n/content';
+import { useResolvedGame } from '@/lib/useResolvedGame';
 import { useDocumentMeta } from '@/lib/useDocumentMeta';
 import { NotFound } from '@/pages/NotFound/NotFound';
 import styles from './GameDetail.module.css';
@@ -27,7 +28,8 @@ export function GameDetail() {
  */
 function GameDetailView({ slug }: { slug: string }) {
   const { t } = useTranslation();
-  const game = getGame(slug)!;
+  // Resolve applies the launch flip (status/price/store labels) once releaseAt passes.
+  const game = useResolvedGame(getGame(slug)!);
   const copy = useGameCopy(game);
   // Games with a VitePress wiki under /wiki/<slug>/ (a separate static site the
   // SPA can't introspect). Keep in sync when a game wiki is added.
