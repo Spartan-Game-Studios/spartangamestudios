@@ -5,6 +5,7 @@ import {
   games,
   getGame,
   resolveGame,
+  type Game,
   getPost,
   listedGames,
   listedPosts,
@@ -142,24 +143,44 @@ describe('formatDate', () => {
 });
 
 describe('game launch flip (resolveGame)', () => {
-  it('applies atRelease overrides only once releaseAt has passed', () => {
-    const boothill = getGame('boothill')!;
+  // A synthetic scheduled game, so the test doesn't depend on any live launch data.
+  const scheduled: Game = {
+    ...getGame('boothill')!,
+    status: 'early-access',
+    price: '$9.99 at launch',
+    stores: [
+      { store: 'itch', url: 'https://example.com/itch', label: 'Play now' },
+      { store: 'steam', url: 'https://store.steampowered.com/app/1/', label: 'Wishlist' },
+    ],
+    releaseAt: '2050-01-01T00:00:00Z',
+    atRelease: {
+      status: 'released',
+      price: '$9.99',
+      storeLabels: { steam: 'Buy on Steam' },
+    },
+  };
 
-    const before = resolveGame(boothill, Date.parse('2020-01-01T00:00:00Z'));
+  it('applies atRelease overrides only once releaseAt has passed', () => {
+    const before = resolveGame(scheduled, Date.parse('2049-12-31T00:00:00Z'));
     expect(before.status).toBe('early-access');
-    expect(before.price).toBe('$2.99 at launch');
+    expect(before.price).toBe('$9.99 at launch');
     expect(before.stores.find((s) => s.store === 'steam')?.label).toBe('Wishlist');
 
-    const after = resolveGame(boothill, Date.parse('2099-01-01T00:00:00Z'));
+    const after = resolveGame(scheduled, Date.parse('2050-06-01T00:00:00Z'));
     expect(after.status).toBe('released');
-    expect(after.price).toBe('$2.99');
+    expect(after.price).toBe('$9.99');
     expect(after.stores.find((s) => s.store === 'steam')?.label).toBe('Buy on Steam');
     // Stores without an override are untouched.
     expect(after.stores.find((s) => s.store === 'itch')?.label).toBe('Play now');
   });
 
   it('is a no-op before launch, returning the same game reference', () => {
+    expect(resolveGame(scheduled, Date.parse('2049-12-31T00:00:00Z'))).toBe(scheduled);
+  });
+
+  it('leaves a released game (no schedule) unchanged', () => {
     const boothill = getGame('boothill')!;
-    expect(resolveGame(boothill, Date.parse('2020-01-01T00:00:00Z'))).toBe(boothill);
+    expect(boothill.status).toBe('released');
+    expect(resolveGame(boothill, Date.parse('2050-01-01T00:00:00Z'))).toBe(boothill);
   });
 });
