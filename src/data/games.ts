@@ -1,10 +1,5 @@
 import type { Game } from './types';
 
-// Boothill launch instant. The site flips itself to "out now" once the visitor's
-// clock passes this — no timed deploy needed (see useResolvedGame).
-// 2026-09-25 16:20 Mexico City (CST, UTC-6) = 22:20 UTC.
-const BOOTHILL_RELEASE = '2026-09-25T22:20:00Z';
-
 /**
  * The studio catalogue. Sourced from the design vault's project specs.
  *
@@ -62,12 +57,12 @@ export const games: Game[] = [
     pitch:
       'A lone grave-robber on a cursed frontier, auto-firing six-shooters and salvaged hoodoo at a posse that will not stop coming. Every kill raises your Wanted level, and Wanted is the difficulty — push it for richer loot and deadlier hunters, or lay low and starve your own build. The best run rides the edge of the noose until sundown.',
     genre: 'Top-down survivors-like',
-    status: 'early-access',
+    status: 'released',
     visibility: 'public',
     platforms: ['Windows', 'macOS', 'Linux'],
     stores: [
-      // itch is live and playable now, so it leads; Steam is a wishlist page
-      // ahead of the full launch. (Google Play listing isn't public yet.)
+      // itch leads (the studio's main CTA); Steam is live too. Google Play
+      // listing isn't public yet.
       {
         store: 'itch',
         url: 'https://spartan-game-studios.itch.io/boothill',
@@ -76,7 +71,7 @@ export const games: Game[] = [
       {
         store: 'steam',
         url: 'https://store.steampowered.com/app/5104850/',
-        label: 'Wishlist',
+        label: 'Buy on Steam',
       },
     ],
     keyArt: {
@@ -107,14 +102,7 @@ export const games: Game[] = [
       'Fifteen minutes to sundown, and something waiting for you at the end',
       'Open frontier with real cover, so where you stand is a decision',
     ],
-    price: '$2.99 at launch',
-    // Launch flip, evaluated on the visitor's clock (see useResolvedGame).
-    releaseAt: BOOTHILL_RELEASE,
-    atRelease: {
-      status: 'released',
-      price: '$2.99',
-      storeLabels: { steam: 'Buy on Steam' },
-    },
+    price: '$2.99',
   },
   {
     slug: 'nightside',
