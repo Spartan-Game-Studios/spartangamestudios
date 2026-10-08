@@ -1,4 +1,5 @@
 import type { DevlogPost } from './types';
+import publishedPosts from '../content/devlog.json';
 
 /**
  * Devlogs live here first and are syndicated outward — the site owns the
@@ -7,7 +8,7 @@ import type { DevlogPost } from './types';
  * The MVP renders `body` as plain paragraphs. When posts outgrow that, swap
  * this array for MDX without changing any page component.
  */
-export const devlog: DevlogPost[] = [
+const authored: DevlogPost[] = [
   {
     slug: 'why-we-sell-games-the-old-way',
     title: 'Why we sell games the old way',
@@ -24,3 +25,9 @@ export const devlog: DevlogPost[] = [
     ],
   },
 ];
+
+// Posts published from the studio are appended to src/content/devlog.json and
+// merged here — so shipping a devlog entry is a data change (the services/publisher
+// devlog adapter opens that PR), with no edit to the hand-authored list above.
+// Starts as [] and is statically imported (resolveJsonModule), so it always types.
+export const devlog: DevlogPost[] = [...authored, ...(publishedPosts as DevlogPost[])];
