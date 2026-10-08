@@ -161,6 +161,6 @@ export const games: Game[] = [
       'Wave after wave of wolves, answered with turrets, fences, and overwhelming firepower',
       'Herding dogs, reimagined as a mobile artillery battery',
     ],
-    price: '~$12.99 at launch',
+    price: '$7.99 at launch',
   },
 ];
