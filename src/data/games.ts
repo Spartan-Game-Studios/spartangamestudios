@@ -119,9 +119,9 @@ export const games: Game[] = [
   {
     slug: 'mad-mary',
     title: 'Mad Mary: Space Shepherd',
-    tagline: 'A shepherd a long way from Earth: herd by day, hold the line by night.',
+    tagline: 'Herd by day. Hold the line by night.',
     pitch:
-      'Mary runs a ranch on the wrong side of a strange frontier, with a pack of dogs that have guns bolted to their backs and a flock the planet wants. By day you herd the wild sheep home, breed the flock on real genetics — value for the merchant, hardiness to survive the dark, methane to power the place — and plumb water to the troughs and a digester that turns muck into electricity. By night the planet comes for the sheep, and you hold the line behind five kinds of turret and your gun-strapped pack. Every day you build; every night you find out whether it was enough.',
+      'Mary is a shepherd a long way from Earth. She has a ranch on the wrong side of a strange frontier, a pack of doggies with guns mounted to their backs, and a flock the planet wants. Every day you build. Every night you find out whether it was enough.',
     genre: 'Ranch-sim tower defense',
     status: 'in-development',
     visibility: 'public',
@@ -156,10 +156,10 @@ export const games: Game[] = [
       },
     ],
     features: [
-      'A full day/night loop — ranch and herd by day, defend the flock by night',
-      'Breed your flock on real genetics: value for the merchant, hardiness to survive the dark, methane to fuel the ranch',
-      'Plumb water to the troughs and digest muck into power — better pipes and better genetics fly your ship further',
-      'Arm your pack of dogs with five turret types, from a cheap cannon to a laser',
+      'Herd the wild ones home — ride out in the rover, turn wild sheep with your dogs, or just vacuum one up with the B.A.A.H.G and fire it at the pen',
+      'Breed a better flock — every sheep carries its own DNA. Research it to increase the value for the merchant’s price, hardiness to survive the night, methane to fuel the ranch',
+      'Plumb the place — pump water from the pond, pipe it to the troughs, and feed a digester that turns poo into power',
+      'Fortify — five turret types, from a cheap cannon to a laser that goes pew. Arm your doggies with the best stuff',
     ],
     price: '$7.99 at launch',
   },
