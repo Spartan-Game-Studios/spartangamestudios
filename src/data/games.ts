@@ -119,10 +119,10 @@ export const games: Game[] = [
   {
     slug: 'mad-mary',
     title: 'Mad Mary: Space Shepherd',
-    tagline: 'The wolves came for the flock. Mary brought guns.',
+    tagline: 'A shepherd a long way from Earth: herd by day, hold the line by night.',
     pitch:
-      'You command a pack of Australian shepherds — each with a gun, laser, or missile pod bolted to its back — as one unit, driving them across the field to body-block a wolf horde away from the sheep. The flock is your lives and your economy at once: sheep graze the wool you spend between waves on more dogs, nastier weapons, and automated defenses. Herd the pack, melt the horde, and never let them reach a sheep.',
-    genre: '3D pack-shooter tower defense',
+      'Mary runs a ranch on the wrong side of a strange frontier, with a pack of dogs that have guns bolted to their backs and a flock the planet wants. By day you herd the wild sheep home, breed the flock on real genetics — value for the merchant, hardiness to survive the dark, methane to power the place — and plumb water to the troughs and a digester that turns muck into electricity. By night the planet comes for the sheep, and you hold the line behind five kinds of turret and your gun-strapped pack. Every day you build; every night you find out whether it was enough.',
+    genre: 'Ranch-sim tower defense',
     status: 'in-development',
     visibility: 'public',
     platforms: ['Windows', 'macOS', 'Linux'],
@@ -156,10 +156,10 @@ export const games: Game[] = [
       },
     ],
     features: [
-      'Drive a whole pack of gun-strapped shepherds as a single unit',
-      'The flock is your lives and your economy — every sheep lost costs you both',
-      'Wave after wave of wolves, answered with turrets, fences, and overwhelming firepower',
-      'Herding dogs, reimagined as a mobile artillery battery',
+      'A full day/night loop — ranch and herd by day, defend the flock by night',
+      'Breed your flock on real genetics: value for the merchant, hardiness to survive the dark, methane to fuel the ranch',
+      'Plumb water to the troughs and digest muck into power — better pipes and better genetics fly your ship further',
+      'Arm your pack of dogs with five turret types, from a cheap cannon to a laser',
     ],
     price: '$7.99 at launch',
   },
