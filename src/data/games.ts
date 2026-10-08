@@ -118,15 +118,43 @@ export const games: Game[] = [
   },
   {
     slug: 'mad-mary',
-    title: 'Mad Mary',
+    title: 'Mad Mary: Space Shepherd',
     tagline: 'The wolves came for the flock. Mary brought guns.',
     pitch:
       'You command a pack of Australian shepherds — each with a gun, laser, or missile pod bolted to its back — as one unit, driving them across the field to body-block a wolf horde away from the sheep. The flock is your lives and your economy at once: sheep graze the wool you spend between waves on more dogs, nastier weapons, and automated defenses. Herd the pack, melt the horde, and never let them reach a sheep.',
     genre: '3D pack-shooter tower defense',
-    status: 'concept',
-    visibility: 'unlisted',
+    status: 'in-development',
+    visibility: 'public',
     platforms: ['Windows', 'macOS', 'Linux'],
-    stores: [],
+    stores: [
+      {
+        store: 'steam',
+        url: 'https://store.steampowered.com/app/5199310/',
+        label: 'Wishlist',
+      },
+    ],
+    keyArt: {
+      src: '/games/mad-mary/key-art.jpg',
+      alt: 'Mary, a red-haired shepherd in dark armor, levels a glowing rifle amid her flock and gun-strapped shepherd dogs under a violet dusk sky.',
+    },
+    screenshots: [
+      {
+        src: '/games/mad-mary/screenshot-1.jpg',
+        alt: 'By day, Mary herds a flock of low-poly black-faced sheep past a red barn under a bright blue sky.',
+      },
+      {
+        src: '/games/mad-mary/screenshot-2.jpg',
+        alt: 'The flock gathers at dusk beneath an old watchtower, a shepherd dog at Mary’s side.',
+      },
+      {
+        src: '/games/mad-mary/screenshot-3.jpg',
+        alt: 'At sunset, a line of shepherd dogs with back-mounted turrets advances past the fence to guard the flock.',
+      },
+      {
+        src: '/games/mad-mary/screenshot-4.jpg',
+        alt: 'After dark, the gun-strapped shepherds open fire on the treeline as the night assault begins.',
+      },
+    ],
     features: [
       'Drive a whole pack of gun-strapped shepherds as a single unit',
       'The flock is your lives and your economy — every sheep lost costs you both',
