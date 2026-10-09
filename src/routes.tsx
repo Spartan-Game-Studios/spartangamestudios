@@ -17,7 +17,6 @@ import { Account } from '@/pages/Account/Account';
 import { Verify } from '@/pages/Account/Verify';
 import { DeleteAccount } from '@/pages/Account/DeleteAccount';
 import { Privacy } from '@/pages/Legal/Privacy';
-import { Studio } from '@/pages/Studio/Studio';
 import { RequireAuth } from '@/auth/RequireAuth';
 import { SHOP_ENABLED } from '@/config';
 
@@ -46,12 +45,6 @@ export const routes = [
       { path: 'games', element: <Games /> },
       { path: 'games/:slug', element: <GameDetail /> },
       ...shopRoutes,
-      // Internal publishing-studio dashboard. Sign-in gated here; staff membership
-      // is enforced by the backend (the page shows a "not staff" state on 403).
-      {
-        element: <RequireAuth />,
-        children: [{ path: 'studio', element: <Studio /> }],
-      },
       { path: 'devlog', element: <Devlog /> },
       { path: 'devlog/:slug', element: <DevlogPost /> },
       { path: 'press', element: <Press /> },
