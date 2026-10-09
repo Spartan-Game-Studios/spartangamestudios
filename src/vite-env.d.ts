@@ -18,8 +18,6 @@ interface ImportMetaEnv {
   readonly VITE_GOOGLE_CLIENT_ID?: string;
   /** itch.io OAuth application client id. Empty hides the itch.io button. */
   readonly VITE_ITCH_CLIENT_ID?: string;
-  /** Publishing-studio backend base URL (services/publisher). Empty disables /studio. */
-  readonly VITE_PUBLISHER_API_URL?: string;
 }
 
 interface ImportMeta {

@@ -46,7 +46,6 @@ jobs:
           VITE_ITCH_CLIENT_ID: ${{ vars.VITE_ITCH_CLIENT_ID }}
           VITE_MERCH_API_URL: ${{ vars.VITE_MERCH_API_URL }}
           VITE_STRIPE_PUBLISHABLE_KEY: ${{ vars.VITE_STRIPE_PUBLISHABLE_KEY }}
-          VITE_PUBLISHER_API_URL: ${{ vars.VITE_PUBLISHER_API_URL }}
         run: pnpm run build
 
       - name: Verify the SPA fallback and custom domain survived the build
